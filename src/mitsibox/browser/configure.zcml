@@ -1,0 +1,134 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="mitisibox">
+
+
+<!-- CONNEXION DB -->
+    <browser:page
+        for="*"
+        name="manageConnexionDb"
+        class=".connexion_db.ConnexionDb"
+        allowed_interface=".interfaces.IManageConnexionDb"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="manageMitisiBox"
+        class=".manage_box.ManageBox"
+        allowed_interface=".interfaces.IManageBox"
+        permission="zope.Public"
+        />
+
+
+
+<!-- DOSSIER IMAGE VIEW -->
+    <browser:page
+        for="*"
+        name="manageDossierImage"
+        class=".dossier_image_view.DossierImageView"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="dossierImageView"
+        for="*"
+        class=".dossier_image_view.DossierImageView"
+        template="templates/dossier_image_view.pt"
+        permission="zope2.View"
+        />
+
+
+
+
+
+
+<!-- DISPLAY BOX -->
+    <browser:page
+        for="*"
+        name="displayBox"
+        class=".display_box.DisplayBox"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        name="show-one-box"
+        for="*"
+        class=".display_box.DisplayBox"
+        template="templates/show_one_boxe.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        />
+
+    <browser:page
+        name="show-all-boxes"
+        for="*"
+        class=".display_box.DisplayBox"
+        template="templates/show_all_boxes.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        />
+
+    <browser:page
+        name="list-box"
+        for="*"
+        class=".display_box.DisplayBox"
+        template="templates/listing_boxes.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        />
+
+    <browser:page
+        name="getListingBox"
+        for="*"
+        class=".display_box.DisplayBox"
+        permission="zope.Public"
+        attribute="getListingBox"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        />
+
+    <browser:page
+        name="getJsonBox"
+        for="*"
+        class=".display_box.DisplayBox"
+        permission="zope.Public"
+        attribute="getJsonBox"
+        allowed_interface=".interfaces.IManageDisplayBox"
+        />
+
+
+
+
+    
+<!-- MANAGE BOX -->
+    <browser:page
+        name="ajouter-une-mitisibox"
+        for="*"
+        class=".manage_box.ManageBox"
+        template="templates/gestion_db/admin_ajouter_box.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageBox"
+        />
+    <browser:page
+        name="insertMitisiBox"
+        for="*"
+        class=".manage_box.ManageBox"
+        attribute="insertMitisiBox"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageBox"
+        />
+    <browser:page
+        name="updateMitisiBox"
+        for="*"
+        class=".manage_box.ManageBox"
+        attribute="updateMitisiBox"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageBox"
+        />
+
+        
+</configure>

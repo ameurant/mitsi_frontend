@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="mitisibox">
+
+<body>
+
+<metal:main fill-slot="content-core"
+            tal:define="idBox request/idBox;
+                        boiteView context/@@displayBox; 
+                        boite python:boiteView.getOneBox(idBox)">
+
+
+    <div class="flex-box justify-content-center">    
+        <section class="box">
+            <div>
+                <h2 id=""
+                    tal:attributes="id string:box-name" 
+                    class="data-box"
+                    tal:content="boite/name"></h2>
+            </div>
+            <hr />
+            <h3 class="flex-box flex-justify-content-space-between">
+                <div>
+                    <span tal:condition="python: boite.deposit_count >= 5">
+                        <i class='fas fa-vials rouge'></i>
+                    </span>
+                    <span tal:condition="python: boite.deposit_count < 5">
+                        <i class='fas fa-vials vert'></i>
+                    </span>                    
+                    <span id=""
+                          tal:attributes="id string:box-deposit-count" 
+                          class="data-box"
+                          tal:condition="exists: boite/deposit_count"
+                          tal:content="boite/deposit_count" />
+                </div>
+                <div>
+                    <!--Dernière température-->
+                    <span tal:condition="python: boite.last_temp >= 20">
+                        <i class='fas fa-thermometer-full rouge'></i>
+                    </span>
+                    <span tal:condition="python: boite.last_temp < 20">
+                        <i class='fas fa-thermometer-full vert'></i>
+                    </span>
+                    <span id=""
+                          tal:attributes="id string:box-last-temp" 
+                          class="data-box"
+                          tal:condition="exists: boite/last_temp"
+                          tal:content="boite/last_temp" />
+                </div>
+                <div>
+                    <!--Humidité-->
+                    <i class="fas fa-tint bleu-glyphe"></i>
+                    <span id=""
+                          tal:attributes="id string:box-last-humidity" 
+                          class="data-box"
+                          tal:condition="exists: boite/last_humidity"
+                          tal:content="boite/last_humidity" />
+                </div>
+            </h3>
+            <hr />
+            
+            <div class="flex-box flex-justify-content-space-between">
+                <div class="address-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id=""
+                          tal:attributes="id string:box-address" 
+                          class="data-box"
+                          tal:condition="exists: boite/address"
+                          tal:content="boite/address"></span>
+                </div>
+                <div>
+                    <i class="fas fa-globe"></i>
+                    <span id=""
+                          tal:attributes="id string:box-lat" 
+                          class="data-box"
+                          tal:condition="exists: boite/long"
+                          tal:content="boite/long" />
+                    -
+                    <span id=""
+                          tal:attributes="id string:box-long" 
+                          class="data-box"
+                          tal:condition="exists: boite/lat"
+                          tal:content="boite/lat" />
+                </div>
+            </div>
+            <hr />
+            
+            <div class="flex-box flex-justify-content-space-between">
+                <div>
+                    <div>
+                        <span class="label-box">Premier dépôt :</span><br />
+                        <span id=""
+                              tal:attributes="id string:box-first-deposit" 
+                              class="data-box date-box"
+                              tal:condition="exists: boite/first_deposit"
+                              tal:content="boite/first_deposit" />
+                    </div>
+                    <div>
+                        <span class="label-box">Dernier dépôt :</span><br />
+                        <span id=""
+                              tal:attributes="id string:box-last-deposit" 
+                              class="data-box date-box"
+                              tal:condition="exists: boite/last_deposit"
+                              tal:content="boite/last_deposit" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label-box">Dernier relevé :</span><br />
+                        <span id=""
+                              tal:attributes="id string:box-last-relief" 
+                              class="data-box date-box"
+                              tal:condition="exists: boite/last_relief"
+                              tal:content="boite/last_relief" />
+                    </div>
+                    
+                    <div>
+                        <span class="label-box">Dernière mise à jour :</span><br />
+                        <span id=""
+                              tal:attributes="id string:box-last-update" 
+                              class="data-box date-box"
+                              tal:condition="exists: boite/last_update"
+                              tal:content="boite/last_update" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="flex-box flex-justify-content-space-around">
+                <div>
+                    <div id=""
+                         tal:attributes="id string:icone-front-door"><!--imgjs--></div>
+                    <span id=""
+                          tal:attributes="id string:box-door-status" 
+                          class="data-box discret"
+                          tal:condition="exists: boite/door_status"
+                          tal:content="boite/door_status" />
+                </div>
+                
+                <div>
+                    <div id=""
+                         tal:attributes="id string:icone-top-door"><!--imgjs--></div>
+                    <span id=""
+                          tal:attributes="id string:box-top-status" 
+                          class="data-box discret"
+                          tal:condition="exists: boite/top_status"
+                          tal:content="boite/top_status" />
+                </div>
+            </div>
+            
+            <hr />
+            <div>
+                <span class="label-box discret">Labo :</span>
+                <span id=""
+                      tal:attributes="id string:box-lab_id" 
+                      class="data-box discret"
+                      tal:content="boite/lab_id" />
+            </div>
+        </section>
+    </div>
+</metal:main>
+</body>
+</html>
