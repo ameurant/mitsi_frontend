@@ -6,7 +6,7 @@ from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 class ISensiboxCoreLayer(IDefaultBrowserLayer):
     """
-    Layer for all mitisibox developments
+    Layer for all mitsibox developments
     """
 
 

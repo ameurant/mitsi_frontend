@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="fr"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="mitisibox">
+      i18n:domain="mitsibox">
 
 <body>
 

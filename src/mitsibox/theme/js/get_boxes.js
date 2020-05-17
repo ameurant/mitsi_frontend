@@ -1,5 +1,5 @@
 /***
-script for mitisibox project
+script for mitsibox project
 netvaast 2018
 ***/
 var updateInterval = 6000;
@@ -58,17 +58,17 @@ function manageDoors(i, topDoorStatus, frontDoorStatus){
     
     if (frontDoorStatus == 'OPEN') {
         //console.log("frontDoorStatus == 'OPEN'");
-        iconeFrontDoor.html("<img src='++theme++mitisibox/images/box_door_front_open.png' alt='porte frontale' />")
+        iconeFrontDoor.html("<img src='++theme++mitsibox/images/box_door_front_open.png' alt='porte frontale' />")
     }
     else{
-       iconeFrontDoor.html("<img src='++theme++mitisibox/images/box_door_front_close.png' alt='porte frontale' />")
+       iconeFrontDoor.html("<img src='++theme++mitsibox/images/box_door_front_close.png' alt='porte frontale' />")
     }
 
     if (topDoorStatus == 'OPEN') {
-        iconeTopDoor.html("<img src='++theme++mitisibox/images/box_door_top_open.png' alt='porte supérieure' />")
+        iconeTopDoor.html("<img src='++theme++mitsibox/images/box_door_top_open.png' alt='porte supérieure' />")
     }
     else{
-       iconeTopDoor.html("<img src='++theme++mitisibox/images/box_door_top_close.png' alt='porte supérieure' />")
+       iconeTopDoor.html("<img src='++theme++mitsibox/images/box_door_top_close.png' alt='porte supérieure' />")
     }
     boxTopStatus.html(topDoorStatus);
     boxDoorStatus.html(frontDoorStatus);    

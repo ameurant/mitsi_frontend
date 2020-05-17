@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="fr"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="mitisibox">
+      i18n:domain="mitsibox">
 
 <body>
 
@@ -13,7 +13,7 @@
                         boites python:boiteView.getListingBox()">
 <nav class="icone-toggle-listing-box">
     <a href=""
-        tal:attributes="href string:${context/portal_url}/listing-mitisibox/list-box"><i class="fas fa-th-list"></i></a>
+        tal:attributes="href string:${context/portal_url}/listing-mitsibox/list-box"><i class="fas fa-th-list"></i></a>
 </nav>
 
 <div class="flex-box">    
@@ -160,7 +160,7 @@
 </div>
 
 <script src="" 
-        tal:attributes="src string:$portal_url/++theme++mitisibox/js/get_boxes.js"></script>
+        tal:attributes="src string:$portal_url/++theme++mitsibox/js/get_boxes.js"></script>
 </metal:main>
 </body>
 </html>

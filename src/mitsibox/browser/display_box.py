@@ -22,8 +22,8 @@ class DisplayBox(ConnexionDb):
         db=session.get_schema('sensihold_v2')
         tables = db.get_tables()
         
-        tbl_sensihold_mitisibox = db.get_collection('mitisibox_boxes')
-        recs = tbl_sensihold_mitisibox.find().execute()
+        tbl_sensihold_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_sensihold_mitsibox.find().execute()
         myBoxes = recs.fetch_all()
         
         idList=[]
@@ -42,9 +42,9 @@ class DisplayBox(ConnexionDb):
         db=session.get_schema('sensihold_v2')
         tables = db.get_tables()
         
-        tbl_sensihold_mitisibox = db.get_collection('mitisibox_boxes')
-        recs = tbl_sensihold_mitisibox.find().execute()
-        #recs = tbl_sensihold_mitisibox.select().execute()
+        tbl_sensihold_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_sensihold_mitsibox.find().execute()
+        #recs = tbl_sensihold_mitsibox.select().execute()
         myBoxes = recs.fetch_all()
         
         return myBoxes
@@ -59,8 +59,8 @@ class DisplayBox(ConnexionDb):
         db=session.get_schema('sensihold_v2')
         tables = db.get_tables()
         
-        tbl_sensihold_mitisibox = db.get_collection('mitisibox_boxes')
-        recs = tbl_sensihold_mitisibox.find("_id=='%s'"%(idBox,)).execute()
+        tbl_sensihold_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_sensihold_mitsibox.find("_id=='%s'"%(idBox,)).execute()
         myBoxe = recs.fetch_one()
         
         return myBoxe

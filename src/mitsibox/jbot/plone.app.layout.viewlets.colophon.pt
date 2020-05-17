@@ -4,10 +4,10 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       tal:omit-tag=""
-      i18n:domain="mitisibox">
+      i18n:domain="mitsibox">
 
 <aside class="portlet portletClassic"
-       id="portal-colophon-mitisibox"
+       id="portal-colophon-mitsibox"
        metal:define-macro="portlet">
     <div class="portletContent">
         <div id="copyright">

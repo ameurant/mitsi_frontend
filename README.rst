@@ -1,16 +1,16 @@
 ===================
-mitisibox :: website
+mitsibox :: website
 ===================
 
-Plone Product pour la gestion des mitisibox.
+Plone Product pour la gestion des mitsibox.
 
 Development
 -----------
 
 ::
 
-    git clone https://github.com/ameurant/mitisibox.git mitisibox
-    cd mitisibox
+    git clone https://github.com/ameurant/mitsibox.git mitsibox
+    cd mitsibox
     ./bootstrap.sh
 
 Base de donnée
