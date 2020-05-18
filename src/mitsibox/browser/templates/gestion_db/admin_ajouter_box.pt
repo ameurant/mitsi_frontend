@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="fr"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="mitsibox">
+      i18n:domain="box">
 
 <body>
 
@@ -12,14 +12,14 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="mitsiboxView context/@@manageMitsiBox">
+            tal:define="boxView context/@@manageBox">
 
     <section class="formulaire section-donnee">
         <h2>
             <i class="fas fa-ellipsis-v"></i>
             Ajouter une boite
         </h2>
-        <form action="insertMitsiBox"
+        <form action="insertBox"
               method="post">
               <div class="formInput">
                   <label for="labo-id">

@@ -4,10 +4,10 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       tal:omit-tag=""
-      i18n:domain="mitsibox">
+      i18n:domain="box">
 
 <aside class="portlet portletClassic"
-       id="portal-colophon-mitsibox"
+       id="portal-colophon-box"
        metal:define-macro="portlet">
     <div class="portletContent">
         <div id="copyright">
@@ -15,7 +15,7 @@
             1983 - <tal:year tal:define="DateTime nocall:modules/DateTime.DateTime;
                                    myTime python:DateTime()"
                        tal:content="python:myTime.year()" />
-            Ce site est protégé par le droit d'auteur © sensihold - <a href="mentions-legales">mentions légales</a>
+            Ce site est protégé par le droit d'auteur © MitsiNet - <a href="mentions-legales">mentions légales</a>
             <a href="reglement-relatif-a-la-politique-de-confidentialite-et-des-cookies">En savoir plus sur notre politique vie privée et cookies</a>
         </div>
 

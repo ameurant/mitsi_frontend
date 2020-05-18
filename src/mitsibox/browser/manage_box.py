@@ -17,13 +17,13 @@ class ManageBox(ConnexionDb):
     """
     implements(IManageBox)
     
-    def insertMitsiBox(self):
+    def insertBox(self):
         """
         insertion d'une nouvelle boite
         """
         session = self.getConnexion()
-        db=session.get_schema('sensihold_v2')
-        mitsibox = db.get_collection('mitsibox_boxes')
+        db=session.get_schema('mitsibox')
+        box = db.get_collection('box_boxes')
 
         fields = self.request.form
 
@@ -38,25 +38,25 @@ class ManageBox(ConnexionDb):
         
         newBoite = json.dumps(dico)
         
-        mitsibox.add(newBoite).execute()
+        box.add(newBoite).execute()
         
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok le guide a été bien enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s//listing-mitsibox" % (portalUrl,)
+        url = "%s/listing-box" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
 
 
-    def updateMitsiBox(self):
+    def updateBox(self):
         """
         insertion d'une nouvelle boite
         """
         session = self.getConnexion()
-        db=session.get_schema('sensihold_v2')
-        mitsibox = db.get_collection('mitsibox_boxes')
+        db=session.get_schema('mitsibox')
+        box = db.get_collection('box_boxes')
 
         fields = self.request.form
 
@@ -71,14 +71,14 @@ class ManageBox(ConnexionDb):
         
         newBoite = json.dumps(dico)
         
-        #mitsibox.modify("_id='%s'" % box_id).patch(patch_json).execute()(newBoite).execute()
+        #box.modify("_id='%s'" % box_id).patch(patch_json).execute()(newBoite).execute()
         
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok le guide a été bien enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s//listing-mitsibox" % (portalUrl,)
+        url = "%s/listing-box" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
 

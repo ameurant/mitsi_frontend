@@ -17,7 +17,7 @@
 
     <browser:page
         for="*"
-        name="manageMitsiBox"
+        name="manageBox"
         class=".manage_box.ManageBox"
         allowed_interface=".interfaces.IManageBox"
         permission="zope.Public"
@@ -106,7 +106,7 @@
     
 <!-- MANAGE BOX -->
     <browser:page
-        name="ajouter-une-mitsibox"
+        name="ajouter-une-box"
         for="*"
         class=".manage_box.ManageBox"
         template="templates/gestion_db/admin_ajouter_box.pt"
@@ -114,18 +114,18 @@
         allowed_interface=".interfaces.IManageBox"
         />
     <browser:page
-        name="insertMitsiBox"
+        name="insertBox"
         for="*"
         class=".manage_box.ManageBox"
-        attribute="insertMitsiBox"
+        attribute="insertBox"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
     <browser:page
-        name="updateMitsiBox"
+        name="updateBox"
         for="*"
         class=".manage_box.ManageBox"
-        attribute="updateMitsiBox"
+        attribute="updateBox"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />

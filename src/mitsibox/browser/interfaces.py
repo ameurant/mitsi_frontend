@@ -4,9 +4,9 @@ from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
-class ISensiboxCoreLayer(IDefaultBrowserLayer):
+class IMitsiboxCoreLayer(IDefaultBrowserLayer):
     """
-    Layer for all mitsibox developments
+    Layer for all box developments
     """
 
 

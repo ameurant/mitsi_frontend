@@ -6,9 +6,9 @@ from Products.Five import BrowserView
 
 class ConnexionDb(BrowserView):
     """
-    recupère toutes les news et les renvoie en JSON
+    connexion sur la db mitsibox
     """
-    
+
     def getConnexion(self):
         """
         crée une connexion sur la db
@@ -16,7 +16,7 @@ class ConnexionDb(BrowserView):
         session = mysqlx.get_session({
                     'host': '127.0.0.1', 
                     'port': 44060,
-                    'user': 'sensiholdv2',
+                    'user': 'mitsibox',
                     'password': '69AlainAvouluJouer$',
                     'ssl-mode': 'DISABLED'
                 })

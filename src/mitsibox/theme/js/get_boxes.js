@@ -1,5 +1,5 @@
 /***
-script for mitsibox project
+script for box project
 netvaast 2018
 ***/
 var updateInterval = 6000;
@@ -73,8 +73,6 @@ function manageDoors(i, topDoorStatus, frontDoorStatus){
     boxTopStatus.html(topDoorStatus);
     boxDoorStatus.html(frontDoorStatus);    
 }
-
-
 
 function displayBox(i, numBox, data){
     /*
