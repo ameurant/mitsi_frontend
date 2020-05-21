@@ -27,23 +27,14 @@
 
 <!-- DOSSIER IMAGE VIEW -->
     <browser:page
-        for="*"
-        name="manageDossierImage"
-        class=".dossier_image_view.DossierImageView"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        name="dossierImageView"
-        for="*"
+        name="dossier_image_view"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        menu="plone_displayviews"
+        title="Vue Dossier Image"
         class=".dossier_image_view.DossierImageView"
         template="templates/dossier_image_view.pt"
         permission="zope2.View"
         />
-
-
-
-
 
 
 <!-- DISPLAY BOX -->
