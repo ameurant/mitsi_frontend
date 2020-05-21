@@ -15,7 +15,7 @@ class ConnexionDb(BrowserView):
         """
         session = mysqlx.get_session({
                     'host': '127.0.0.1', 
-                    'port': 44060,
+                    'port': 33060,
                     'user': 'mitsibox',
                     'password': '69AlainAvouluJouer$',
                     'ssl-mode': 'DISABLED'
