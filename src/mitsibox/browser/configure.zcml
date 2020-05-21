@@ -28,7 +28,7 @@
 <!-- DOSSIER IMAGE VIEW -->
     <browser:page
         name="dossier_image_view"
-        for="plone.dexterity.interfaces.IDexterityContainer"
+        for="*"
         menu="plone_displayviews"
         title="Vue Dossier Image"
         class=".dossier_image_view.DossierImageView"
