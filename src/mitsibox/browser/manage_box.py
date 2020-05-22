@@ -23,7 +23,7 @@ class ManageBox(ConnexionDb):
         """
         session = self.getConnexion()
         db=session.get_schema('mitsibox')
-        box = db.get_collection('box_boxes')
+        box = db.get_collection('mitsibox_boxes')
 
         fields = self.request.form
 
@@ -56,7 +56,7 @@ class ManageBox(ConnexionDb):
         """
         session = self.getConnexion()
         db=session.get_schema('mitsibox')
-        box = db.get_collection('box_boxes')
+        box = db.get_collection('mitsibox_boxes')
 
         fields = self.request.form
 
