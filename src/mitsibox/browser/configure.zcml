@@ -65,7 +65,7 @@
         />
 
     <browser:page
-        name="list-box"
+        name="listing-box"
         for="*"
         class=".display_box.DisplayBox"
         template="templates/listing_boxes.pt"
@@ -97,7 +97,7 @@
     
 <!-- MANAGE BOX -->
     <browser:page
-        name="ajouter-une-box"
+        name="ajouter-une-mitsibox"
         for="*"
         class=".manage_box.ManageBox"
         template="templates/gestion_db/admin_ajouter_box.pt"
