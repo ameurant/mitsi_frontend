@@ -36,7 +36,7 @@ class ManageLabs(ConnexionDb):
         """
         session = self.getConnexion()
         db=session.get_schema('mitsibox')
-        box = db.get_collection('mitsibox_labs')
+        labs = db.get_collection('mitsibox_labs')
 
         fields = self.request.form
 
@@ -67,7 +67,7 @@ class ManageLabs(ConnexionDb):
         """
         session = self.getConnexion()
         db=session.get_schema('mitsibox')
-        box = db.get_collection('mitsibox_labs')
+        labs = db.get_collection('mitsibox_labs')
 
         fields = self.request.form
 
