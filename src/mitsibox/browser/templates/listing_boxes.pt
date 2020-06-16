@@ -13,7 +13,7 @@
                         boites python:boiteView.getListingBox()">
 <nav class="icone-toggle-listing-box">
     <a href=""
-        tal:attributes="href string:${context/portal_url}/listing-box/show-all-boxes">
+        tal:attributes="href string:${context/portal_url}/show-all-boxes">
         <i class="fas fa-th"></i>
     </a>
 </nav>
