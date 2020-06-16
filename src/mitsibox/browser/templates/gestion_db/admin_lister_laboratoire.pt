@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:main fill-slot="content-core"
+            tal:define="labsView context/@@manageLabs;
+                        allLabs labsView/getListingLabs">
+<!--
+<nav class="icone-toggle-listing-box">
+    <a href=""
+        tal:attributes="href string:${context/portal_url}/show-all-boxes">
+        <i class="fas fa-th"></i>
+    </a>
+</nav>
+-->
+
+<div class="flex-box">  
+    <table border="1" class="listing">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Cp</th>
+                <th>Localité</th>
+                <th>Lat</th>
+                <th>Long</th>
+            </tr>
+        </thead>
+        <tal:boucle tal:repeat="lab allLabs">
+            <tr>
+                <td>
+                    <span tal:content="lab/_id" />
+                </td>
+                <td>
+                    <span tal:content="lab/name" />
+                </td>
+                <td>
+                    <span tal:condition="exists: lab/adress"
+                          tal:content="lab/adress" />
+                </td>
+                <td>
+                    <span tal:condition="exists: lab/cp"
+                          tal:content="lab/cp" />
+                </td>
+                <td>
+                    <span tal:condition="exists: lab/localite"
+                          tal:content="lab/localite" />
+                </td>
+                <td>
+                    <span tal:condition="exists: lab/lat"
+                          tal:content="lab/lat" />
+                </td>
+                <td>
+                    <span tal:condition="exists: lab/long"
+                          tal:content="lab/long" />
+                </td>
+            </tr>
+        </tal:boucle>
+    </table>
+</div>
+</metal:main>
+</body>
+</html>

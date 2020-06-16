@@ -109,6 +109,14 @@
         allowed_interface=".interfaces.IManageLabs"
         />
     <browser:page
+        name="listing-des-laboratoires"
+        for="*"
+        class=".manage_labs.ManageLabs"
+        template="templates/gestion_db/admin_lister_laboratoire.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageLabs"
+        />
+    <browser:page
         name="insertLabs"
         for="*"
         class=".manage_labs.ManageLabs"
@@ -151,6 +159,5 @@
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
-
         
 </configure>
