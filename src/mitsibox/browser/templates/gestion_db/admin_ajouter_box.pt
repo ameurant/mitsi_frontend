@@ -12,7 +12,9 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="boxView context/@@manageBox">
+            tal:define="boxView context/@@manageBox;
+                        labsView context/@@manageLabs;
+                        allLabs labsView/getListingLabs">
 
     <section class="formulaire section-donnee">
         <h2>
@@ -27,9 +29,14 @@
                   </label>
                   <select name="laboId"
                           id="laboId">
-                      <option>...</option>
-                      <option value="00005e54e84d0000000000000002"
-                              selected="">Labo Ronneau</option>
+                        <option>...</option>
+                        <tal:boucle tal:repeat="lab allLabs">
+                            <option value=""
+                                    tal:attributes="value lab/_id">
+                                <span tal:content="lab/name" /> ::
+                                <span tal:content="lab/schema" />
+                            </option>
+                        </tal:boucle>
                   </select>
               </div>
             
@@ -49,6 +56,24 @@
                 <input type="text"
                        name="boxAddress"
                        id="box-adresse"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-cp">
+                    CP :
+                </label>
+                <input type="text"
+                       name="boxCp"
+                       id="box-cp"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-localite">
+                    Localité :
+                </label>
+                <input type="text"
+                       name="boxLocalite"
+                       id="box-localite"
                        value="" />
             </div>
             <div class="formInput">

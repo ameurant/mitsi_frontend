@@ -15,10 +15,18 @@ class IshowBox(Interface):
     IshowBox
     """
 
+
 class IManageConnexionDb(Interface):
     """
     IManageConnexionDb
     """
+
+
+class IManageLabs(Interface):
+    """
+    IManageLabs
+    """
+
 
 class IManageBox(Interface):
     """

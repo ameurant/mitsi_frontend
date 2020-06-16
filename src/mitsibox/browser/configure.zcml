@@ -23,6 +23,13 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="manageLabs"
+        class=".manage_labs.ManageLabs"
+        allowed_interface=".interfaces.IManageLabs"
+        permission="zope.Public"
+        />
 
 
 <!-- DOSSIER IMAGE VIEW -->
@@ -92,7 +99,31 @@
         />
 
 
-
+<!-- MANAGE LABS -->
+    <browser:page
+        name="ajouter-un-laboratoire"
+        for="*"
+        class=".manage_labs.ManageLabs"
+        template="templates/gestion_db/admin_ajouter_laboratoire.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageLabs"
+        />
+    <browser:page
+        name="insertLabs"
+        for="*"
+        class=".manage_labs.ManageLabs"
+        attribute="insertLabs"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageLabs"
+        />
+    <browser:page
+        name="updateLabs"
+        for="*"
+        class=".manage_labs.ManageLabs"
+        attribute="updateLabs"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageLabs"
+        />
 
     
 <!-- MANAGE BOX -->
