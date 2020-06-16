@@ -33,12 +33,12 @@
                        value="" />
             </div>
             <div class="formInput">
-                <label for="labs-adresse">
+                <label for="labs-adress">
                     Adresse :
                 </label>
                 <input type="text"
                        name="labsAddress"
-                       id="labs-adresse"
+                       id="labs-adress"
                        value="" />
             </div>
             <div class="formInput">
