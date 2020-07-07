@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:main fill-slot="content-core"
+            tal:define="driversView context/@@manageDrivers;
+                        allDrivers driversView/getAllDrivers">
+<!--
+<nav class="icone-toggle-listing-box">
+    <a href=""
+        tal:attributes="href string:${context/portal_url}/show-all-boxes">
+        <i class="fas fa-th"></i>
+    </a>
+</nav>
+-->
+<nav>
+    <a href=""
+       tal:attributes="href string:${context/portal_url}/ajouter-un-chauffeur"
+       class="btn btn-primary"
+       role="button">
+        Ajouter un chauffeur
+    </a>
+</nav>
+
+<div class="flex-box">  
+    <table border="1" class="listing">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>GSM</th>
+            </tr>
+        </thead>
+        <tal:boucle tal:repeat="driver allDrivers">
+            <tr>
+                <td>
+                    <span tal:content="driver/lastName" />
+                </td>
+                <td>
+                    <span tal:content="driver/firstName" />
+                </td>
+                <td>
+                    <span tal:content="driver/gsm" />
+                </td>
+            </tr>
+        </tal:boucle>
+    </table>
+</div>
+
+</metal:main>
+</body>
+</html>

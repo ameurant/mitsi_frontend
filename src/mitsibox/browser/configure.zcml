@@ -31,6 +31,14 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="manageDrivers"
+        class=".manage_drivers.ManageDrivers"
+        allowed_interface=".interfaces.IManageDrivers"
+        permission="zope.Public"
+        />
+
 
 <!-- DOSSIER IMAGE VIEW -->
     <browser:page
@@ -159,5 +167,41 @@
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
+
+<!-- MANAGE DRIVERS -->
+    <browser:page
+        name="ajouter-un-chauffeur"
+        for="*"
+        class=".manage_drivers.ManageDrivers"
+        template="templates/gestion_db/drivers/admin_ajouter_chauffeur.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDrivers"
+        />
+    <browser:page
+        name="listing-des-chauffeurs"
+        for="*"
+        class=".manage_drivers.ManageDrivers"
+        template="templates/gestion_db/drivers/admin_lister_chauffeur.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDrivers"
+        />
+    <browser:page
+        name="insertDriver"
+        for="*"
+        class=".manage_drivers.ManageDrivers"
+        attribute="insertDriver"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDrivers"
+        />
+    <browser:page
+        name="updateDriver"
+        for="*"
+        class=".manage_drivers.ManageDrivers"
+        attribute="updateDriver"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDrivers"
+        />
+
+
         
 </configure>

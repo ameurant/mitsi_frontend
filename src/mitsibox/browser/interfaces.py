@@ -38,3 +38,9 @@ class IManageDisplayBox(Interface):
     """
     IManageDisplayBox
     """
+
+
+class IManageDrivers(Interface):
+    """
+    IManageDrivers
+    """
