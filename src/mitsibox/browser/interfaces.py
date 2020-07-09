@@ -44,3 +44,9 @@ class IManageDrivers(Interface):
     """
     IManageDrivers
     """
+
+
+class IManageRounds(Interface):
+    """
+    IManageRounds
+    """
