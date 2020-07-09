@@ -25,9 +25,11 @@
         <script src="https://kit.fontawesome.com/a9e2b35dcb.js" 
                 crossorigin="anonymous"></script>
 
+        <script src="{$navigation_root_url}/++theme++mitsibox/js/multi.min.js"></script>
         <script src="{$navigation_root_url}/++theme++mitsibox/js/script.js"></script>
 
-
+        <link href="{$navigation_root_url}/++theme++mitsibox/css/multi.min.css"
+              rel="stylesheet"  />
         <link href="{$navigation_root_url}/++theme++mitsibox/css/styles.css"
               rel="stylesheet" />        
     </after>
