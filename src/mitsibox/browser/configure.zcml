@@ -39,6 +39,14 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="manageRounds"
+        class=".manage_rounds.ManageRounds"
+        allowed_interface=".interfaces.IManageRounds"
+        permission="zope.Public"
+        />
+
 
 <!-- DOSSIER IMAGE VIEW -->
     <browser:page
@@ -112,7 +120,7 @@
         name="ajouter-un-laboratoire"
         for="*"
         class=".manage_labs.ManageLabs"
-        template="templates/gestion_db/admin_ajouter_laboratoire.pt"
+        template="templates/gestion_db/labs/admin_ajouter_laboratory.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageLabs"
         />
@@ -120,7 +128,7 @@
         name="listing-des-laboratoires"
         for="*"
         class=".manage_labs.ManageLabs"
-        template="templates/gestion_db/admin_lister_laboratoire.pt"
+        template="templates/gestion_db/labs/admin_lister_laboratory.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageLabs"
         />
@@ -147,7 +155,15 @@
         name="ajouter-une-mitsibox"
         for="*"
         class=".manage_box.ManageBox"
-        template="templates/gestion_db/admin_ajouter_box.pt"
+        template="templates/gestion_db/boxes/admin_ajouter_box.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageBox"
+        />
+    <browser:page
+        name="listing-des-mitsibox"
+        for="*"
+        class=".manage_box.ManageBox"
+        template="templates/gestion_db/boxes/admin_lister_box.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
@@ -173,7 +189,7 @@
         name="ajouter-un-chauffeur"
         for="*"
         class=".manage_drivers.ManageDrivers"
-        template="templates/gestion_db/drivers/admin_ajouter_chauffeur.pt"
+        template="templates/gestion_db/drivers/admin_ajouter_driver.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDrivers"
         />
@@ -181,7 +197,7 @@
         name="listing-des-chauffeurs"
         for="*"
         class=".manage_drivers.ManageDrivers"
-        template="templates/gestion_db/drivers/admin_lister_chauffeur.pt"
+        template="templates/gestion_db/drivers/admin_lister_driver.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDrivers"
         />
@@ -201,6 +217,41 @@
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDrivers"
         />
+
+<!-- MANAGE ROUNDS -->
+    <browser:page
+        name="ajouter-une-tournee"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        template="templates/gestion_db/rounds/admin_ajouter_round.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+    <browser:page
+        name="listing-des-tournees"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        template="templates/gestion_db/rounds/admin_lister_round.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+    <browser:page
+        name="insertRound"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        attribute="insertRound"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+    <browser:page
+        name="updateRound"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        attribute="updateRound"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+
 
 
         
