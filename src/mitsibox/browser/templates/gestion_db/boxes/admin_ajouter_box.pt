@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+
+<metal:main fill-slot="content-core"
+            tal:define="boxesView context/@@manageBox;
+                        labsView context/@@manageLabs;
+                        allLabs labsView/getListingLabs">
+
+    <section class="formulaire section-donnee">
+        <h2>
+            <i class="fas fa-ellipsis-v"></i>
+            Ajouter une boite
+        </h2>
+        <form action="insertBox"
+              method="post">
+              <div class="formInput">
+                  <label for="labo-id">
+                      Laboratoire  :
+                  </label>
+                  <select name="laboId"
+                          id="laboId">
+                        <option>...</option>
+                        <tal:boucle tal:repeat="lab allLabs">
+                            <option value=""
+                                    tal:attributes="value lab/_id">
+                                <span tal:content="lab/name" /> ::
+                                <span tal:condition="exists: lab/schemadb"
+                                      tal:content="lab/schemadb" />
+                            </option>
+                        </tal:boucle>
+                  </select>
+              </div>
+            
+            <div class="formInput">
+                <label for="box-nom">
+                    Nom la boite :
+                </label>
+                <input type="text"
+                       name="boxName"
+                       id="box-name"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-adresse">
+                    Adresse :
+                </label>
+                <input type="text"
+                       name="boxAddress"
+                       id="box-adresse"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-cp">
+                    CP :
+                </label>
+                <input type="text"
+                       name="boxCp"
+                       id="box-cp"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-localite">
+                    Localité :
+                </label>
+                <input type="text"
+                       name="boxLocalite"
+                       id="box-localite"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-lat">
+                    Latitude :
+                </label>
+                <input type="text"
+                       name="boxLat"
+                       id="box-lat"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-long">
+                    Longitude :
+                </label>
+                <input type="text"
+                       name="boxLong"
+                       id="box-long"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-ssid-wifi">
+                    SSID Wifi :
+                </label>
+                <input type="text"
+                       name="boxSsidWifi"
+                       id="box-ssid-wifi"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="box-pass-wifi">
+                    PASS Wifi :
+                </label>
+                <input type="text"
+                       name="boxPassWifi"
+                       id="box-pass-wifi"
+                       value="" />
+            </div>
+            <div class="formControls" align="center">
+                <input type="submit"
+                       name="submit"
+                       value="Enregister" />
+            </div>
+        </form>
+    </section>
+</metal:main>
+</body>
+</html>
