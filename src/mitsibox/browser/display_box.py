@@ -19,7 +19,7 @@ class DisplayBox(ConnexionDb):
         récupère les paramètres des boites au format JSON
         """
         session = self.getConnexion()
-        db=session.get_schema('mitsibox')
+        db=session.get_schema('mitsi_chuhautesenne')
         tables = db.get_tables()
         
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
@@ -39,7 +39,7 @@ class DisplayBox(ConnexionDb):
         """
         session = self.getConnexion()
 
-        db=session.get_schema('mitsibox')
+        db=session.get_schema('mitsi_chuhautesenne')
         tables = db.get_tables()
         
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
@@ -53,10 +53,9 @@ class DisplayBox(ConnexionDb):
         """
         Récupères les infos d'une boite selon son tidentifiant
         """
-
         session = self.getConnexion()
 
-        db=session.get_schema('mitsibox')
+        db=session.get_schema('mitsi_chuhautesenne')
         tables = db.get_tables()
         
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
