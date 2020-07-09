@@ -119,7 +119,6 @@ function getBox() {
         success: 
             function(data){
                 jQuery.each(data, function(i, val) {
-                    //console.log(val);
                     let numBox = '#box' + i;
                     displayBox(i, numBox, val);
                 });
