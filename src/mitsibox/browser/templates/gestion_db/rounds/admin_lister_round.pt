@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:main fill-slot="content-core"
+            tal:define="roundsView context/@@manageRounds;
+                        allRounds roundsView/getAllRounds;
+                        boiteView context/@@manageBox">
+<nav>
+    <a href=""
+       tal:attributes="href string:${context/portal_url}/ajouter-une-tournee"
+       class="btn btn-primary"
+       role="button">
+        Ajouter une tournée
+    </a>
+</nav>
+
+<tal:boucle tal:repeat="round allRounds">
+    <div>      
+        <h4>Tournée <span tal:content="round/roundtName" /></h4>
+        <tal:block tal:define="allBoxes round/mitsiboxList">
+            <tal:boucle tal:repeat="idBoxe allBoxes">
+                <tal:boxe tal:define="boxe python:boiteView.getOneBoxById(idBoxe)">
+                    <div> 
+                        <span tal:content="boxe/name" />
+                    </div>
+                </tal:boxe>
+            </tal:boucle>
+        </tal:block>
+    </div>
+</tal:boucle>
+
+</metal:main>
+</body>
+</html>

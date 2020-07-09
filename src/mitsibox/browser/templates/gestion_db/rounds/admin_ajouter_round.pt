@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+
+<metal:main fill-slot="content-core"
+            tal:define="boiteView context/@@displayBox; 
+                        boites python:boiteView.getListingBox()">
+
+    <section class="formulaire section-donnee">
+        <h2>
+            <i class="fas fa-ellipsis-v"></i>
+            Ajouter une tournée
+        </h2>
+
+        <form action="insertRound"
+              method="post">
+              
+            <div class="formInput">
+                <label for="round-name">
+                    Nom de la tournée :
+                </label>
+                <input type="text"
+                       name="roundtName"
+                       id="round-name"
+                       value="" />
+            </div>
+            <div class="formInput">
+                <label for="mitisibox-list">
+                    Sélectionner les mitisibox composant cette torunée :
+                </label>
+                <select multiple="multiple"
+                        name="mitsiboxList:list"
+                        id="mitsibox-list"
+                        required>
+                    <tal:boucle tal:repeat="boite boites">
+                        <option tal:attributes="value boite/_id">
+                            <strong><span tal:content="boite/name" />
+                            <span tal:content="boite/address" />
+                            <span tal:content="boite/cp" /> <span tal:content="boite/localite" />
+                        </option>
+                    </tal:boucle>
+                </select>
+            </div>
+            
+            <div class="formControls" align="center">
+                <input type="submit"
+                       name="submit"
+                       value="Enregister" />
+            </div>
+        </form>
+        <script>
+            let select = document.getElementById("mitsibox-list");
+            multi(select, {enable_search: false});
+        </script>
+    </section>
+</metal:main>
+</body>
+</html>
