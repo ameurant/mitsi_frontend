@@ -16,12 +16,43 @@ class ManageBox(ConnexionDb):
     """
     implements(IManageBox)
 
+    def getListingBox(self):
+        """
+        Récupères les infos de toutes les boites
+        """
+        session = self.getConnexion()
+
+        db=session.get_schema('mitsi_chuhautesenne')
+        tables = db.get_tables()
+        
+        tbl_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_mitsibox.find().execute()
+        #recs = tbl_mitsibox.select().execute()
+        myBoxes = recs.fetch_all()
+        
+        return myBoxes
+
+    def getOneBoxById(self, idBox):
+        """
+        Récupères les infos d'une boite selon son identifiant
+        """
+        session = self.getConnexion()
+
+        db=session.get_schema('mitsi_chuhautesenne')
+        tables = db.get_tables()
+        
+        tbl_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_mitsibox.find("_id=='%s'"%(idBox,)).execute()
+        myBoxe = recs.fetch_one()
+        
+        return myBoxe
+
     def insertBox(self):
         """
         insertion d'une nouvelle boite
         """
         session = self.getConnexion()
-        db = session.get_schema('mitsibox')
+        db = session.get_schema('mitsi_chuhautesenne')
         box = db.get_collection('mitsibox_boxes')
 
         fields = self.request.form
@@ -45,7 +76,7 @@ class ManageBox(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok le guide a été bien enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-box" % (portalUrl,)
+        url = "%s/listing-des-mitsibox" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
 
@@ -78,6 +109,6 @@ class ManageBox(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok le guide a été bien enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-box" % (portalUrl,)
+        url = "%s/listing-des-mitsibox" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
