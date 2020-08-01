@@ -1,0 +1,279 @@
+/**
+CSS box
+Mars 2020
+By Netvaast
+
+
+orange     : #ee772c  rgb(238, 119, 44)
+bleu clair : #21abe3  rgb(33, 171, 227)
+bleu fonce : #2662ac  rgb(28, 98, 172)
+
+
+***/
+
+@import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
+
+/*** GLYPHE ***/
+
+.fa-vials:before {
+    content: "\f493";
+}
+
+.fa-temperature-high:before {
+    content: "\f769";
+}
+.fa-temperature-low:before{
+    content: "\f76b";
+}
+
+
+
+.fa-stack {
+    position: relative;
+    display:block;
+    width: 43px;
+    height: 43px;
+    line-height: 43px;
+}
+.fa-lg {
+    line-height: .75em;
+}
+.fa-bars::after{
+    content: '\f0c9';
+}
+
+.fa-exclamation-triangle::before{
+    content: '\f071';
+}
+
+
+html,
+body {
+    height:100% !important;
+}
+
+body{
+    font-size:11pt;
+}
+
+
+.box{
+    width:300px;
+    border:1px solid #999;
+    border-radius:8px;
+    padding:8px;
+    margin:1em;
+}
+.box h2,
+.box h3{
+    text-align:center;
+    font-family: Exo;
+}
+.label-box{
+    /*font-size:0.8em;*/
+    color:#999;
+    text-align:left;
+}
+.data-box{
+    color:#ff6e03;
+}
+.address-box{
+    width:150px;
+}
+.date-box{
+    font-size:0.7em;
+    text-align:left;
+}
+
+
+a.noborder{
+    border-bottom:none !important;
+}
+
+.discret{
+    font-size:0.8em;
+}
+.important{
+    /*font-size:1.1em;*/
+}
+
+.rouge{
+    color:#f00;
+}
+
+.vert{
+    color:#0a0;
+}
+
+.bleu-glyphe{
+    color:#01b0f4;
+}
+
+
+/*** GLYPHE ***/
+.fa-ellipsis-v{
+    font-size:0.8em;
+    padding-right:10px;
+}
+.fa-external-link-alt{
+    
+}
+
+
+
+/**** FLEX BOX ***/
+.flex-box{
+    display:flex;
+    flex-wrap: wrap;
+}
+.flex-justify-content-space-between{
+    justify-content: space-between;
+}
+.flex-justify-content-space-around{
+    justify-content: space-around;
+}
+.flex-justify-content-center{
+    justify-content: center;
+}
+
+
+
+/**** PLONE ***/
+.documentFirstHeading{
+    color: #ee772c;
+    font-family:"exo";
+}
+h2{
+    color: #21abe3;
+    text-align: right;
+    /*font-size:1.2em;*/
+    padding-right:3em;
+}
+
+
+/*** TABLE ***/
+.listing th{
+    text-align:center;
+    background-color:#e6e6e6;
+    vertical-align:top !important;
+}
+
+
+/*** FORMULAIRE ***/
+.formInput{
+    margin:20px 0px;
+}
+
+.formInput > label {
+    font-weight:normal !important;
+    display:block;
+    padding-left:5px;
+}
+
+
+/*** DOSSIER IMAGE ***/
+.dossier-section{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+}
+
+.dossier-article{
+    width:260px;
+    height:300px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:8px;
+    box-shadow:1px 1px 5px rgba(50,50,50,0.3);
+    transition: all .2s ease-in-out;
+}
+
+.dossier-article:hover{
+    width:260px;
+    height:300px;
+    border:1px solid #ff8336;
+    border-radius:8px;
+    margin:8px;
+    box-shadow:0px 0px 0px rgba(50,50,50,0.3);
+    transition: all .2s ease-in-out;
+}
+
+.dossier-article a{
+    font-size:16px;
+    font-family: 'Exo', sans-serif;
+    color:#595a5c !important;
+    text-decoration:none;
+    border-bottom:none !important;
+}
+
+.dossier-article a:hover{
+    color:#ff8336 !important;
+    text-decoration:none;
+}
+.dossier-image{
+    min-height:148px;
+    border-radius:0px 0px 8px 8px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(242,242,242,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+}
+
+.dossier-image:hover{
+    border:1px solid #fcc;
+    box-shadow:0px 0px 0px rgba(50,50,50,0.3);
+    opacity: 0.5;
+}
+
+.dossier-titre{
+    display: table-cell; /* comportement visuel de cellule */
+    vertical-align: middle;
+    width:260px;
+    height:150px;
+    text-align:center;
+    font-size:1.5em;
+    padding:4px;
+}
+
+
+/*** LISTING BOX ***/
+.icone-toggle-listing-box{
+    text-align:right;
+}
+.icone-toggle-listing-box a{
+    color:#21abe3;
+    transition: all 0.3s ease-in-out;
+    text-decoration:none;
+    border-bottom:none !important;
+}
+.icone-toggle-listing-box a:hover{
+    color:#ee772c;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/**** RESPONSIVE ****/
+
+/**** DESKTOP *****/
+@media only screen and (min-width : 1025px){
+}
+
+
+
+/**** TABLETTE *****/
+@media only screen and (min-width : 769px) and (max-width: 1024px){
+
+}
+
+
+
+/**** PHONE *****/
+@media (max-width: 768px) {
+}
+
+
+

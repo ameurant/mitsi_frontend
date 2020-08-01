@@ -1,0 +1,7 @@
+<tal:favicon define="portal_url view/site_url">
+    <link rel="shortcut icon"
+          type="image/png"
+          tal:attributes="href string:$portal_url/++theme++lacure/images/favicon.png" />
+    <link rel="apple-touch-icon"
+          tal:attributes="href string:$portal_url/++theme++lacure/images/touch_icon.png" />
+</tal:favicon>

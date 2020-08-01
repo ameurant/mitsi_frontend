@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="lacure">
+
+
+<!-- DOSSIER IMAGE VIEW -->
+    <browser:page
+        name="dossier_image_view"
+        for="*"
+        menu="plone_displayviews"
+        title="Vue Dossier Image"
+        class=".dossier_image_view.DossierImageView"
+        template="templates/dossier_image_view.pt"
+        permission="zope2.View"
+        />
+        
+</configure>
