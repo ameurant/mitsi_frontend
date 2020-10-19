@@ -29,17 +29,48 @@
                     Nom de la tournée :
                 </label>
                 <input type="text"
-                       name="roundtName"
+                       name="roundName"
                        id="round-name"
                        value="" />
             </div>
             <div class="formInput">
-                <label for="mitisibox-list">
-                    Sélectionner les mitisibox composant cette torunée :
+                <label for="round-type">
+                    Type de la tournée :
+                </label>
+                <select name="roundType"
+                        id="round-type"
+                        required>
+                    <option value="daily">Quotidienne</option>
+                    <option value="urgent">Urgente</option>
+                </select>
+            </div>
+            <div class="formInput">
+                <label for="round-start-time">
+                    Heure de départ :
+                </label>
+                <input type="time"
+                       name="roundStartTime"
+                       id="round-start-time"
+                       value=""
+                       required />
+            </div>
+            <div class="formInput">
+                <label for="round-estimed-time">
+                    Durée estimée :
+                </label>
+                <input type="time"
+                       name="roundEstimedTime"
+                       id="round-estimed-time"
+                       value=""
+                       required />
+            </div>
+            <div class="formInput">
+                <label for="round-mitisibox-list">
+                    Sélectionner les mitisibox composant cette tournée :
                 </label>
                 <select multiple="multiple"
-                        name="mitsiboxList:list"
-                        id="mitsibox-list"
+                        name="roundMitsiboxList:list"
+                        id="round-mitsibox-list"
                         required>
                     <tal:boucle tal:repeat="boite boites">
                         <option tal:attributes="value boite/_id">
@@ -58,7 +89,7 @@
             </div>
         </form>
         <script>
-            let select = document.getElementById("mitsibox-list");
+            let select = document.getElementById("round-mitsibox-list");
             multi(select, {enable_search: false});
         </script>
     </section>

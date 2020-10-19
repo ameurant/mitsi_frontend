@@ -22,20 +22,37 @@
 </nav>
 
 <tal:boucle tal:repeat="round allRounds">
-    <div>      
-        <h4>Tournée <span tal:content="round/roundtName" /></h4>
-        <tal:block tal:define="allBoxes round/mitsiboxList">
-            <tal:boucle tal:repeat="idBoxe allBoxes">
-                <tal:boxe tal:define="boxe python:boiteView.getOneBoxById(idBoxe)">
-                    <div> 
-                        <span tal:content="boxe/name" />
-                    </div>
-                </tal:boxe>
-            </tal:boucle>
-        </tal:block>
+    ==> <span tal:content="round" /> <==
+    <hr /
+    <div class="card border-info mb-3"> 
+        <div class="card-header">
+            <h3 class="text-info"><span tal:content="round/roundName" /></h3>
+            <a href=""
+               tal:attributes="href string:modifier-une-tournee?idRound=${round/_id}">
+           Modifier la tournée</a>
+        </div>
+        <div class="card-body text-secondary">
+            <tal:block tal:define="allBoxes round/roundMitsiboxList">
+                <tal:boucle tal:repeat="idBoxe allBoxes">
+                    <tal:boxe tal:define="boite python:boiteView.getOneBoxById(idBoxe)">
+                        <div> 
+                            <span tal:content="boite/name"></span>
+                            <span tal:content="boite/address"></span>
+                            <span tal:content="boite/cp"></span>
+                            <span tal:content="boite/localite"></span>
+                            <span tal:content="boite/lat"></span>
+                            <span tal:content="boite/long"></span>
+                            <span tal:content="boite/last_deposit"></span>
+                            
+                        </div>
+                    </tal:boxe>
+                </tal:boucle>
+            </tal:block>
+        </div>
     </div>
 </tal:boucle>
 
 </metal:main>
 </body>
 </html>
+
