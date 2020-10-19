@@ -1,18 +1,15 @@
 ===================
-mitsibox :: website
+lacure :: website
 ===================
 
-Plone Product pour la gestion des mitsibox.
+Plone Product pour le gîte la cure à Jarnioux.
 
 Development
 -----------
 
 ::
 
-    git clone https://github.com/ameurant/mitsibox.git mitsibox
-    cd mitsibox
+    git clone https://github.com/ameurant/lacure.git lacure
+    cd lacure
     ./bootstrap.sh
 
-Base de donnée
---------------
-    MySql (voir Lefred)
