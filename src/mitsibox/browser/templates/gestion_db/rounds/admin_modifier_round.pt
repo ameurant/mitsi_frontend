@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+
+<metal:main fill-slot="content-core"
+            tal:define="idRound request/idRound;
+                        boiteView context/@@displayBox;
+                        roundsView context/@@manageRounds; 
+                        boites python:boiteView.getListingBox();
+                        myRound python:roundsView.getRoundById(idRound)">
+
+    <section class="formulaire section-donnee">
+        <h2>
+            <i class="fas fa-ellipsis-v"></i>
+            Modifier la tournée : <em>${myRound/roundName}</em>
+        </h2>
+
+        <form action="updateRound"
+              method="post">
+              
+            <div class="formInput">
+                <label for="round-name">
+                    Nom de la tournée :
+                </label>
+                <input type="text"
+                       name="roundName"
+                       id="round-name"
+                       tal:attributes="value myRound/roundName" />
+            </div>
+            <div class="formInput">
+                <label for="round-type">
+                    Type de la tournée :
+                </label>
+                <select name="roundType"
+                        id="round-type"
+                        required>
+                    <option value="daily"
+                            tal:attributes="selected python:myRound.roundType=='daily' and 'selected' or None;">Quotidienne</option>
+                    <option value="urgent"
+                            tal:attributes="selected python:myRound.roundType=='urgent' and 'selected' or None;">Urgente</option>
+                </select>
+            </div>
+            <div class="formInput">
+                <label for="round-start-time">
+                    Heure de départ :
+                </label>
+                <input type="time"
+                       name="roundStartTime"
+                       id="round-start-time"
+                       tal:attributes="value myRound/roundStartTime"
+                       required />
+            </div>
+            <div class="formInput">
+                <label for="round-estimed-time">
+                    Durée estimée :
+                </label>
+                <input type="time"
+                       name="roundEstimedTime"
+                       id="round-estimed-time"
+                       tal:attributes="value  myRound/roundEstimedTime"
+                       required />
+            </div>
+            <div class="formInput">
+                <label for="round-mitisibox-list">
+                    Sélectionner les mitisibox composant cette tournée :
+                </label>
+                <select multiple="multiple"
+                        name="roundMitsiboxList:list"
+                        id="round-mitsibox-list"
+                        required>
+                    <tal:boucle tal:repeat="boite boites">
+                        <option tal:attributes="value boite/_id;
+                                                selected python:boite._id in myRound.roundMitsiboxList or None">
+                            <strong><span tal:content="boite/name" />
+                            <span tal:content="boite/address" />
+                            <span tal:content="boite/cp" /> <span tal:content="boite/localite" />
+                        </option>
+                    </tal:boucle>
+                </select>
+            </div>
+            
+            <div class="formControls" align="center">
+                <input type="hidden"
+                       name="idRound"
+                       tal:attributes="value idRound" />
+                <input type="submit"
+                       name="submit"
+                       value="Modifier" />
+            </div>
+        </form>
+        <script>
+            let select = document.getElementById("round-mitsibox-list");
+            multi(select, {enable_search: false});
+        </script>
+    </section>
+</metal:main>
+</body>
+</html>
