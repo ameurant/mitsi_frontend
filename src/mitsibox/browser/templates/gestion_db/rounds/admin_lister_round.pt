@@ -37,8 +37,9 @@
                             <span tal:content="boite/localite"></span>
                             <span tal:content="boite/lat"></span>
                             <span tal:content="boite/long"></span>
-                            <span tal:content="boite/last_deposit"></span>
-                            
+                            <tal:if tal:condition="exists: boite/last_deposit">
+                                <span tal:content="boite/last_deposit"></span>
+                            </tal:if>
                         </div>
                     </tal:boxe>
                 </tal:boucle>
