@@ -21,8 +21,7 @@ class ManageRounds(ConnexionDb):
         Récupère les infos de toutes les tournées
         """
         session = self.getConnexion()
-        db=session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
+        db = session.get_schema('mitsi_chuhautesenne')
 
         tbl_mitsiround = db.get_collection('mitsibox_rounds')
         recs = tbl_mitsiround.find().execute()
@@ -34,8 +33,7 @@ class ManageRounds(ConnexionDb):
         Récupère les infos d'une tournée selon son _id
         """
         session = self.getConnexion()
-        db=session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
+        db = session.get_schema('mitsi_chuhautesenne')
 
         tbl_mitsiround = db.get_collection('mitsibox_rounds')
         recs = tbl_mitsiround.find("_id=='%s'"%(idRound,)).execute()
@@ -47,10 +45,7 @@ class ManageRounds(ConnexionDb):
         Récupère le nom dde la tournée à la quelle appartient une box
         """
         session = self.getConnexion()
-        db=session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
-
-        tbl_mitsiround = db.get_collection('mitsibox_rounds')
+        db = session.get_schema('mitsi_chuhautesenne')
 
         myRound = session.sql("""select
                                     doc->>"$.roundName"
@@ -58,7 +53,6 @@ class ManageRounds(ConnexionDb):
                                     mitsi_chuhautesenne.mitsibox_rounds
                                  where
                                     "%s" member of (doc->>"$.mitsiboxList")""" % (idBox,))
-        import pdb; pdb.set_trace()
         return myRound
 
     def insertRound(self):
@@ -98,14 +92,14 @@ class ManageRounds(ConnexionDb):
 
         fields = self.request.form
         idRound = fields.get('idRound', None) 
-        
+
         newRound = {}
         newRound['roundName'] = fields.get('roundName', None).decode("utf-8")
         newRound['roundType'] = fields.get('roundType', None)
         newRound['roundStartTime'] = fields.get('roundStartTime', None)
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
         newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
-        
+
         round.modify("_id='%s'" % idRound).patch(newRound).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
