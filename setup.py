@@ -5,9 +5,9 @@ from setuptools import setup, find_packages
 version = '5.1.4 '
 
 setup(
-    name='lacure',
+    name='mitsibox',
     version=version,
-    description="Plone product for lacure website",
+    description="Plone product for mitsibox website",
     long_description=open("README.rst").read(),
     classifiers=[
         "Framework :: Plone",
@@ -17,7 +17,7 @@ setup(
     ],
     author='Netvaast',
     author_email='alain.meurant@netvaast.be',
-    url='https://github.com/ameurant/lacure',
+    url='https://github.com/ameurant/mitsibox',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
