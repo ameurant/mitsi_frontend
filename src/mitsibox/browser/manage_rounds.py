@@ -95,7 +95,7 @@ class ManageRounds(ConnexionDb):
         modification d'une tournée
         """
         session = self.getConnexion()
-        db = session.get_schema('mitsibox')
+        db = session.get_schema('mitsi_chuhautesenne')
         round = db.get_collection('mitsibox_rounds')
 
         fields = self.request.form
@@ -109,8 +109,8 @@ class ManageRounds(ConnexionDb):
         dico['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
 
         newRound = json.dumps(dico)
-
-        round.modify("_id='%s'" % idRound).patch(patch_json).execute()(newRound).execute()
+        
+        round.modify("_id='%s'" % idRound).patch(newRound).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
