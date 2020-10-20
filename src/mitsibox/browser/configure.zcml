@@ -228,6 +228,14 @@
         allowed_interface=".interfaces.IManageRounds"
         />
     <browser:page
+        name="modifier-une-tournee"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        template="templates/gestion_db/rounds/admin_modifier_round.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+    <browser:page
         name="listing-des-tournees"
         for="*"
         class=".manage_rounds.ManageRounds"
