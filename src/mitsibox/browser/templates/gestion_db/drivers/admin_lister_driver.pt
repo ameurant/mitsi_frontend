@@ -35,6 +35,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>GSM</th>
+                <th></th>
             </tr>
         </thead>
         <tal:boucle tal:repeat="driver allDrivers">
@@ -47,6 +48,12 @@
                 </td>
                 <td>
                     <span tal:content="driver/gsm" />
+                </td>
+                <td>
+                    <a tal:attributes="href string:modifier-un-chauffeur?idDriver=${driver/_id}"
+                       class="noborder">
+                        <i class="fad fa-cogs"></i>
+                    </a>
                 </td>
             </tr>
         </tal:boucle>
