@@ -21,16 +21,27 @@ class ManageDrivers(ConnexionDb):
         Récupères les infos de toutes les chauffeurs
         """
         session = self.getConnexion()
+        db = session.get_schema('mitsi_chuhautesenne')
 
-        db=session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
-        
         tbl_mitsidriver = db.get_collection('mitsibox_drivers')
         recs = tbl_mitsidriver.find().execute()
-        #recs = tbl_mitsibox.select().execute()
+        # recs = tbl_mitsibox.select().execute()
         myDrivers = recs.fetch_all()
-        
+
         return myDrivers
+
+    def getDriverById(self, idDriver):
+        """
+        Récupères les infos d'un chauffeur selon son ID
+        """
+        session = self.getConnexion()
+        db = session.get_schema('mitsi_chuhautesenne')
+
+        tbl_mitsidriver = db.get_collection('mitsibox_drivers')
+        recs = tbl_mitsidriver.find("_id=='%s'" % (idDriver,)).execute()
+        myDriver = recs.fetch_one()
+
+        return myDriver
 
     def insertDriver(self):
         """
@@ -38,18 +49,16 @@ class ManageDrivers(ConnexionDb):
         """
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
-        box = db.get_collection('mitsibox_drivers')
+        driver = db.get_collection('mitsibox_drivers')
 
         fields = self.request.form
 
-        dico = {}
-        dico['lastName'] = fields.get('driverLastName', None)
-        dico['firstName'] = fields.get('driverFirstName', None)
-        dico['gsm'] = fields.get('driverGsm', None)
-        
-        newDriver = json.dumps(dico)
+        newDriver = {}
+        newDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
+        newDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
+        newDriver['gsm'] = fields.get('driverGsm', None)
 
-        box.add(newDriver).execute()
+        driver.add(newDriver).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
@@ -64,19 +73,18 @@ class ManageDrivers(ConnexionDb):
         insertion d'une nouvelle boite
         """
         session = self.getConnexion()
-        db = session.get_schema('mitsibox')
-        box = db.get_collection('mitsibox_drivers')
+        db = session.get_schema('mitsi_chuhautesenne')
+        driver = db.get_collection('mitsibox_drivers')
 
         fields = self.request.form
+        idDriver = fields.get('idDriver', None)
 
-        dico = {}
-        dico['nom'] = fields.get('driverNom', None)
-        dico['prenom'] = fields.get('driverPrenom', None)
-        dico['gsm'] = fields.get('driverGsm', None)
+        newDriver = {}
+        newDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
+        newDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
+        newDriver['gsm'] = fields.get('driverGsm', None)
 
-        newDriver = json.dumps(dico)
-
-        # box.modify("_id='%s'" % box_id).patch(patch_json).execute()(newBoite).execute()
+        driver.modify("_id='%s'" % idDriver).patch(newDriver).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
