@@ -22,14 +22,9 @@
 </nav>
 
 <tal:boucle tal:repeat="round allRounds">
-    ==> <span tal:content="round" /> <==
-    <hr /
     <div class="card border-info mb-3"> 
         <div class="card-header">
             <h3 class="text-info"><span tal:content="round/roundName" /></h3>
-            <a href=""
-               tal:attributes="href string:modifier-une-tournee?idRound=${round/_id}">
-           Modifier la tournée</a>
         </div>
         <div class="card-body text-secondary">
             <tal:block tal:define="allBoxes round/roundMitsiboxList">
@@ -49,6 +44,12 @@
                 </tal:boucle>
             </tal:block>
         </div>
+        <nav>
+            <a href=""
+               tal:attributes="href string:modifier-une-tournee?idRound=${round/_id}"
+               class="btn btn-primary"
+               role="button">Modifier la tournée</a>
+        </nav>
     </div>
 </tal:boucle>
 
