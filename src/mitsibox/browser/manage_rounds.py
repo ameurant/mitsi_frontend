@@ -71,14 +71,12 @@ class ManageRounds(ConnexionDb):
 
         fields = self.request.form
 
-        dico = {}
-        dico['roundName'] = fields.get('roundName', None)
-        dico['roundType'] = fields.get('roundType', None)
-        dico['roundStartTime'] = fields.get('roundStartTime', None)
-        dico['roundEstimedTime'] = fields.get('roundEstimedTime', None)
-        dico['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
-
-        newRound = json.dumps(dico)
+        newRound = {}
+        newRound['roundName'] = fields.get('roundName', None)
+        newRound['roundType'] = fields.get('roundType', None)
+        newRound['roundStartTime'] = fields.get('roundStartTime', None)
+        newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
+        newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
 
         round.add(newRound).execute()
 
@@ -100,15 +98,14 @@ class ManageRounds(ConnexionDb):
 
         fields = self.request.form
         idRound = fields.get('idRound', None) 
-
-        dico = {}
-        dico['roundName'] = fields.get('roundName', None)
-        dico['roundType'] = fields.get('roundType', None)
-        dico['roundStartTime'] = fields.get('roundStartTime', None)
-        dico['roundEstimedTime'] = fields.get('roundEstimedTime', None)
-        dico['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
-
-        newRound = json.dumps(dico)
+        roundName  = fields.get('roundName', None)
+        
+        newRound = {}
+        newRound['roundName'] = unicode(roundName, 'utf-8')
+        newRound['roundType'] = fields.get('roundType', None)
+        newRound['roundStartTime'] = fields.get('roundStartTime', None)
+        newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
+        newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
         
         round.modify("_id='%s'" % idRound).patch(newRound).execute()
 
