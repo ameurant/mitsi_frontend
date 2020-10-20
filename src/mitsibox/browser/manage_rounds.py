@@ -72,7 +72,7 @@ class ManageRounds(ConnexionDb):
         fields = self.request.form
 
         newRound = {}
-        newRound['roundName'] = fields.get('roundName', None)
+        newRound['roundName'] = fields.get('roundName', None).decode("utf-8")
         newRound['roundType'] = fields.get('roundType', None)
         newRound['roundStartTime'] = fields.get('roundStartTime', None)
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
@@ -98,10 +98,9 @@ class ManageRounds(ConnexionDb):
 
         fields = self.request.form
         idRound = fields.get('idRound', None) 
-        roundName  = fields.get('roundName', None)
         
         newRound = {}
-        newRound['roundName'] = unicode(roundName, 'utf-8')
+        newRound['roundName'] = fields.get('roundName', None).decode("utf-8")
         newRound['roundType'] = fields.get('roundType', None)
         newRound['roundStartTime'] = fields.get('roundStartTime', None)
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
