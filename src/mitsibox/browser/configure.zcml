@@ -194,6 +194,14 @@
         allowed_interface=".interfaces.IManageDrivers"
         />
     <browser:page
+        name="modifier-un-chauffeur"
+        for="*"
+        class=".manage_drivers.ManageDrivers"
+        template="templates/gestion_db/drivers/admin_modifier_driver.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDrivers"
+        />
+    <browser:page
         name="listing-des-chauffeurs"
         for="*"
         class=".manage_drivers.ManageDrivers"

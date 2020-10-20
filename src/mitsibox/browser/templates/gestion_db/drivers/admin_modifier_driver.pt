@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<metal:main fill-slot="content-core"
+            tal:define="idDriver request/idDriver;
+                        labsView context/@@manageLabs;
+                        driverView context/@@manageDrivers;
+                        allLabs labsView/getListingLabs;
+                        driver python: driverView.getDriverById(idDriver)">
+
+    <section class="formulaire section-donnee">
+        <h2>
+            <i class="fas fa-ellipsis-v"></i>
+            Modifier ce chauffeur
+        </h2>
+        <form action="updateDriver"
+              method="post">
+              
+            <div class="formInput">
+                <label for="driver-last-name">
+                    Nom du chauffeur :
+                </label>
+                <input type="text"
+                       name="driverLastName"
+                       id="driver-last-name"
+                       tal:attributes="value driver/lastName" />
+            </div>
+            <div class="formInput">
+                <label for="driver-first-name">
+                    Prénom du chauffeur :
+                </label>
+                <input type="text"
+                       name="driverFirstName"
+                       id="labs-first-name"
+                       tal:attributes="value driver/firstName" />
+            </div>
+            <div class="formInput">
+                <label for="driver-gsm">
+                    GSM :
+                </label>
+                <input type="text"
+                       name="driverGsm"
+                       id="driver-gsm"
+                       tal:attributes="value driver/gsm" />
+            </div>
+
+            <div class="formControls" align="center">
+                <input type="hidden"
+                       name="idDriver"
+                       tal:attributes="value idDriver" />
+                <input type="submit"
+                       name="submit"
+                       value="Modifier" />
+            </div>
+        </form>
+    </section>
+</metal:main>
+</body>
+</html>
