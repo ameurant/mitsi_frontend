@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+
+<metal:main fill-slot="content-core"
+            tal:define="idLab request/idLab;
+                        labsView context/@@manageLabs;
+                        myLab python: labsView.getLabsById(idLab)">
+
+    <section class="formulaire section-donnee">
+        <h2>
+            <i class="fas fa-ellipsis-v"></i>
+            Modifier le laboratoire : ${myLab/name}
+        </h2>
+        <form action="updateLabs"
+              method="post">
+              
+            <div class="formInput">
+                <label for="labs-nom">
+                    Nom du laboratoire :
+                </label>
+                <input type="text"
+                       name="labsName"
+                       id="labs-name"
+                       tal:attributes="value myLab/name" />
+            </div>
+            <div class="formInput">
+                <label for="labs-adress">
+                    Adresse :
+                </label>
+                <input type="text"
+                       name="labsAddress"
+                       id="labs-adress"
+                       tal:attributes="value myLab/address" />
+            </div>
+            <div class="formInput">
+                <label for="labs-cp">
+                    CP :
+                </label>
+                <input type="text"
+                       name="labsCp"
+                       id="labs-cp"
+                       tal:attributes="value myLab/cp" />
+            </div>
+            <div class="formInput">
+                <label for="labs-localite">
+                    Localité :
+                </label>
+                <input type="text"
+                       name="labsLocalite"
+                       id="labs-localite"
+                       tal:attributes="value myLab/localite" />
+            </div>
+            <div class="formInput">
+                <label for="labs-lat">
+                    Latitude :
+                </label>
+                <input type="text"
+                       name="labsLat"
+                       id="labs-lat"
+                       tal:attributes="value myLab/lat" />
+            </div>
+            <div class="formInput">
+                <label for="labs-long">
+                    Longitude :
+                </label>
+                <input type="text"
+                       name="labsLong"
+                       id="labs-long"
+                       tal:attributes="value myLab/long" />
+            </div>
+            <div class="formInput">
+                <label for="labs-schema">
+                    Schema DB :
+                </label>
+                <span tal:content="myLab/schema"></span>
+            </div>
+
+            <div class="formControls" align="center">
+                <input type="hidden"
+                       name="idLab"
+                       tal:attributes="value myLab/_id" />
+                <input type="submit"
+                       name="submit"
+                       value="Modifier les données" />
+            </div>
+        </form>
+    </section>
+</metal:main>
+</body>
+</html>

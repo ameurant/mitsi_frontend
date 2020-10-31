@@ -11,14 +11,19 @@
 <metal:main fill-slot="content-core"
             tal:define="labsView context/@@manageLabs;
                         allLabs labsView/getListingLabs">
-<!--
-<nav class="icone-toggle-listing-box">
+<h2>
+    <i class="fas fa-ellipsis-v"></i>
+    Liste des laboratoires
+</h2>
+
+<nav class="menu-bouton">
     <a href=""
-        tal:attributes="href string:${context/portal_url}/show-all-boxes">
-        <i class="fas fa-th"></i>
+       tal:attributes="href string:${context/portal_url}/gestion-des-laboratoires/ajouter-un-laboratoire"
+       class="btn btn-primary noborder"
+       role="button">
+        Ajouter un laboratoire
     </a>
 </nav>
--->
 
 <div class="flex-box">  
     <table border="1" class="listing">
@@ -32,6 +37,7 @@
                 <th>Lat</th>
                 <th>Long</th>
                 <th>SchemaDB</th>
+                <th></th>
             </tr>
         </thead>
         <tal:boucle tal:repeat="lab allLabs">
@@ -43,8 +49,8 @@
                     <span tal:content="lab/name" />
                 </td>
                 <td>
-                    <span tal:condition="exists: lab/adress"
-                          tal:content="lab/adress" />
+                    <span tal:condition="exists: lab/address"
+                          tal:content="lab/address" />
                 </td>
                 <td>
                     <span tal:condition="exists: lab/cp"
@@ -65,6 +71,15 @@
                 <td>
                     <span tal:condition="exists: lab/schema"
                           tal:content="lab/schema" />
+                </td>
+                <td>
+                    <a tal:attributes="href string:${context/portal_url}/gestion-des-laboratoires/modifier-un-laboratoire?idLab=${lab/_id}"
+                       class="noborder"
+                       alt="Modifier ce chauffeur"
+                       title="Modifier ce chauffeur"
+                       role="button">
+                        <i class="fad fa-cogs"></i>
+                    </a>
                 </td>
             </tr>
         </tal:boucle>

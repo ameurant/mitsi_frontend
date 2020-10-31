@@ -29,6 +29,19 @@ class ManageLabs(ConnexionDb):
         allLabs = recs.fetch_all()
         return allLabs
 
+    def getLabsById(self, idLab):
+        """
+        Récupères les infos d'un labo selon son ID
+        """
+        session = self.getConnexion()
+        db = session.get_schema('mitsibox')
+        labs = db.get_collection('mitsibox_labs')
+
+        recs = labs.find("_id=='%s'"%(idLab,)).execute()
+        myLab = recs.fetch_one()
+        
+        return myLab
+
     def createSchemaLab(self, schemaDB):
         """
         creation du schema, des collections des tables
@@ -142,7 +155,6 @@ class ManageLabs(ConnexionDb):
         session.get_schema(schemaDB).create_collection('mitsibox_boxes')
         session.get_schema(schemaDB).create_collection('mitsibox_drivers')
         session.get_schema(schemaDB).create_collection('mitsibox_rounds')
-        
 
     def insertLabs(self):
         """
@@ -157,18 +169,16 @@ class ManageLabs(ConnexionDb):
         schema = fields.get('labsSchema', None)
         schemaDB = "mitsi_%s" % (schema)
 
-        dico={}
-        dico['name'] = fields.get('labsName', None)
-        dico['address'] = fields.get('labsAddress', None)
-        dico['cp'] = fields.get('labsCp', None)
-        dico['localite'] = fields.get('labsLocalite', None)
-        dico['lat'] = fields.get('labsLat', None)
-        dico['long'] = fields.get('labsLong', None)
-        dico['schema'] = schemaDB
-        
-        newLabs = json.dumps(dico)
+        newLab={}
+        newLab['name'] = fields.get('labsName', None).decode('utf-8')
+        newLab['address'] = fields.get('labsAddress', None).decode('utf-8')
+        newLab['cp'] = fields.get('labsCp', None)
+        newLab['localite'] = fields.get('labsLocalite', None).decode('utf-8')
+        newLab['lat'] = fields.get('labsLat', None)
+        newLab['long'] = fields.get('labsLong', None)
+        newLab['schema'] = schemaDB
 
-        labs.add(newLabs).execute()
+        labs.add(newLab).execute()
 
         self.createSchemaLab(schemaDB)
 
@@ -176,10 +186,9 @@ class ManageLabs(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok le nouveau laboratoire est créé."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-des-laboratoires" % (portalUrl,)
+        url = "%s/gestion-des-laboratoires/listing-des-laboratoires" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
-
 
     def updateLabs(self):
         """
@@ -190,24 +199,22 @@ class ManageLabs(ConnexionDb):
         labs = db.get_collection('mitsibox_labs')
 
         fields = self.request.form
+        idLab = fields.get('idLab', None)
 
-        dico={}
-        dico['name'] = fields.get('labsName', None)
-        dico['address'] = fields.get('labsAddress', None)
-        dico['cp'] = fields.get('labsCp', None)
-        dico['localite'] = fields.get('labsLocalite', None)
-        dico['lat'] = fields.get('labsLat', None)
-        dico['long'] = fields.get('labsLong', None)
-        
-        newLabs = json.dumps(dico)
+        myLab={}
+        myLab['name'] = fields.get('labsName', None).decode('utf-8')
+        myLab['address'] = fields.get('labsAddress', None).decode('utf-8')
+        myLab['cp'] = fields.get('labsCp', None)
+        myLab['localite'] = fields.get('labsLocalite', None).decode('utf-8')
+        myLab['lat'] = fields.get('labsLat', None)
+        myLab['long'] = fields.get('labsLong', None)
 
-        #box.modify("_id='%s'" % box_id).patch(patch_json).execute()(newBoite).execute()
+        labs.modify("_id='%s'" % idLab).patch(myLab).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Ok Les données du laboratoire ont été modifiées"
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-labs" % (portalUrl,)
+        url = "%s/gestion-des-laboratoires/listing-des-laboratoires" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
-
