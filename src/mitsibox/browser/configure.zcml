@@ -125,6 +125,14 @@
         allowed_interface=".interfaces.IManageLabs"
         />
     <browser:page
+        name="modifier-un-laboratoire"
+        for="*"
+        class=".manage_labs.ManageLabs"
+        template="templates/gestion_db/labs/admin_modifier_laboratory.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageLabs"
+        />
+    <browser:page
         name="listing-des-laboratoires"
         for="*"
         class=".manage_labs.ManageLabs"
@@ -156,6 +164,14 @@
         for="*"
         class=".manage_box.ManageBox"
         template="templates/gestion_db/boxes/admin_ajouter_box.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageBox"
+        />
+    <browser:page
+        name="modifier-une-mitsibox"
+        for="*"
+        class=".manage_box.ManageBox"
+        template="templates/gestion_db/boxes/admin_modifier_box.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
