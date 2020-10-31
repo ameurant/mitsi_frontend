@@ -22,13 +22,18 @@
 
         <script src="{$navigation_root_url}/++theme++mitsibox/bootstrap/js/bootstrap.min.js"></script>
 
-        <script src="https://kit.fontawesome.com/995d7c0aca.js"
-                crossorigin="anonymous"></script>
+        <!--<script src="https://kit.fontawesome.com/995d7c0aca.js" 
+                crossorigin="anonymous"></script>-->
 
         <script src="{$navigation_root_url}/++theme++mitsibox/js/multi.min.js"></script>
         
         <script src="{$navigation_root_url}/++theme++mitsibox/js/script.js"></script>
 
+        <link href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css"
+              integrity="sha384-9ZfPnbegQSumzaE7mks2IYgHoayLtuto3AS6ieArECeaR8nCfliJVuLh/GaQ1gyM"
+              crossorigin="anonymous"
+              rel="stylesheet" />
+        
         <link href="{$navigation_root_url}/++theme++mitsibox/css/multi.min.css"
               rel="stylesheet"  />
         <link href="{$navigation_root_url}/++theme++mitsibox/css/styles.css"
