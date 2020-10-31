@@ -78,7 +78,7 @@ class ManageRounds(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"La tounrée est enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-des-tournees" % (portalUrl,)
+        url = "%s/gestion-des-tournees/listing-des-tournees" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
 
@@ -106,29 +106,6 @@ class ManageRounds(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Les données de la tounrée ont été modifiées."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-des-tournees" % (portalUrl,)
+        url = "%s/gestion-des-tournees/listing-des-tournees" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
-
-
-
-
-# XXXXXXXX 
-
-
-# Lister
-# db.mitsibox_rounds.find()
-# {
-#     "_id": "00005ecb95df0000000000000016",
-#     "name": "du chef",
-#     "type": "daily",
-#     "box_list": [
-#         "00005ecb95df000000000000000c",
-#         "00005ecb95df0000000000000010",
-#         "00005ecb95df0000000000000011",
-#         "00005ecb95df0000000000000012"
-#     ],
-#     "start_time": "09:00:00",
-#     "estimated_end_time": "17:00:00"
-# }
-

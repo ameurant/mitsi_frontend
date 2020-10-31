@@ -8,8 +8,8 @@
 
 <body>
 
-<metal:block fill-slot="top_slot"
-           tal:define="dummy python:request.set('disable_border',1)" />
+<!--<metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />-->
 
 <metal:main fill-slot="content-core"
             tal:define="idRound request/idRound;

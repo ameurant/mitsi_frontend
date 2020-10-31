@@ -12,10 +12,16 @@
             tal:define="roundsView context/@@manageRounds;
                         allRounds roundsView/getAllRounds;
                         boiteView context/@@manageBox">
-<nav>
+
+<h2>
+    <i class="fas fa-ellipsis-v"></i>
+    Liste des tournées
+</h2>
+
+<nav class="menu-bouton">
     <a href=""
-       tal:attributes="href string:${context/portal_url}/ajouter-une-tournee"
-       class="btn btn-primary"
+       tal:attributes="href string:${context/portal_url}/gestion-des-tournees/ajouter-une-tournee"
+       class="btn btn-primary noborder"
        role="button">
         Ajouter une tournée
     </a>
@@ -45,11 +51,13 @@
                 </tal:boucle>
             </tal:block>
         </div>
-        <nav>
+        <nav class="menu-bouton">
             <a href=""
-               tal:attributes="href string:modifier-une-tournee?idRound=${round/_id}"
-               class="btn btn-primary"
-               role="button">Modifier la tournée</a>
+               tal:attributes="href string:string:string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
+               class="noborder"
+               alt="Modifier cette tournée"
+               title="Modifier cette tournée"
+               role="button"><i class="fad fa-cogs"></i></a>
         </nav>
     </div>
 </tal:boucle>
