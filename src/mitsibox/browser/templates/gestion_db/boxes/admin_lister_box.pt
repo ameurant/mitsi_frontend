@@ -9,7 +9,8 @@
 <body>
 
 <metal:main fill-slot="content-core"
-            tal:define="boxesView context/@@manageBox;
+            tal:define="labsView context/@@manageLabs;
+                        boxesView context/@@manageBox;
                         allBoxes boxesView/getListingBox">
 <!--
 <nav class="icone-toggle-listing-box">
@@ -19,9 +20,13 @@
     </a>
 </nav>
 -->
-<nav>
+<h2>
+    <i class="fas fa-ellipsis-v"></i>
+    Liste des boites
+</h2>
+<nav class="menu-bouton">
     <a href=""
-       tal:attributes="href string:${context/portal_url}/ajouter-une-mitsibox"
+       tal:attributes="href string:${context/portal_url}/gestion-des-boites/ajouter-une-mitsibox"
        class="btn btn-primary"
        role="button">
         Ajouter une boite
@@ -37,28 +42,50 @@
                 <th>Lattitude</th>
                 <th>Longitude</th>
                 <th>SSID Wifi</th>
+                <th>Aduino</th>
                 <th>Tournée</th>
+                <th></th>
             </tr>
         </thead>
-        <tal:boucle tal:repeat="boxe allBoxes">
+        <tal:boucle tal:repeat="myBox allBoxes">
             <tr>
-                <td>
-                    <span tal:content="boxe/name" />
+                <td class="text-center"
+                    tal:define="idLab myBox/lab_id;
+                                myLab python:labsView.getLabsById(idLab)">
+                    <span tal:content="myBox/name" class="orange" />
+                    <hr />
+                    <span tal:content="myLab/name" class="discret" />
                 </td>
-                <td>
-                    <span tal:content="boxe/address" />
+                <td class="text-center">
+                    <span tal:content="myBox/address" />
+                    <br />
+                    <span tal:content="myBox/cp" />
+                    <span tal:content="myBox/localite" />
                 </td>
-                <td>
-                    <span tal:content="boxe/lat" />
+                <td class="text-center">
+                    <span tal:content="myBox/lat" />
                 </td>
-                <td>
-                    <span tal:content="boxe/long" />
+                <td class="text-center">
+                    <span tal:content="myBox/long" />
                 </td>
-                <td>
-                    <span tal:content="boxe/ssid" />
+                <td class="text-center">
+                    <span tal:content="myBox/ssid" />
                 </td>
-                <td>
+                <td class="text-center">
+                    <span tal:condition="exists: myBox/arduino"
+                          tal:content="myBox/arduino" />
+                </td>
+                <td class="text-center">
                     (tournée)
+                </td>
+                <td class="text-center">
+                    <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
+                       class="noborder"
+                       alt="Modifier cette boite"
+                       title="Modifier cette boite"
+                       role="button">
+                        <i class="fad fa-cogs"></i>
+                    </a>
                 </td>
             </tr>
         </tal:boucle>

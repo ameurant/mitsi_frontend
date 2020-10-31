@@ -12,34 +12,39 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="boxesView context/@@manageBox;
+            tal:define="idBox request/idBox;
+                        boxesView context/@@manageBox;
                         labsView context/@@manageLabs;
-                        allLabs labsView/getListingLabs">
+                        allLabs labsView/getListingLabs;
+                        myBox python: boxesView.getOneBoxById(idBox)">
+    
 
     <section class="formulaire section-donnee">
         <h2>
             <i class="fas fa-ellipsis-v"></i>
-            Ajouter une boite
+            Modifier cette boite
         </h2>
-        <form action="insertBox"
+        <form action="updateBox"
               method="post">
-            <div class="formInput">
-                <label for="labo-id">
-                    Laboratoire  :
-                </label>
-                <select name="laboId"
-                      id="laboId">
-                    <option>...</option>
-                    <tal:boucle tal:repeat="lab allLabs">
-                        <option value=""
-                                tal:attributes="value lab/_id">
-                            <span tal:content="lab/name" /> ::
-                            <span tal:condition="exists: lab/schemadb"
-                                  tal:content="lab/schemadb" />
-                        </option>
-                    </tal:boucle>
-                </select>
-            </div>
+              <div class="formInput">
+                  <label for="labo-id">
+                      Laboratoire  :
+                  </label>
+                  <select name="laboId"
+                          id="laboId">
+                        <option>...</option>
+                        <tal:boucle tal:repeat="lab allLabs">
+                            <option value=""
+                                    selected=""
+                                    tal:attributes="value lab/_id;
+                                                    selected python:myBox.lab_id==lab._id and 'selected' or None;">
+                                <span tal:content="lab/name" /> ::
+                                <span tal:condition="exists: lab/schemadb"
+                                      tal:content="lab/schemadb" />
+                            </option>
+                        </tal:boucle>
+                  </select>
+              </div>
             
             <div class="formInput">
                 <label for="box-nom">
@@ -48,7 +53,7 @@
                 <input type="text"
                        name="boxName"
                        id="box-name"
-                       value="" />
+                       tal:attributes="value myBox/name"  />
             </div>
             <div class="formInput">
                 <label for="box-adresse">
@@ -57,7 +62,7 @@
                 <input type="text"
                        name="boxAddress"
                        id="box-adresse"
-                       value="" />
+                       tal:attributes="value myBox/address" />
             </div>
             <div class="formInput">
                 <label for="box-cp">
@@ -66,7 +71,7 @@
                 <input type="text"
                        name="boxCp"
                        id="box-cp"
-                       value="" />
+                       tal:attributes="value myBox/cp" />
             </div>
             <div class="formInput">
                 <label for="box-localite">
@@ -75,7 +80,7 @@
                 <input type="text"
                        name="boxLocalite"
                        id="box-localite"
-                       value="" />
+                       tal:attributes="value myBox/localite" />
             </div>
             <div class="formInput">
                 <label for="box-lat">
@@ -84,7 +89,7 @@
                 <input type="text"
                        name="boxLat"
                        id="box-lat"
-                       value="" />
+                       tal:attributes="value myBox/lat" />
             </div>
             <div class="formInput">
                 <label for="box-long">
@@ -93,7 +98,7 @@
                 <input type="text"
                        name="boxLong"
                        id="box-long"
-                       value="" />
+                       tal:attributes="value myBox/long" />
             </div>
             <div class="formInput">
                 <label for="box-ssid-wifi">
@@ -102,7 +107,7 @@
                 <input type="text"
                        name="boxSsidWifi"
                        id="box-ssid-wifi"
-                       value="" />
+                       tal:attributes="value myBox/ssid" />
             </div>
             <div class="formInput">
                 <label for="box-pass-wifi">
@@ -111,12 +116,24 @@
                 <input type="text"
                        name="boxPassWifi"
                        id="box-pass-wifi"
-                       value="" />
+                       tal:attributes="value myBox/passwifi" />
+            </div>
+            <div class="formInput">
+                <label for="box-arduino">
+                    Arduino :
+                </label>
+                <input type="text"
+                       name="boxArduino"
+                       id="box-arduino"
+                       tal:attributes="value myBox/arduino " />
             </div>
             <div class="formControls" align="center">
+                <input type="hidden"
+                       name="idBox"
+                       tal:attributes="value idBox" />
                 <input type="submit"
                        name="submit"
-                       value="Enregister" />
+                       value="Modifier" />
             </div>
         </form>
     </section>
