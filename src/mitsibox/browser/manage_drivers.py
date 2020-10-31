@@ -64,7 +64,7 @@ class ManageDrivers(ConnexionDb):
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"Le chauffeur est enregistrée."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-des-chauffeurs" % (portalUrl,)
+        url = "%s/gestion-des-chauffeurs/listing-des-chauffeurs" % (portalUrl,)
         self.request.response.redirect(url)
         return ''
 
@@ -79,17 +79,17 @@ class ManageDrivers(ConnexionDb):
         fields = self.request.form
         idDriver = fields.get('idDriver', None)
 
-        newDriver = {}
-        newDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
-        newDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
-        newDriver['gsm'] = fields.get('driverGsm', None)
+        myDriver = {}
+        myDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
+        myDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
+        myDriver['gsm'] = fields.get('driverGsm', None)
 
-        driver.modify("_id='%s'" % idDriver).patch(newDriver).execute()
+        driver.modify("_id='%s'" % idDriver).patch(myDriver).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
         message = u"les données du chauffeur ont été modifiées."
         ploneUtils.addPortalMessage(message, 'info')
-        url = "%s/listing-des-chauffeurs" % (portalUrl,)
+        url = "%s/gestion-des-chauffeurs/listing-des-chauffeurs" % (portalUrl,)
         self.request.response.redirect(url)
         return ''

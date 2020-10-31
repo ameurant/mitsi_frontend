@@ -19,9 +19,13 @@
     </a>
 </nav>
 -->
-<nav>
+<h2>
+    <i class="fas fa-ellipsis-v"></i>
+    Liste des chauffeurs
+</h2>
+<nav class="menu-bouton">
     <a href=""
-       tal:attributes="href string:${context/portal_url}/ajouter-un-chauffeur"
+       tal:attributes="href string:${context/portal_url}/gestion-des-chauffeurs/ajouter-un-chauffeur"
        class="btn btn-primary"
        role="button">
         Ajouter un chauffeur
@@ -40,18 +44,21 @@
         </thead>
         <tal:boucle tal:repeat="driver allDrivers">
             <tr>
-                <td>
+                <td class="text-center">
                     <span tal:content="driver/lastName" />
                 </td>
-                <td>
+                <td class="text-center">
                     <span tal:content="driver/firstName" />
                 </td>
-                <td>
+                <td class="text-center">
                     <span tal:content="driver/gsm" />
                 </td>
-                <td>
-                    <a tal:attributes="href string:modifier-un-chauffeur?idDriver=${driver/_id}"
-                       class="noborder">
+                <td class="text-center">
+                    <a tal:attributes="href string:string:${context/portal_url}/gestion-des-chauffeurs/modifier-un-chauffeur?idDriver=${driver/_id}"
+                       class="noborder"
+                       alt="Modifier ce chauffeur"
+                       title="Modifier ce chauffeur"
+                       role="button">
                         <i class="fad fa-cogs"></i>
                     </a>
                 </td>
