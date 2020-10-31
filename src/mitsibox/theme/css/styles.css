@@ -12,21 +12,24 @@ bleu fonce : #2662ac  rgb(28, 98, 172)
 ***/
 
 @import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monda&display=swap');
+
 
 /*** GLYPHE ***/
 
 .fa-vials:before {
     content: "\f493";
 }
-
 .fa-temperature-high:before {
     content: "\f769";
 }
 .fa-temperature-low:before{
     content: "\f76b";
 }
-
-
+.fa-cogs:before{
+    content:"\f085";
+    font-size:14px;
+}
 
 .fa-stack {
     position: relative;
@@ -46,14 +49,13 @@ bleu fonce : #2662ac  rgb(28, 98, 172)
     content: '\f071';
 }
 
-
-html,
 body {
     height:100% !important;
+    font-family: 'Monda', sans-serif;
 }
 
 body{
-    font-size:11pt;
+    font-size:12px;
 }
 
 
@@ -109,6 +111,11 @@ a.noborder{
     color:#01b0f4;
 }
 
+.orange{
+    color: #ee772c;
+    font-family:"exo";
+}
+
 
 /*** GLYPHE ***/
 .fa-ellipsis-v{
@@ -118,8 +125,6 @@ a.noborder{
 .fa-external-link-alt{
     
 }
-
-
 
 /**** FLEX BOX ***/
 .flex-box{
@@ -148,6 +153,13 @@ h2{
     text-align: right;
     /*font-size:1.2em;*/
     padding-right:3em;
+}
+
+
+/*** MENU NAV BOUTON ***/
+.menu-bouton{
+    /*border:1px solid #000;*/
+    margin:5px;
 }
 
 
