@@ -11,6 +11,7 @@
 <metal:main fill-slot="content-core"
             tal:define="labsView context/@@manageLabs;
                         boxesView context/@@manageBox;
+                        roundsView context/@@manageRounds;
                         allBoxes boxesView/getListingBox">
 <!--
 <nav class="icone-toggle-listing-box">
@@ -48,46 +49,49 @@
             </tr>
         </thead>
         <tal:boucle tal:repeat="myBox allBoxes">
-            <tr>
-                <td class="text-center"
-                    tal:define="idLab myBox/lab_id;
-                                myLab python:labsView.getLabsById(idLab)">
-                    <span tal:content="myBox/name" class="orange" />
-                    <hr />
-                    <span tal:content="myLab/name" class="discret" />
-                </td>
-                <td class="text-center">
-                    <span tal:content="myBox/address" />
-                    <br />
-                    <span tal:content="myBox/cp" />
-                    <span tal:content="myBox/localite" />
-                </td>
-                <td class="text-center">
-                    <span tal:content="myBox/lat" />
-                </td>
-                <td class="text-center">
-                    <span tal:content="myBox/long" />
-                </td>
-                <td class="text-center">
-                    <span tal:content="myBox/ssid" />
-                </td>
-                <td class="text-center">
-                    <span tal:condition="exists: myBox/arduino"
-                          tal:content="myBox/arduino" />
-                </td>
-                <td class="text-center">
-                    (tournée)
-                </td>
-                <td class="text-center">
-                    <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
-                       class="noborder"
-                       alt="Modifier cette boite"
-                       title="Modifier cette boite"
-                       role="button">
-                        <i class="fad fa-cogs"></i>
-                    </a>
-                </td>
-            </tr>
+            <tal:block tal:define="idLab myBox/lab_id;
+                                   idBox myBox/_id;
+                                   myLab python:labsView.getLabsById(idLab);
+                                   myRound python:roundsView.getRoundsOfBox(idBox)">
+                <tr>
+                    <td class="text-center">
+                        <span tal:content="myBox/name" class="orange" />
+                        <br />
+                        <span tal:content="myLab/name" class="discret" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myBox/address" />
+                        <br />
+                        <span tal:content="myBox/cp" />
+                        <span tal:content="myBox/localite" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myBox/lat" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myBox/long" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myBox/ssid" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:condition="exists: myBox/arduino"
+                              tal:content="myBox/arduino" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myRound" />
+                    </td>
+                    <td class="text-center">
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
+                           class="noborder"
+                           alt="Modifier cette boite"
+                           title="Modifier cette boite"
+                           role="button">
+                            <i class="fad fa-cogs"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tal:block>
         </tal:boucle>
     </table>
 </div>

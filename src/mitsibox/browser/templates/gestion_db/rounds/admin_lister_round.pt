@@ -11,7 +11,7 @@
 <metal:main fill-slot="content-core"
             tal:define="roundsView context/@@manageRounds;
                         allRounds roundsView/getAllRounds;
-                        boiteView context/@@manageBox">
+                        boxView context/@@manageBox">
 
 <h2>
     <i class="fas fa-ellipsis-v"></i>
@@ -34,17 +34,17 @@
         </div>
         <div class="card-body text-secondary">
             <tal:block tal:define="allBoxes round/roundMitsiboxList">
-                <tal:boucle tal:repeat="idBoxe allBoxes">
-                    <tal:boxe tal:define="boite python:boiteView.getOneBoxById(idBoxe)">
+                <tal:boucle tal:repeat="idBox allBoxes">
+                    <tal:boxe tal:define="myBox python:boxView.getOneBoxById(idBox)">
                         <div> 
-                            <span tal:content="boite/name"></span>
-                            <span tal:content="boite/address"></span>
-                            <span tal:content="boite/cp"></span>
-                            <span tal:content="boite/localite"></span>
-                            <span tal:content="boite/lat"></span>
-                            <span tal:content="boite/long"></span>
-                            <tal:if tal:condition="exists: boite/last_deposit">
-                                <span tal:content="boite/last_deposit"></span>
+                            <span tal:content="myBox/name"></span>
+                            <span tal:content="myBox/address"></span>
+                            <span tal:content="myBox/cp"></span>
+                            <span tal:content="myBox/localite"></span>
+                            <span tal:content="myBox/lat"></span>
+                            <span tal:content="myBox/long"></span>
+                            <tal:if tal:condition="exists: myBox/last_deposit">
+                                <span tal:content="myBox/last_deposit"></span>
                             </tal:if>
                         </div>
                     </tal:boxe>

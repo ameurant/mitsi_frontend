@@ -102,8 +102,6 @@ class ManageBox(ConnexionDb):
         myBox['passwifi'] = fields.get('boxPassWifi', None)
         myBox['arduino'] = fields.get('boxArduino', None)
 
-        print "myBox : %s" % (myBox,)
-
         box.modify("_id='%s'" % idBox).patch(myBox).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()

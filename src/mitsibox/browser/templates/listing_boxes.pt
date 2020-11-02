@@ -9,8 +9,9 @@
 <body>
 
 <metal:main fill-slot="content-core"
-            tal:define="boiteView context/@@displayBox; 
-                        boites python:boiteView.getListingBox()">
+            tal:define="roundsView context/@@manageRounds;
+                        boiteView context/@@displayBox; 
+                        allBoxes python:boiteView.getListingBox()">
 <nav class="icone-toggle-listing-box">
     <a href=""
         tal:attributes="href string:${context/portal_url}/show-all-boxes">
@@ -34,18 +35,18 @@
                 <th>Adresse</th>
             </tr>
         </thead>
-    <tal:boucle tal:repeat="boite boites">
-        <tr tal:define="index repeat/boite/index">
+    <tal:boucle tal:repeat="myBox allBoxes">
+        <tr tal:define="index repeat/myBox/index">
             <td width="150">
                 <div>
                      <a href=""
-                       tal:attributes="href string:show-one-box?idBox=${boite/_id}"
+                       tal:attributes="href string:show-one-box?idBox=${myBox/_id}"
                        class="pat-plone-modal noborder"
                        data-pat-plone-modal="{}">
                     <span id=""
                           tal:attributes="id string:box${index}-name" 
                           class="data-box"
-                          tal:content="boite/name" /><sup><i class="fas fa-external-link-alt"></i></sup>
+                          tal:content="myBox/name" /><sup><i class="fas fa-external-link-alt"></i></sup>
                     </a>
                 </div>
             </td>
@@ -56,8 +57,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-deposit-count" 
                           class="data-box important"
-                          tal:condition="exists: boite/deposit_count"
-                          tal:content="boite/deposit_count" />
+                          tal:condition="exists: myBox/deposit_count"
+                          tal:content="myBox/deposit_count" />
                 </div>
             </td>
             <td  width="100">
@@ -68,8 +69,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-last-temp" 
                           class="data-box important"
-                          tal:condition="exists: boite/last_temp"
-                          tal:content="boite/last_temp" />
+                          tal:condition="exists: myBox/last_temp"
+                          tal:content="myBox/last_temp" />
                 </div>
             </td>
             <td width="100">
@@ -79,8 +80,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-last-humidity" 
                           class="data-box important"
-                          tal:condition="exists: boite/last_humidity"
-                          tal:content="boite/last_humidity" />
+                          tal:condition="exists: myBox/last_humidity"
+                          tal:content="myBox/last_humidity" />
                 </div>
             </td>
             <td  width="110" class="text-center">
@@ -88,8 +89,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-first-deposit" 
                           class="data-box"
-                          tal:condition="exists: boite/first_deposit"
-                          tal:content="boite/first_deposit" />
+                          tal:condition="exists: myBox/first_deposit"
+                          tal:content="myBox/first_deposit" />
                 </div>
             </td>
             <td  width="110" class="text-center">
@@ -97,8 +98,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-last-deposit" 
                           class="data-box"
-                          tal:condition="exists: boite/last_deposit"
-                          tal:content="boite/last_deposit" />
+                          tal:condition="exists: myBox/last_deposit"
+                          tal:content="myBox/last_deposit" />
                 </div>
             </td>
             <td  width="110" class="text-center">
@@ -106,8 +107,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-last-relief" 
                           class="data-box"
-                          tal:condition="exists: boite/last_relief"
-                          tal:content="boite/last_relief" />
+                          tal:condition="exists: myBox/last_relief"
+                          tal:content="myBox/last_relief" />
                 </div>
             </td>
             <td  width="110" class="text-center">  
@@ -115,8 +116,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-last-update" 
                           class="data-box"
-                          tal:condition="exists: boite/last_update"
-                          tal:content="boite/last_update" />
+                          tal:condition="exists: myBox/last_update"
+                          tal:content="myBox/last_update" />
                 </div>
             </td>
             <td width="60">
@@ -127,8 +128,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-door-status" 
                           class="data-box discret"
-                          tal:condition="exists: boite/door_status"
-                          tal:content="boite/door_status" />
+                          tal:condition="exists: myBox/door_status"
+                          tal:content="myBox/door_status" />
                     -->
                 </div>
             </td>
@@ -140,8 +141,8 @@
                     <span id=""
                           tal:attributes="id string:box${index}-top-status" 
                           class="data-box discret"
-                          tal:condition="exists: boite/top_status"
-                          tal:content="boite/top_status" />
+                          tal:condition="exists: myBox/top_status"
+                          tal:content="myBox/top_status" />
                     -->
                 </div>
             </td>
@@ -151,22 +152,22 @@
                     <span id=""
                           tal:attributes="id string:box${index}-address" 
                           class="discret"
-                          tal:condition="exists: boite/address"
-                          tal:content="boite/address"></span>
+                          tal:condition="exists: myBox/address"
+                          tal:content="myBox/address"></span>
                 </div>
                 <div>
                     <i class="fas fa-globe discret"></i>
                     <span id=""
                           tal:attributes="id string:box${index}-lat" 
                           class="discret"
-                          tal:condition="exists: boite/long"
-                          tal:content="boite/long" />
+                          tal:condition="exists: myBox/long"
+                          tal:content="myBox/long" />
                     -
                     <span id=""
                           tal:attributes="id string:box${index}-long" 
                           class="discret"
-                          tal:condition="exists: boite/lat"
-                          tal:content="boite/lat" />
+                          tal:condition="exists: myBox/lat"
+                          tal:content="myBox/lat" />
                 </div>
             </td>
         </tr>
