@@ -23,7 +23,7 @@
         <form action="insertLabs"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-nom">
                     Nom du laboratoire :
                 </label>
@@ -32,7 +32,7 @@
                        id="labs-name"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-adress">
                     Adresse :
                 </label>
@@ -41,7 +41,7 @@
                        id="labs-adress"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-cp">
                     CP :
                 </label>
@@ -50,7 +50,7 @@
                        id="labs-cp"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-localite">
                     Localité :
                 </label>
@@ -59,7 +59,7 @@
                        id="labs-localite"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-lat">
                     Latitude :
                 </label>
@@ -68,7 +68,7 @@
                        id="labs-lat"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-long">
                     Longitude :
                 </label>
@@ -77,7 +77,7 @@
                        id="labs-long"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-schema">
                     Schema DB :
                 </label>

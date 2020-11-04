@@ -8,27 +8,22 @@
     <xi:include href="++theme++barceloneta/rules.xml" />
 
     <after css:theme-children="head">
+        <script src="{$navigation_root_url}/++theme++mitsibox/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{$navigation_root_url}/++theme++mitsibox/js/multi.min.js"></script>
+        <script src="{$navigation_root_url}/++theme++mitsibox/js/script.js"></script>
+
         <link rel="shortcut icon"
               type="image/ico"
               href="{$navigation_root_url}/++theme++mitsibox/images/favico.ico" />
 
         <link rel="apple-touch-icon"
               href="{$navigation_root_url}/++theme++mitsibox/images/touch_icon.png" />
-        <link rel="stylesheet" 
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+              rel="stylesheet"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
               crossorigin="anonymous" />
-        
-
-        <script src="{$navigation_root_url}/++theme++mitsibox/bootstrap/js/bootstrap.min.js"></script>
-
-        <!--<script src="https://kit.fontawesome.com/995d7c0aca.js" 
-                crossorigin="anonymous"></script>-->
-
-        <script src="{$navigation_root_url}/++theme++mitsibox/js/multi.min.js"></script>
-        
-        <script src="{$navigation_root_url}/++theme++mitsibox/js/script.js"></script>
-
+                
         <link href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css"
               integrity="sha384-9ZfPnbegQSumzaE7mks2IYgHoayLtuto3AS6ieArECeaR8nCfliJVuLh/GaQ1gyM"
               crossorigin="anonymous"
@@ -36,6 +31,10 @@
         
         <link href="{$navigation_root_url}/++theme++mitsibox/css/multi.min.css"
               rel="stylesheet"  />
+
+        <link href="{$navigation_root_url}/++theme++mitsibox/css/leaflet.css" 
+              rel="stylesheet" />
+        
         <link href="{$navigation_root_url}/++theme++mitsibox/css/styles.css"
               rel="stylesheet" />        
     </after>

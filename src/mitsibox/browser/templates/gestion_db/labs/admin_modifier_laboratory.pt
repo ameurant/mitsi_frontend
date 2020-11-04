@@ -24,7 +24,7 @@
         <form action="updateLabs"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-nom">
                     Nom du laboratoire :
                 </label>
@@ -33,7 +33,7 @@
                        id="labs-name"
                        tal:attributes="value myLab/name" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-adress">
                     Adresse :
                 </label>
@@ -42,7 +42,7 @@
                        id="labs-adress"
                        tal:attributes="value myLab/address" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-cp">
                     CP :
                 </label>
@@ -51,7 +51,7 @@
                        id="labs-cp"
                        tal:attributes="value myLab/cp" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-localite">
                     Localité :
                 </label>
@@ -60,7 +60,7 @@
                        id="labs-localite"
                        tal:attributes="value myLab/localite" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-lat">
                     Latitude :
                 </label>
@@ -69,7 +69,7 @@
                        id="labs-lat"
                        tal:attributes="value myLab/lat" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-long">
                     Longitude :
                 </label>
@@ -78,7 +78,7 @@
                        id="labs-long"
                        tal:attributes="value myLab/long" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labs-schema">
                     Schema DB :
                 </label>

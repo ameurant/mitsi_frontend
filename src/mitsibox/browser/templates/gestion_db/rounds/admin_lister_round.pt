@@ -53,11 +53,17 @@
         </div>
         <nav class="menu-bouton">
             <a href=""
-               tal:attributes="href string:string:string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
+               tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
                class="noborder"
                alt="Modifier cette tournée"
                title="Modifier cette tournée"
-               role="button"><i class="fad fa-cogs"></i></a>
+               role="button"><i class="bouton-nav fad fa-cogs"></i></a>
+            <a href=""
+               tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${round/_id}"
+               class="noborder"
+               alt="Information sur cette tournée"
+               title="Information sur cette tournée"
+               role="button"><i class="bouton-nav fad fa-eye"></i></a>
         </nav>
     </div>
 </tal:boucle>

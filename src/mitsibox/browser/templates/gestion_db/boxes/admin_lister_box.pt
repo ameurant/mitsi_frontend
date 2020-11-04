@@ -52,7 +52,9 @@
             <tal:block tal:define="idLab myBox/lab_id;
                                    idBox myBox/_id;
                                    myLab python:labsView.getLabsById(idLab);
-                                   myRound python:roundsView.getRoundsOfBox(idBox)">
+                                   myRound python:roundsView.getRoundsOfBox(idBox);
+                                   myRoundName python:myRound['roundName'];
+                                   myRoundId python:myRound['idRound']">
                 <tr>
                     <td class="text-center">
                         <span tal:content="myBox/name" class="orange" />
@@ -79,23 +81,32 @@
                               tal:content="myBox/arduino" />
                     </td>
                     <td class="text-center">
-                        <span tal:content="myRound" />
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/afficher-une-tournee?idRound=${myRoundId}"
+                           class="noborder"
+                           alt="Information sur cette tournée"
+                           title="Information sur cette tournée"
+                           role="button">
+                            <span tal:content="myRoundName" />
+                        </a>
                     </td>
                     <td class="text-center">
-                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
-                           class="noborder"
-                           alt="Modifier cette boite"
-                           title="Modifier cette boite"
-                           role="button">
-                            <i class="fad fa-cogs"></i>
-                        </a>
+                        <nav class="menu-bouton">
+                            <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
+                               class="noborder"
+                               alt="Modifier cette boite"
+                               title="Modifier cette boite"
+                               role="button">
+                                <i class="bouton-nav fad fa-cogs"></i>
+                            </a>
+                        </nav>
                     </td>
                 </tr>
             </tal:block>
         </tal:boucle>
     </table>
 </div>
-
 </metal:main>
 </body>
 </html>
+
+

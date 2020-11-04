@@ -46,16 +46,17 @@ class ManageRounds(ConnexionDb):
         """
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
-
-        #select doc->>"$.roundName" from mitsibox_rounds where '00005f0d88fe0000000000000003' member of (doc->>'$.roundMitsiboxList');
-        myRound = db.session.sql("""select
+        request = db.session.sql("""select
+                                        doc->>"$._id",
                                         doc->>"$.roundName"
                                     from
                                         mitsi_chuhautesenne.mitsibox_rounds
                                     where
                                         "%s" member of (doc->>'$.roundMitsiboxList')""" % (idBox,)).execute()
-
-        return myRound.fetch_one()[0]
+        
+        myRound = {}
+        (myRound['idRound'], myRound['roundName']) = request.fetch_one()
+        return myRound
 
     def insertRound(self):
         """

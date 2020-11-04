@@ -23,7 +23,7 @@
         <form action="insertDriver"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-last-name">
                     Nom du chauffeur :
                 </label>
@@ -32,7 +32,7 @@
                        id="driver-last-name"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-first-name">
                     Prénom du chauffeur :
                 </label>
@@ -41,7 +41,7 @@
                        id="labs-first-name"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-gsm">
                     GSM :
                 </label>

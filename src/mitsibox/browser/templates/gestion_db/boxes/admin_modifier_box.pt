@@ -26,7 +26,7 @@
         </h2>
         <form action="updateBox"
               method="post">
-              <div class="formInput">
+              <div class="form-input">
                   <label for="labo-id">
                       Laboratoire  :
                   </label>
@@ -46,7 +46,7 @@
                   </select>
               </div>
             
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-nom">
                     Nom la boite :
                 </label>
@@ -55,7 +55,7 @@
                        id="box-name"
                        tal:attributes="value myBox/name"  />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-adresse">
                     Adresse :
                 </label>
@@ -64,7 +64,7 @@
                        id="box-adresse"
                        tal:attributes="value myBox/address" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-cp">
                     CP :
                 </label>
@@ -73,7 +73,7 @@
                        id="box-cp"
                        tal:attributes="value myBox/cp" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-localite">
                     Localité :
                 </label>
@@ -82,7 +82,7 @@
                        id="box-localite"
                        tal:attributes="value myBox/localite" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-lat">
                     Latitude :
                 </label>
@@ -91,7 +91,7 @@
                        id="box-lat"
                        tal:attributes="value myBox/lat" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-long">
                     Longitude :
                 </label>
@@ -100,7 +100,7 @@
                        id="box-long"
                        tal:attributes="value myBox/long" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-ssid-wifi">
                     SSID Wifi :
                 </label>
@@ -109,7 +109,7 @@
                        id="box-ssid-wifi"
                        tal:attributes="value myBox/ssid" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-pass-wifi">
                     PASS Wifi :
                 </label>
@@ -118,14 +118,16 @@
                        id="box-pass-wifi"
                        tal:attributes="value myBox/passwifi" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-arduino">
                     Arduino :
                 </label>
+                
                 <input type="text"
                        name="boxArduino"
                        id="box-arduino"
                        tal:attributes="value myBox/arduino " />
+                
             </div>
             <div class="formControls" align="center">
                 <input type="hidden"

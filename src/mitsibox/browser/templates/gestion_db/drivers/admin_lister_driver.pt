@@ -54,13 +54,15 @@
                     <span tal:content="driver/gsm" />
                 </td>
                 <td class="text-center">
-                    <a tal:attributes="href string:string:${context/portal_url}/gestion-des-chauffeurs/modifier-un-chauffeur?idDriver=${driver/_id}"
-                       class="noborder"
-                       alt="Modifier ce chauffeur"
-                       title="Modifier ce chauffeur"
-                       role="button">
-                        <i class="fad fa-cogs"></i>
-                    </a>
+                    <nav class="menu-bouton">
+                        <a tal:attributes="href string:string:${context/portal_url}/gestion-des-chauffeurs/modifier-un-chauffeur?idDriver=${driver/_id}"
+                           class="noborder"
+                           alt="Modifier ce chauffeur"
+                           title="Modifier ce chauffeur"
+                           role="button">
+                            <i class="bouton-nav fad fa-cogs"></i>
+                        </a>
+                    </nav>
                 </td>
             </tr>
         </tal:boucle>

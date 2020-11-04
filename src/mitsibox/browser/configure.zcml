@@ -268,6 +268,14 @@
         allowed_interface=".interfaces.IManageRounds"
         />
     <browser:page
+        name="afficher-une-tournee"
+        for="*"
+        class=".manage_rounds.ManageRounds"
+        template="templates/gestion_db/rounds/admin_afficher_round.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageRounds"
+        />
+    <browser:page
         name="insertRound"
         for="*"
         class=".manage_rounds.ManageRounds"

@@ -73,13 +73,15 @@
                           tal:content="lab/schema" />
                 </td>
                 <td>
-                    <a tal:attributes="href string:${context/portal_url}/gestion-des-laboratoires/modifier-un-laboratoire?idLab=${lab/_id}"
-                       class="noborder"
-                       alt="Modifier ce chauffeur"
-                       title="Modifier ce chauffeur"
-                       role="button">
-                        <i class="fad fa-cogs"></i>
-                    </a>
+                    <nav class="menu-bouton">
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-laboratoires/modifier-un-laboratoire?idLab=${lab/_id}"
+                           class="noborder"
+                           alt="Modifier ce chauffeur"
+                           title="Modifier ce chauffeur"
+                           role="button">
+                            <i class="bouton-nav fad fa-cogs"></i>
+                        </a>
+                    </nav>
                 </td>
             </tr>
         </tal:boucle>

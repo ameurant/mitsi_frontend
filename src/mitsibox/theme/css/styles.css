@@ -15,6 +15,17 @@ bleu fonce : #2662ac  rgb(28, 98, 172)
 @import url('https://fonts.googleapis.com/css2?family=Monda&display=swap');
 
 
+body {
+    height:100% !important;
+    font-family: 'Monda', sans-serif;
+}
+
+body{
+    font-size:12px;
+}
+
+
+
 /*** GLYPHE ***/
 
 .fa-vials:before {
@@ -49,14 +60,14 @@ bleu fonce : #2662ac  rgb(28, 98, 172)
     content: '\f071';
 }
 
-body {
-    height:100% !important;
-    font-family: 'Monda', sans-serif;
+.fa-ellipsis-v{
+    font-size:0.8em;
+    padding-right:10px;
+}
+.fa-external-link-alt{
+    
 }
 
-body{
-    font-size:12px;
-}
 
 
 .box{
@@ -83,7 +94,7 @@ body{
     width:150px;
 }
 .date-box{
-    /**/font-size:0.7em;
+    font-size:0.7em;
     text-align:left;
 }
 
@@ -117,19 +128,11 @@ a.noborder{
 }
 
 
-/*** GLYPHE ***/
-.fa-ellipsis-v{
-    font-size:0.8em;
-    padding-right:10px;
-}
-.fa-external-link-alt{
-    
-}
-
 /**** FLEX BOX ***/
 .flex-box{
     display:flex;
     flex-wrap: wrap;
+    /*flex: 0 1;*/
 }
 .flex-justify-content-space-between{
     justify-content: space-between;
@@ -162,6 +165,19 @@ h2{
     margin:5px;
 }
 
+.menu-bouton i.bouton-nav{
+    border:1px solid rgba(0, 123, 255, 0.2);
+    border-radius:8px;
+    width:32px;
+    height:32px;
+    padding:8px 4px 2px 4px;
+    text-align:center;
+    font-size:15px;
+}
+
+.menu-bouton i.bouton-nav:hover{
+    border:1px solid rgba(0, 123, 255, 0.6);
+}
 
 /*** TABLE ***/
 .listing th{
@@ -172,14 +188,20 @@ h2{
 
 
 /*** FORMULAIRE ***/
-.formInput{
+.form-input{
     margin:20px 0px;
 }
 
-.formInput > label {
+.form-input > label {
     font-weight:normal !important;
     display:block;
     padding-left:5px;
+}
+
+.form-input-data{
+    font-size: 14px;
+    color: #696969;
+    line-height: 34px;
 }
 
 
@@ -222,6 +244,9 @@ h2{
     color:#ff8336 !important;
     text-decoration:none;
 }
+
+
+/*** DOSSIER IMAGE ***/
 .dossier-image{
     min-height:148px;
     border-radius:0px 0px 8px 8px;
@@ -266,6 +291,25 @@ h2{
     transition: all 0.3s ease-in-out;
 }
 
+
+
+/*** CARTE ***/
+.section-donnee,
+.section-carte{
+    /*border-radius:8px;
+    border:1px solid rgba(0, 123, 255, 0.2);*/
+}
+.section-donnee{
+    width:29%;
+}
+.section-carte{
+    width:70%;
+}
+
+#map-mitsiboxes { 
+    width:100%;
+    height:100%; 
+}
 
 
 /**** RESPONSIVE ****/

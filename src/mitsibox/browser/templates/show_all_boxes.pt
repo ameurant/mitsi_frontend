@@ -166,7 +166,7 @@
                        alt="Modifier cette mitisbox"
                        title="Modifier cette mitisbox"
                        role="button">
-                        <i class="fad fa-cogs"></i>
+                        <i class="bouton-nav fad fa-cogs"></i>
                     </a>
                 </div>
             </div>

@@ -24,7 +24,7 @@
         <form action="insertRound"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-name">
                     Nom de la tournée :
                 </label>
@@ -33,7 +33,7 @@
                        id="round-name"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-type">
                     Type de la tournée :
                 </label>
@@ -44,7 +44,7 @@
                     <option value="urgent">Urgente</option>
                 </select>
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-start-time">
                     Heure de départ :
                 </label>
@@ -54,7 +54,7 @@
                        value=""
                        required />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-estimed-time">
                     Durée estimée :
                 </label>
@@ -64,7 +64,7 @@
                        value=""
                        required />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-mitisibox-list">
                     Sélectionner les mitisibox composant cette tournée :
                 </label>

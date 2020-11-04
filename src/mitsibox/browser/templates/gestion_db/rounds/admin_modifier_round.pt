@@ -27,7 +27,7 @@
         <form action="updateRound"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-name">
                     Nom de la tournée :
                 </label>
@@ -36,7 +36,7 @@
                        id="round-name"
                        tal:attributes="value myRound/roundName" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-type">
                     Type de la tournée :
                 </label>
@@ -49,7 +49,7 @@
                             tal:attributes="selected python:myRound.roundType=='urgent' and 'selected' or None;">Urgente</option>
                 </select>
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-start-time">
                     Heure de départ :
                 </label>
@@ -59,7 +59,7 @@
                        tal:attributes="value myRound/roundStartTime"
                        required />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-estimed-time">
                     Durée estimée :
                 </label>
@@ -69,7 +69,7 @@
                        tal:attributes="value  myRound/roundEstimedTime"
                        required />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="round-mitisibox-list">
                     Sélectionner les mitisibox composant cette tournée :
                 </label>

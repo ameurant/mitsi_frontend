@@ -26,7 +26,7 @@
         <form action="updateDriver"
               method="post">
               
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-last-name">
                     Nom du chauffeur :
                 </label>
@@ -35,7 +35,7 @@
                        id="driver-last-name"
                        tal:attributes="value driver/lastName" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-first-name">
                     Prénom du chauffeur :
                 </label>
@@ -44,7 +44,7 @@
                        id="labs-first-name"
                        tal:attributes="value driver/firstName" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="driver-gsm">
                     GSM :
                 </label>

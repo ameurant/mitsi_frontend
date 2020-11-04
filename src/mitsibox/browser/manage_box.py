@@ -92,10 +92,10 @@ class ManageBox(ConnexionDb):
 
         myBox = {}
         myBox['lab_id'] = fields.get('laboId', None)
-        myBox['name'] = fields.get('boxName', None)
-        myBox['address'] = fields.get('boxAddress', None)
+        myBox['name'] = fields.get('boxName', None).decode("utf-8")
+        myBox['address'] = fields.get('boxAddress', None).decode("utf-8")
         myBox['cp'] = fields.get('boxCp', None)
-        myBox['localite'] = fields.get('boxLocalite', None)
+        myBox['localite'] = fields.get('boxLocalite', None).decode("utf-8")
         myBox['lat'] = fields.get('boxLat', None)
         myBox['long'] = fields.get('boxLong', None)
         myBox['ssid'] = fields.get('boxSsidWifi', None)

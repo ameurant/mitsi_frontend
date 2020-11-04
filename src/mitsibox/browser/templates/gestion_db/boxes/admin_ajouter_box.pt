@@ -23,7 +23,7 @@
         </h2>
         <form action="insertBox"
               method="post">
-            <div class="formInput">
+            <div class="form-input">
                 <label for="labo-id">
                     Laboratoire  :
                 </label>
@@ -41,7 +41,7 @@
                 </select>
             </div>
             
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-nom">
                     Nom la boite :
                 </label>
@@ -50,7 +50,7 @@
                        id="box-name"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-adresse">
                     Adresse :
                 </label>
@@ -59,7 +59,7 @@
                        id="box-adresse"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-cp">
                     CP :
                 </label>
@@ -68,7 +68,7 @@
                        id="box-cp"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-localite">
                     Localité :
                 </label>
@@ -77,7 +77,7 @@
                        id="box-localite"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-lat">
                     Latitude :
                 </label>
@@ -86,7 +86,7 @@
                        id="box-lat"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-long">
                     Longitude :
                 </label>
@@ -95,7 +95,7 @@
                        id="box-long"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-ssid-wifi">
                     SSID Wifi :
                 </label>
@@ -104,7 +104,7 @@
                        id="box-ssid-wifi"
                        value="" />
             </div>
-            <div class="formInput">
+            <div class="form-input">
                 <label for="box-pass-wifi">
                     PASS Wifi :
                 </label>
