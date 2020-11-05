@@ -199,6 +199,15 @@
         permission="zope2.View"
         allowed_interface=".interfaces.IManageBox"
         />
+    <browser:page
+        name="getJsonOfAllBoxesFromRound"
+        for="*"
+        class=".manage_box.ManageBox"
+        permission="zope.Public"
+        attribute="getJsonOfAllBoxesFromRound"
+        allowed_interface=".interfaces.IManageBox"
+        />
+
 
 <!-- MANAGE DRIVERS -->
     <browser:page

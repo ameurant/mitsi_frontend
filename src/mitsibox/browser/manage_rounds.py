@@ -36,7 +36,7 @@ class ManageRounds(ConnexionDb):
         db = session.get_schema('mitsi_chuhautesenne')
 
         tbl_mitsiround = db.get_collection('mitsibox_rounds')
-        recs = tbl_mitsiround.find("_id=='%s'"%(idRound,)).execute()
+        recs = tbl_mitsiround.find("_id =='%s'"%(idRound,)).execute()
         myRound = recs.fetch_one()
         return myRound
 
@@ -52,11 +52,22 @@ class ManageRounds(ConnexionDb):
                                     from
                                         mitsi_chuhautesenne.mitsibox_rounds
                                     where
-                                        "%s" member of (doc->>'$.roundMitsiboxList')""" % (idBox,)).execute()
-        
+                                        "%s" member of (doc->>'$.roundMitsiboxList')""" % (idBox,)).execute() 
         myRound = {}
         (myRound['idRound'], myRound['roundName']) = request.fetch_one()
         return myRound
+
+    def getDistanceRound(self, idRound):
+        """
+        Calcule la distance d'une tournée
+        """
+        session = self.getConnexion()
+        db = session.get_schema('mitsi_chuhautesenne')
+
+        request = session.sql("select sum(dist) 'round distance' from (select ST_Distance(geo_point, lag(geo_point) OVER w, 'kilometre') as 'dist'  from mitsi_chuhautesenne.mitsibox_boxes where _id IN ('{}') window w as (ORDER BY FIELD(_id,'{}'))) as t".format("','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list']),"','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list'])))
+        
+        myDistance = request.fetch_one()[0]
+        return myDistance
 
     def insertRound(self):
         """

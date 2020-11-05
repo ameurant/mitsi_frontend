@@ -16,7 +16,9 @@
                         boxView context/@@manageBox;
                         roundsView context/@@manageRounds; 
                         myRound python:roundsView.getRoundById(idRound);
-                        allBoxes myRound/roundMitsiboxList">
+                        allBoxes python:boxView.getAllBoxesFromRound(idRound)">
+                        
+                        <!--myDistance python:roundsView.getDistanceRound(idRound);-->
 
     <h2>
         <i class="fas fa-ellipsis-v"></i>
@@ -28,33 +30,29 @@
             <div class="box">
                 Type de la tournée :
                 <span tal:content="myRound/roundType"
-                      class="form-input-data" />
-                <br />
+                      class="form-input-data" /><br />
                 Heure de départ :
                 <span tal:content="myRound/roundStartTime"
-                      class="form-input-data" />
-                <br />
+                      class="form-input-data" /><br />
                 Durée estimée :
                 <span tal:content="myRound/roundEstimedTime"
-                      class="form-input-data" />
+                      class="form-input-data" /><br />
                 
             </div>
             <div class="form-input">
-                <tal:boucle tal:repeat="idBox allBoxes">
-                    <tal:boxe tal:define="myBox python:boxView.getOneBoxById(idBox)">
-                        <div class="box">
-                            <strong> 
-                                <span tal:content="myBox/name"
-                                      class="form-input-data" />
-                            </strong>
-                            <br />
-                            <span tal:content="myBox/address" />
-                            <br />
-                            <span tal:content="myBox/cp" /> <span tal:content="myBox/localite" />
-                            <br />
-                            <span tal:content="myBox/lat" /> :: <span tal:content="myBox/long" />
-                        </div>
-                    </tal:boxe>
+                <tal:boucle tal:repeat="myBox allBoxes">
+                    <div class="box">
+                        <strong> 
+                            <span tal:content="myBox/name"
+                                  class="form-input-data" />
+                        </strong>
+                        <br />
+                        <span tal:content="myBox/address" />
+                        <br />
+                        <span tal:content="myBox/cp" /> <span tal:content="myBox/localite" />
+                        <br />
+                        <span tal:content="myBox/lat" /> :: <span tal:content="myBox/long" />
+                    </div>
                 </tal:boucle>
             </div>
         </section>
@@ -63,43 +61,72 @@
             <div id="map-mitsiboxes"></div>
         </section>
     </div>
+
+
 <script>
 require(["++theme++mitsibox/js/leaflet-src.js"], function(mapBox){
-    var iconeLab = L.icon({
-            iconUrl: '++theme++mitsibox/images/marker-labo.png',
-            shadowUrl: '++theme++mitsibox/images/marker-shadow.png',
-            iconSize: [25, 41], // dimension de l’icone
-            shadowSize: [41, 41], // taille de l’ombre
-            //iconAnchor: [0, 5], // point ou l’icône va se positionner
-            shadowAnchor: [15, 15], // même chose pour l’ombre
-            popupAnchor: [-3, -10] // point à partir duquel le pop-up devrait s’ouvrir relativement par rapport à iconAnchor
-            });
-
-    let mymap = L.map('map-mitsiboxes').setView([50.581997, 4.078926], 10);
-    let marker = L.marker([50.581997, 4.078926], {icon: iconeLab}).addTo(mymap).bindPopup("<b> CHU Haute Senne </b>");
     
-    let allBoxes = "<span tal:replace='allBoxes' />";
-    let tableau = [["BOX lefred", 50.464886, 4.100733],
-                   ["Box Alain", 50.45569460014328, 4.171436625161833],
-                   ["BOX Stéphane", 50.464036, 4.107562],
-                   ["Box Greg", 50.471628, 4.287324]]
+    let idRound = "<span tal:replace='idRound' />";
+    console.log(idRound);
 
-    for (i = 0; i < tableau.length; i++){
-        let nameBox = tableau[i][0];
-        let latBox = tableau[i][1];
-        let longBox = tableau[i][2];
-        let marker = L.marker([latBox, longBox]).addTo(mymap).bindPopup("<b>" + nameBox + "</b>");
+    
+    function displayMap(allBoxes){
+        let iconeLab = L.icon({
+                iconUrl: '++theme++mitsibox/images/marker-labo.png',
+                shadowUrl: '++theme++mitsibox/images/marker-shadow.png',
+                iconSize: [25, 41], // dimension de l’icone
+                shadowSize: [41, 41], // taille de l’ombre
+                //iconAnchor: [0, 5], // point ou l’icône va se positionner
+                shadowAnchor: [15, 15], // même chose pour l’ombre
+                popupAnchor: [-3, -10] // point à partir duquel le pop-up devrait s’ouvrir relativement par rapport à iconAnchor
+                });
+
+        let mymap = L.map('map-mitsiboxes').setView([50.581997, 4.078926], 10);
+        let marker = L.marker([50.581997, 4.078926], {icon: iconeLab}).addTo(mymap).bindPopup("<b> CHU Haute Senne </b>");
+        
+        /*
+        let tableau = [["BOX lefred", 50.464886, 4.100733],
+                       ["Box Alain", 50.45569460014328, 4.171436625161833],
+                       ["BOX Stéphane", 50.464036, 4.107562],
+                       ["Box Greg", 50.471628, 4.287324]];
+        */
+        for (i = 0; i < allBoxes.length; i++){
+            let nameBox = allBoxes[i]['name'];
+            let latBox = allBoxes[i]['lat'];
+            let longBox = allBoxes[i]['long'];
+            let marker = L.marker([latBox, longBox]).addTo(mymap).bindPopup("<b>" + nameBox + "</b>");
+        };
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(mymap);
     }
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1
-    }).addTo(mymap);
+    function getBoxOfRound(idRound) {
+        $.ajax({
+            url: "getJsonOfAllBoxesFromRound",
+            type:'GET',
+            dataType: 'json',
+            data: {idRound: idRound},
+            success: 
+                function(data){
+                    console.log("data : ", data);
+                    displayMap(data);
+                },
+            error: 
+                function(xhr, status, error, textStatus, errorThrown) {
+                    let errorMessage = xhr.status + ': ' + xhr.textStatus + ' ' + xhr.statusText + ' ' + errorThrown;
+                    alert('Error - ' + errorMessage);
+                }
+        })
+    }
+    getBoxOfRound(idRound);
     
 });
 </script>

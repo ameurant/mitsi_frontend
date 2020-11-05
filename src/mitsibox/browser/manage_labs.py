@@ -169,7 +169,7 @@ class ManageLabs(ConnexionDb):
         schema = fields.get('labsSchema', None)
         schemaDB = "mitsi_%s" % (schema)
 
-        newLab={}
+        newLab = {}
         newLab['name'] = fields.get('labsName', None).decode('utf-8')
         newLab['address'] = fields.get('labsAddress', None).decode('utf-8')
         newLab['cp'] = fields.get('labsCp', None)
@@ -195,13 +195,13 @@ class ManageLabs(ConnexionDb):
         modification des données d'un laboratoire
         """
         session = self.getConnexion()
-        db=session.get_schema('mitsibox')
+        db = session.get_schema('mitsibox')
         labs = db.get_collection('mitsibox_labs')
 
         fields = self.request.form
         idLab = fields.get('idLab', None)
 
-        myLab={}
+        myLab = {}
         myLab['name'] = fields.get('labsName', None).decode('utf-8')
         myLab['address'] = fields.get('labsAddress', None).decode('utf-8')
         myLab['cp'] = fields.get('labsCp', None)

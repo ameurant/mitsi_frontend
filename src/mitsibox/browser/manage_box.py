@@ -23,13 +23,10 @@ class ManageBox(ConnexionDb):
         session = self.getConnexion()
 
         db = session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
-
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
         recs = tbl_mitsibox.find().execute()
         # recs = tbl_mitsibox.select().execute()
         myBoxes = recs.fetch_all()
-
         return myBoxes
 
     def getOneBoxById(self, idBox):
@@ -37,15 +34,57 @@ class ManageBox(ConnexionDb):
         Récupères les infos d'une boite selon son identifiant
         """
         session = self.getConnexion()
-
         db = session.get_schema('mitsi_chuhautesenne')
-        tables = db.get_tables()
-
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
         recs = tbl_mitsibox.find("_id=='%s'"%(idBox,)).execute()
         myBoxe = recs.fetch_one()
-
         return myBoxe
+
+    def getAllBoxesFromRound(self, idRound):
+        """
+        Récupère toues les infos des boites d'une tournée
+        """
+        roundsTools = getMultiAdapter((self.context, self.request), name="manageRounds")
+        boxList = roundsTools.getRoundById(idRound)
+        idBoxList = boxList['roundMitsiboxList']
+        print "idBoxList : %s" % (idBoxList)
+        filtre = "_id in {0}".format(tuple(i.encode() for i in idBoxList))
+
+        session = self.getConnexion()
+        db = session.get_schema('mitsi_chuhautesenne')
+
+        print "===> getAllBoxesFromRound filtre %s" % (filtre)
+
+        tbl_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
+        allBoxes = recs.fetch_all()
+        return allBoxes
+
+    def getJsonOfAllBoxesFromRound(self, idRound):
+        """
+        Récupère toues les infos des boites d'une tournée
+        """
+        
+        roundsTools = getMultiAdapter((self.context, self.request), name="manageRounds")
+        boxList = roundsTools.getRoundById(idRound)
+        idBoxList = boxList['roundMitsiboxList']
+        filtre = "_id in {0}".format(tuple(i.encode() for i in idBoxList))
+
+        session = self.getConnexion()
+        db = session.get_schema('mitsi_chuhautesenne')
+
+        print "===> getJsonOfAllBoxesFromRound filtre %s" % (filtre)
+        
+        tbl_mitsibox = db.get_collection('mitsibox_boxes')
+        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
+
+        allBoxesList = []
+        for el in recs.fetch_all():
+            allBoxesList.append(dict(el))
+        allBoxesJson = json.dumps(allBoxesList)
+        print "===> JSON PYTHON"
+        print "===> allBoxesJson %s" % (allBoxesJson,)
+        return allBoxesJson
 
     def insertBox(self):
         """
