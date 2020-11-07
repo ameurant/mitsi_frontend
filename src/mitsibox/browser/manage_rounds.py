@@ -65,7 +65,7 @@ class ManageRounds(ConnexionDb):
         db = session.get_schema('mitsi_chuhautesenne')
 
         request = session.sql("select sum(dist) 'round distance' from (select ST_Distance(geo_point, lag(geo_point) OVER w, 'kilometre') as 'dist'  from mitsi_chuhautesenne.mitsibox_boxes where _id IN ('{}') window w as (ORDER BY FIELD(_id,'{}'))) as t".format("','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list']),"','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list'])))
-        
+
         myDistance = request.fetch_one()[0]
         return myDistance
 

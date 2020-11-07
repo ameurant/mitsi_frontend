@@ -47,13 +47,10 @@ class ManageBox(ConnexionDb):
         roundsTools = getMultiAdapter((self.context, self.request), name="manageRounds")
         boxList = roundsTools.getRoundById(idRound)
         idBoxList = boxList['roundMitsiboxList']
-        print "idBoxList : %s" % (idBoxList)
-        filtre = "_id in {0}".format(tuple(i.encode() for i in idBoxList))
+        filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
-
-        print "===> getAllBoxesFromRound filtre %s" % (filtre)
 
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
         recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
@@ -64,17 +61,14 @@ class ManageBox(ConnexionDb):
         """
         Récupère toues les infos des boites d'une tournée
         """
-        
         roundsTools = getMultiAdapter((self.context, self.request), name="manageRounds")
         boxList = roundsTools.getRoundById(idRound)
         idBoxList = boxList['roundMitsiboxList']
-        filtre = "_id in {0}".format(tuple(i.encode() for i in idBoxList))
+        filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
 
-        print "===> getJsonOfAllBoxesFromRound filtre %s" % (filtre)
-        
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
         recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
 
@@ -82,8 +76,6 @@ class ManageBox(ConnexionDb):
         for el in recs.fetch_all():
             allBoxesList.append(dict(el))
         allBoxesJson = json.dumps(allBoxesList)
-        print "===> JSON PYTHON"
-        print "===> allBoxesJson %s" % (allBoxesJson,)
         return allBoxesJson
 
     def insertBox(self):
