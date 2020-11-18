@@ -20,7 +20,7 @@ class ManageBox(ConnexionDb):
         """
         Récupères les infos de toutes les boites
         """
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
         recs = tablesBoxes.find().execute()
         # recs = tbl_mitsibox.select().execute()
         myBoxes = recs.fetch_all()
@@ -30,8 +30,8 @@ class ManageBox(ConnexionDb):
         """
         Récupères les infos d'une boite selon son identifiant
         """
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
-        recs = tablesBoxes.find("_id=='%s'"%(idBox,)).execute()
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
+        recs = tablesBoxes.find("_id=='%s'" % (idBox,)).execute()
         myBoxe = recs.fetch_one()
         return myBoxe
 
@@ -44,7 +44,7 @@ class ManageBox(ConnexionDb):
         idBoxList = boxList['roundMitsiboxList']
         filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
         recs = tablesBoxes.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
         allBoxes = recs.fetch_all()
         return allBoxes
@@ -58,7 +58,7 @@ class ManageBox(ConnexionDb):
         idBoxList = boxList['roundMitsiboxList']
         filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
         recs = tablesBoxes.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long', 'deposit_count').execute()
 
         allBoxesList = []
@@ -71,8 +71,8 @@ class ManageBox(ConnexionDb):
         """
         insertion d'une nouvelle boite
         """
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
-        
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
+
         fields = self.request.form
 
         newBox = {}
@@ -101,7 +101,7 @@ class ManageBox(ConnexionDb):
         """
         insertion d'une nouvelle boite
         """
-        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        tablesBoxes = self.getLabDbAccess('mitsibox_boxes')
 
         fields = self.request.form
         idBox = fields.get('idBox', None)
