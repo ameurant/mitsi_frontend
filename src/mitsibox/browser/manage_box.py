@@ -20,12 +20,8 @@ class ManageBox(ConnexionDb):
         """
         Récupères les infos de toutes les boites
         """
-        #session = self.getConnexion()
-        #db = session.get_schema('mitsi_chuhautesenne')
-        #tbl_mitsibox = db.get_collection('mitsibox_boxes')
-        
-
-        recs = tbl_mitsibox.find().execute()
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesBoxes.find().execute()
         # recs = tbl_mitsibox.select().execute()
         myBoxes = recs.fetch_all()
         return myBoxes
@@ -34,10 +30,8 @@ class ManageBox(ConnexionDb):
         """
         Récupères les infos d'une boite selon son identifiant
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        tbl_mitsibox = db.get_collection('mitsibox_boxes')
-        recs = tbl_mitsibox.find("_id=='%s'"%(idBox,)).execute()
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesBoxes.find("_id=='%s'"%(idBox,)).execute()
         myBoxe = recs.fetch_one()
         return myBoxe
 
@@ -50,11 +44,8 @@ class ManageBox(ConnexionDb):
         idBoxList = boxList['roundMitsiboxList']
         filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsibox = db.get_collection('mitsibox_boxes')
-        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesBoxes.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
         allBoxes = recs.fetch_all()
         return allBoxes
 
@@ -67,11 +58,8 @@ class ManageBox(ConnexionDb):
         idBoxList = boxList['roundMitsiboxList']
         filtre = "_id in {0}".format(list(i.encode() for i in idBoxList))
 
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsibox = db.get_collection('mitsibox_boxes')
-        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long', 'deposit_count').execute()
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesBoxes.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long', 'deposit_count').execute()
 
         allBoxesList = []
         for el in recs.fetch_all():
@@ -83,10 +71,8 @@ class ManageBox(ConnexionDb):
         """
         insertion d'une nouvelle boite
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        box = db.get_collection('mitsibox_boxes')
-
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
+        
         fields = self.request.form
 
         newBox = {}
@@ -101,7 +87,7 @@ class ManageBox(ConnexionDb):
         newBox['passwifi'] = fields.get('boxPassWifi', None)
         newBox['arduino'] = fields.get('boxArduino', None)
 
-        box.add(newBox).execute()
+        tablesBoxes.add(newBox).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
@@ -115,9 +101,7 @@ class ManageBox(ConnexionDb):
         """
         insertion d'une nouvelle boite
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        box = db.get_collection('mitsibox_boxes')
+        tablesBoxes = self.getLabDbAccess('mitsibox_rounds')
 
         fields = self.request.form
         idBox = fields.get('idBox', None)
@@ -134,7 +118,7 @@ class ManageBox(ConnexionDb):
         myBox['passwifi'] = fields.get('boxPassWifi', None)
         myBox['arduino'] = fields.get('boxArduino', None)
 
-        box.modify("_id='%s'" % idBox).patch(myBox).execute()
+        tablesBoxes.modify("_id='%s'" % idBox).patch(myBox).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
