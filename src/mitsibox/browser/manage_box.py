@@ -37,7 +37,7 @@ class ManageBox(ConnexionDb):
 
     def getAllBoxesFromRound(self, idRound):
         """
-        Récupère toues les infos des boites d'une tournée
+        Récupère toues les infos des boites d'une tournée mitsibox_boxes
         """
         roundsTools = getMultiAdapter((self.context, self.request), name="manageRounds")
         boxList = roundsTools.getRoundById(idRound)
