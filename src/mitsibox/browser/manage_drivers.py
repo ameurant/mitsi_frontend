@@ -20,11 +20,8 @@ class ManageDrivers(ConnexionDb):
         """
         Récupères les infos de toutes les chauffeurs
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsidriver = db.get_collection('mitsibox_drivers')
-        recs = tbl_mitsidriver.find().execute()
+        tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
+        recs = tablesDrivers.find().execute()
         # recs = tbl_mitsibox.select().execute()
         myDrivers = recs.fetch_all()
 
@@ -34,11 +31,8 @@ class ManageDrivers(ConnexionDb):
         """
         Récupères les infos d'un chauffeur selon son ID
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsidriver = db.get_collection('mitsibox_drivers')
-        recs = tbl_mitsidriver.find("_id=='%s'" % (idDriver,)).execute()
+        tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
+        recs = tablesDrivers.find("_id=='%s'" % (idDriver,)).execute()
         myDriver = recs.fetch_one()
 
         return myDriver
@@ -47,10 +41,8 @@ class ManageDrivers(ConnexionDb):
         """
         insertion d'une nouvelle drivers
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        driver = db.get_collection('mitsibox_drivers')
-
+        tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
+        
         fields = self.request.form
 
         newDriver = {}
@@ -58,7 +50,7 @@ class ManageDrivers(ConnexionDb):
         newDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
         newDriver['gsm'] = fields.get('driverGsm', None)
 
-        driver.add(newDriver).execute()
+        tablesDrivers.add(newDriver).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
@@ -72,10 +64,8 @@ class ManageDrivers(ConnexionDb):
         """
         insertion d'une nouvelle boite
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        driver = db.get_collection('mitsibox_drivers')
-
+        tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
+        
         fields = self.request.form
         idDriver = fields.get('idDriver', None)
 
@@ -84,7 +74,7 @@ class ManageDrivers(ConnexionDb):
         myDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
         myDriver['gsm'] = fields.get('driverGsm', None)
 
-        driver.modify("_id='%s'" % idDriver).patch(myDriver).execute()
+        tablesDrivers.modify("_id='%s'" % idDriver).patch(myDriver).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
