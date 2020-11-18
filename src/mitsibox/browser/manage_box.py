@@ -20,10 +20,11 @@ class ManageBox(ConnexionDb):
         """
         Récupères les infos de toutes les boites
         """
-        session = self.getConnexion()
+        #session = self.getConnexion()
+        #db = session.get_schema('mitsi_chuhautesenne')
+        #tbl_mitsibox = db.get_collection('mitsibox_boxes')
+        
 
-        db = session.get_schema('mitsi_chuhautesenne')
-        tbl_mitsibox = db.get_collection('mitsibox_boxes')
         recs = tbl_mitsibox.find().execute()
         # recs = tbl_mitsibox.select().execute()
         myBoxes = recs.fetch_all()
@@ -70,7 +71,7 @@ class ManageBox(ConnexionDb):
         db = session.get_schema('mitsi_chuhautesenne')
 
         tbl_mitsibox = db.get_collection('mitsibox_boxes')
-        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long').execute()
+        recs = tbl_mitsibox.find(filtre).fields('name', 'address', 'cp', 'localite', 'lat', 'long', 'deposit_count').execute()
 
         allBoxesList = []
         for el in recs.fetch_all():
