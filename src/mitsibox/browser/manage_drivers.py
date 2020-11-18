@@ -42,7 +42,7 @@ class ManageDrivers(ConnexionDb):
         insertion d'une nouvelle drivers
         """
         tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
-        
+
         fields = self.request.form
 
         newDriver = {}
