@@ -16,6 +16,7 @@
                         boxView context/@@manageBox;
                         roundsView context/@@manageRounds; 
                         myRound python:roundsView.getRoundById(idRound);
+                        myRoundDistance python:roundsView.getDistanceRound(idRound);
                         allBoxes python:boxView.getAllBoxesFromRound(idRound)">
                         
                         <!--myDistance python:roundsView.getDistanceRound(idRound);-->
@@ -37,6 +38,9 @@
                 Durée estimée :
                 <span tal:content="myRound/roundEstimedTime"
                       class="form-input-data" /><br />
+                Distance estimée :
+                <span tal:content="myRoundDistance"
+                      class="form-input-data" /> km<br />
                 
             </div>
             <div class="form-input">
