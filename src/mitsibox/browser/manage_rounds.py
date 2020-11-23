@@ -20,11 +20,8 @@ class ManageRounds(ConnexionDb):
         """
         Récupère les infos de toutes les tournées
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsiround = db.get_collection('mitsibox_rounds')
-        recs = tbl_mitsiround.find().execute()
+        tablesRounds = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesRounds.find().execute()
         myRounds = recs.fetch_all()
         return myRounds
 
@@ -32,11 +29,8 @@ class ManageRounds(ConnexionDb):
         """
         Récupère les infos d'une tournée selon son _id
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-
-        tbl_mitsiround = db.get_collection('mitsibox_rounds')
-        recs = tbl_mitsiround.find("_id =='%s'"%(idRound,)).execute()
+        tablesRounds = self.getLabDbAccess('mitsibox_rounds')
+        recs = tablesRounds.find("_id =='%s'"%(idRound,)).execute()
         myRound = recs.fetch_one()
         return myRound
 
@@ -61,22 +55,19 @@ class ManageRounds(ConnexionDb):
         """
         Calcule la distance d'une tournée
         """
+        print "idRound : %s" % (idRound,)
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
-
-        request = session.sql("select sum(dist) 'round distance' from (select ST_Distance(geo_point, lag(geo_point) OVER w, 'kilometre') as 'dist'  from mitsi_chuhautesenne.mitsibox_boxes where _id IN ('{}') window w as (ORDER BY FIELD(_id,'{}'))) as t".format("','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list']),"','".join('mitsi_chuhautesenne'.mitsibox_rounds.find("_id='00005ecb95df000000000000001d'").fields("box_list").execute().fetch_one()['box_list'])))
-
-        myDistance = request.fetch_one()[0]
-        return myDistance
+        request = session.sql("select sum(distance) as 'round distance' from (select ST_Distance(geo_point, lag(geo_point) OVER w, 'kilometre') as 'distance' from mitsi_chuhautesenne.mitsibox_boxes where _id IN ('{}') window w as (ORDER BY FIELD(_id,'{}'))) as d".format("','".join(db.get_collection('mitsibox_rounds').find("_id='%s'" % (idRound)).fields("roundMitsiboxList").execute().fetch_one()['roundMitsiboxList']), "','".join(db.get_collection('mitsibox_rounds').find("_id='%s'" % (idRound)).fields("roundMitsiboxList").execute().fetch_one()['roundMitsiboxList'])))
+        res = request.execute()
+        myDistance = res.fetch_one()[0][0]
+        return round(myDistance, 2)
 
     def insertRound(self):
         """
         insertion d'une nouvelle tournée
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        round = db.get_collection('mitsibox_rounds')
-
+        tableRounds = self.getLabDbAccess('mitsibox_rounds')
         fields = self.request.form
 
         newRound = {}
@@ -86,7 +77,7 @@ class ManageRounds(ConnexionDb):
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
         newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
 
-        round.add(newRound).execute()
+        tableRounds.add(newRound).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
@@ -100,10 +91,7 @@ class ManageRounds(ConnexionDb):
         """
         modification d'une tournée
         """
-        session = self.getConnexion()
-        db = session.get_schema('mitsi_chuhautesenne')
-        round = db.get_collection('mitsibox_rounds')
-
+        tablesRounds = self.getLabDbAccess('mitsibox_rounds')
         fields = self.request.form
         idRound = fields.get('idRound', None) 
 
@@ -114,7 +102,7 @@ class ManageRounds(ConnexionDb):
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
         newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
 
-        round.modify("_id='%s'" % idRound).patch(newRound).execute()
+        tablesRounds.modify("_id='%s'" % idRound).patch(newRound).execute()
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
