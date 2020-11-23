@@ -16,6 +16,7 @@
                         boxView context/@@manageBox;
                         roundsView context/@@manageRounds; 
                         myRound python:roundsView.getRoundById(idRound);
+                        myRoundDistance python:roundsView.getDistanceRound(idRound);
                         allBoxes python:boxView.getAllBoxesFromRound(idRound)">
                         
                         <!--myDistance python:roundsView.getDistanceRound(idRound);-->
@@ -37,6 +38,9 @@
                 Durée estimée :
                 <span tal:content="myRound/roundEstimedTime"
                       class="form-input-data" /><br />
+                Distance estimée :
+                <span tal:content="myRoundDistance"
+                      class="form-input-data" /> km<br />
                 
             </div>
             <div class="form-input">
@@ -81,6 +85,13 @@ require(["++theme++mitsibox/js/leaflet-src.js"], function(mapBox){
                 popupAnchor: [-3, -10] // point à partir duquel le pop-up devrait s’ouvrir relativement par rapport à iconAnchor
                 });
 
+        let iconeAlert = L.icon({
+                iconUrl: '++theme++mitsibox/images/marker-icon-red.png',
+                iconSize: [25, 41], // dimension de l’icone
+                shadowSize: [41, 41], // taille de l’ombre
+                popupAnchor: [-3, -10] // point à partir duquel le pop-up devrait s’ouvrir relativement par rapport à iconAnchor
+                });
+
         let mymap = L.map('map-mitsiboxes').setView([50.581997, 4.078926], 10);
         let marker = L.marker([50.581997, 4.078926], {icon: iconeLab}).addTo(mymap).bindPopup("<b> CHU Haute Senne </b>");
         
@@ -94,7 +105,14 @@ require(["++theme++mitsibox/js/leaflet-src.js"], function(mapBox){
             let nameBox = allBoxes[i]['name'];
             let latBox = allBoxes[i]['lat'];
             let longBox = allBoxes[i]['long'];
-            let marker = L.marker([latBox, longBox]).addTo(mymap).bindPopup("<b>" + nameBox + "</b>");
+            let depositCount = allBoxes[i]['deposit_count'];
+
+            if (depositCount > 10){
+                let marker = L.marker([latBox, longBox], {icon: iconeAlert}).addTo(mymap).bindPopup("<b>" + nameBox + "</b><br />" + "<span class='bleu-glyphe texte-centrer'>" + depositCount + "</span>" );
+            }
+            else{
+                let marker = L.marker([latBox, longBox]).addTo(mymap).bindPopup("<b>" + nameBox + "</b><br />" + "<span class='bleu-glyphe texte-centrer'>" + depositCount + "</span>" );
+            }
         };
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
