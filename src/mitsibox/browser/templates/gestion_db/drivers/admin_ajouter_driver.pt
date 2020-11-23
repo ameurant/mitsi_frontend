@@ -15,7 +15,7 @@
             tal:define="labsView context/@@manageLabs;
                         allLabs labsView/getListingLabs">
 
-    <section class="formulaire section-donnee">
+    <section class="formulaire">
         <h2>
             <i class="fas fa-ellipsis-v"></i>
             Ajouter un chauffeur
