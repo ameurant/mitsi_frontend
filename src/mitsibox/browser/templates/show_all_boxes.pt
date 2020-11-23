@@ -10,7 +10,8 @@
 
 <metal:main fill-slot="content-core"
             tal:define="labsView context/@@manageLabs;
-                        boxesView context/@@displayBox; 
+                        boxesView context/@@displayBox;
+                        roundsView context/@@manageRounds; 
                         allBoxes python:boxesView.getListingBox()">
 <nav class="icone-toggle-listing-box">
     <a href=""
@@ -20,14 +21,19 @@
 <div class="flex-box">    
     <tal:boucle tal:repeat="myBox allBoxes">
         <section class="box"
-                tal:define="index repeat/myBox/index">
+                 tal:define="index repeat/myBox/index;
+                             idBox myBox/_id">
             <div>
                 <h2 id=""
                     tal:attributes="id string:box${index}-name" 
                     class="data-box"
                     tal:content="myBox/name"></h2>
                 <hr />
-                <span tal:content="myBox/_id"></span>
+                <div class="discret">
+                    <span tal:content="idBox"></span>
+                    ::
+                    <span tal:content="myBox/arduino"></span>
+                </div>
             </div>
             <hr />
             <h3 class="flex-box flex-justify-content-space-between">
@@ -62,14 +68,25 @@
             </h3>
             <hr />
             
-            <div class="flex-box flex-justify-content-space-between">
-                <div class="address-box">
+            <div class="">
+                <div class="">
                     <i class="fas fa-map-marker-alt"></i>
                     <span id=""
                           tal:attributes="id string:box${index}-address" 
                           class="data-box"
                           tal:condition="exists: myBox/address"
                           tal:content="myBox/address"></span>
+                    <br />
+                    <span id=""
+                          tal:attributes="id string:box${index}-cp" 
+                          class="data-box"
+                          tal:condition="exists: myBox/cp"
+                          tal:content="myBox/cp"></span>
+                    <span id=""
+                          tal:attributes="id string:box${index}-localite" 
+                          class="data-box"
+                          tal:condition="exists: myBox/localite"
+                          tal:content="myBox/localite"></span>
                 </div>
                 <div>
                     <i class="fas fa-globe"></i>
@@ -149,7 +166,15 @@
                           tal:content="myBox/top_status" />
                 </div>
             </div>
-            
+            <hr />
+            <div tal:define="myRound python:roundsView.getRoundsOfBox(idBox)">
+                    <span class="label-box discret">Tournée :</span>
+                    <a href=""
+                       tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${myRound/idRound}">
+                        <span id=""
+                              class="data-box discret"
+                              tal:content="myRound/roundName" /></a>
+                </div>
             <hr />
             <div class="flex-box flex-justify-content-space-between">
                 <div tal:define="idLab myBox/lab_id;
@@ -160,14 +185,16 @@
                           class="data-box discret"
                           tal:content="myLab/name" />
                 </div>
-                <div id="boi">  
-                    <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
-                       class="noborder"
-                       alt="Modifier cette mitisbox"
-                       title="Modifier cette mitisbox"
-                       role="button">
-                        <i class="bouton-nav fad fa-cogs"></i>
-                    </a>
+                <div>
+                    <nav class="menu-bouton">  
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
+                           class="noborder"
+                           alt="Modifier cette mitisbox"
+                           title="Modifier cette mitisbox"
+                           role="button">
+                            <i class="bouton-nav fad fa-cogs"></i>
+                        </a>
+                    </nav>
                 </div>
             </div>
         </section>
