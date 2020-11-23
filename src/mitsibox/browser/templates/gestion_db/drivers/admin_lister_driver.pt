@@ -55,7 +55,7 @@
                 </td>
                 <td class="text-center">
                     <nav class="menu-bouton">
-                        <a tal:attributes="href string:string:${context/portal_url}/gestion-des-chauffeurs/modifier-un-chauffeur?idDriver=${driver/_id}"
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-chauffeurs/modifier-un-chauffeur?idDriver=${driver/_id}"
                            class="noborder"
                            alt="Modifier ce chauffeur"
                            title="Modifier ce chauffeur"
