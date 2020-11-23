@@ -127,6 +127,10 @@ a.noborder{
     font-family:"exo";
 }
 
+.texte-centrer{
+    text-align:center;
+}
+
 
 /**** FLEX BOX ***/
 .flex-box{
