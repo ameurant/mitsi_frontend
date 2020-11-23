@@ -60,6 +60,24 @@
         />
 
 
+<!-- DRIVER PRELEVEMENT BOX -->
+    <browser:page
+        for="*"
+        name="driverPrelevementBox"
+        class=".driver_prelevement_box.DriverPrelevementBox"
+        allowed_interface=".interfaces.IManageDriverPrelevementBox"
+        permission="zope.Public"
+        />
+    <browser:page
+        name="driver-form"
+        for="*"
+        class=".driver_prelevement_box.DriverPrelevementBox"
+        template="templates/driver_prelevement_form.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageDriverPrelevementBox"
+        />
+
+
 <!-- DISPLAY BOX -->
     <browser:page
         for="*"
