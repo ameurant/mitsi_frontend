@@ -50,3 +50,8 @@ class IManageRounds(Interface):
     """
     IManageRounds
     """
+
+class IManageDriverPrelevementBox(Interface):
+    """
+    IManageDriverPrelevementBox
+    """
