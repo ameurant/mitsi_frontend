@@ -65,6 +65,31 @@
                           tal:condition="exists: myBox/last_humidity"
                           tal:content="myBox/last_humidity" />
                 </div>
+                <div tal:condition="exists: myBox/battery_status">
+                    <!-- statut de la batterie -->
+                    <tal:block tal:define="batteryStatus myBox/battery_status;
+                                           infoBattery python:boxesView.splitStatusBatteryBox(batteryStatus)">
+                        <span tal:condition="python: infoBattery[0]=='GOOD'">
+                            <i class="far fa-battery-full vert pat-tooltip battery"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title python: infoBattery[1]"></i>
+                        </span>
+                        <span tal:condition="python: infoBattery[0]=='OK'">
+                            <i class="fas fa-battery-half orange pat-tooltip battery"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title python: infoBattery[1]"></i>
+                        </span>
+                        <span tal:condition="python: infoBattery[0]=='LOW'">
+                            <i class="fas fa-battery-quarter rouge pat-tooltip battery"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title python: infoBattery[1]"></i>
+                        </span>
+                        
+                    </tal:block>
+                </div>
             </h3>
             <hr />
             

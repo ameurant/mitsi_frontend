@@ -131,6 +131,10 @@ a.noborder{
     text-align:center;
 }
 
+.battery{
+    transform: rotate(-90deg);
+}
+
 
 /**** FLEX BOX ***/
 .flex-box{

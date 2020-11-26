@@ -28,6 +28,13 @@ class DisplayBox(ConnexionDb):
         boites = json.dumps(idList)
         return boites
 
+    def splitStatusBatteryBox(self, statutBattery):
+        """
+        récupère le statut de la batterie
+        """
+        infoBattery = statutBattery.split(' ')
+        return infoBattery
+
     def getListingBox(self):
         """
         Récupères les infos de toutes les boites
