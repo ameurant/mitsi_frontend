@@ -29,11 +29,6 @@
                     class="data-box"
                     tal:content="myBox/name"></h2>
                 <hr />
-                <div class="discret">
-                    <span tal:content="idBox"></span>
-                    ::
-                    <span tal:content="myBox/arduino"></span>
-                </div>
             </div>
             <hr />
             <h3 class="flex-box flex-justify-content-space-between">
@@ -209,6 +204,11 @@
                           tal:attributes="id string:box${index}-lab_id" 
                           class="data-box discret"
                           tal:content="myLab/name" />
+                    <div class="discret">
+                        <span tal:content="idBox"></span>
+                        ::
+                        <span tal:content="myBox/arduino"></span>
+                    </div>
                 </div>
                 <div>
                     <nav class="menu-bouton">  
