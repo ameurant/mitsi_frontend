@@ -198,13 +198,7 @@
             <hr />
             <div class="flex-box flex-justify-content-space-between">
                 <div>
-                    <div tal:condition="exists: myBox/status">
-                        <i class="fad fa-monitor-heart-rate"></i>
-                        <span id=""
-                              tal:attributes="id string:box${index}-status" 
-                              class="data-box discret"
-                              tal:content="myBox/status" />
-                    </div>
+                    <!--labo-->
                     <div tal:define="idLab myBox/lab_id;
                                      myLab python:labsView.getLabsById(idLab)">
                         <span class="label-box discret">Labo :</span>
@@ -213,6 +207,7 @@
                               class="data-box discret"
                               tal:content="myLab/name" />
                     </div>
+                    <!--arduino-->
                     <div>
                         <span class="label-box discret">Arduino :</span>
                         <span tal:content="myBox/arduino"
@@ -222,12 +217,37 @@
                         <span tal:content="idBox"
                               class="discret data-box" />
                     </div>
+                    <!--last-message-->
                     <div tal:condition="exists: myBox/last_message">
+                        <span class="label-box discret">Last message :</span>
                         <span tal:content="myBox/last_message"
                               class="discret data-box" />
                     </div>
                 </div>
                 <div>
+                    <!--status :: Active, Light-Sleep, Deep-Sleep-->
+                    <div tal:condition="exists: myBox/status"
+                         class="status">
+                        <!--<span tal:content="myBox/status" />-->
+                        <span tal:condition="python: myBox.status=='Active'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip vert"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                        <span tal:condition="python: myBox.status=='Light-Sleep'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip bleu-glyphe"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                        <span tal:condition="python: myBox.status=='Deep-Sleep'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip vert"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                    </div>
                     <nav class="menu-bouton">  
                         <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
                            class="noborder pat-tooltip"
