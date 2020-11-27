@@ -65,19 +65,19 @@
                     <tal:block tal:define="batteryStatus myBox/battery_status;
                                            infoBattery python:boxesView.splitStatusBatteryBox(batteryStatus)">
                         <span tal:condition="python: infoBattery[0]=='GOOD'">
-                            <i class="far fa-battery-full vert pat-tooltip battery"
+                            <i class="fad fa-battery-full vert pat-tooltip battery"
                                data-toggle="tooltip" 
                                title=""
                                tal:attributes="title python: infoBattery[1]"></i>
                         </span>
                         <span tal:condition="python: infoBattery[0]=='OK'">
-                            <i class="fas fa-battery-half orange pat-tooltip battery"
+                            <i class="fad fa-battery-half orange pat-tooltip battery"
                                data-toggle="tooltip" 
                                title=""
                                tal:attributes="title python: infoBattery[1]"></i>
                         </span>
                         <span tal:condition="python: infoBattery[0]=='LOW'">
-                            <i class="fas fa-battery-quarter rouge pat-tooltip battery"
+                            <i class="fad fa-battery-quarter rouge pat-tooltip battery"
                                data-toggle="tooltip" 
                                title=""
                                tal:attributes="title python: infoBattery[1]"></i>
