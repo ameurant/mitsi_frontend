@@ -25,8 +25,8 @@ class DisplayBox(ConnexionDb):
         idList = []
         for el in myBoxes:
             idList.append(dict(el))
-        boites = json.dumps(idList)
-        return boites
+        myBoxes = json.dumps(idList)
+        return myBoxes
 
     def splitStatusBatteryBox(self, statutBattery):
         """
