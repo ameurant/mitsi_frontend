@@ -11,7 +11,7 @@
 <metal:main fill-slot="content-core"
             tal:define="labsView context/@@manageLabs;
                         boxesView context/@@displayBox;
-                        roundsView context/@@manageRounds; 
+                        roundsView context/@@manageRounds;
                         allBoxes python:boxesView.getListingBox()">
 <nav class="icone-toggle-listing-box">
     <a href=""
@@ -28,7 +28,6 @@
                     tal:attributes="id string:box${index}-name" 
                     class="data-box"
                     tal:content="myBox/name"></h2>
-                <hr />
             </div>
             <hr />
             <h3 class="flex-box flex-justify-content-space-between">
@@ -190,30 +189,48 @@
             <div tal:define="myRound python:roundsView.getRoundsOfBox(idBox)">
                     <span class="label-box discret">Tournée :</span>
                     <a href=""
-                       tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${myRound/idRound}">
+                       tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${myRound/idRound}"
+                       class="noborder">
                         <span id=""
                               class="data-box discret"
                               tal:content="myRound/roundName" /></a>
                 </div>
             <hr />
             <div class="flex-box flex-justify-content-space-between">
-                <div tal:define="idLab myBox/lab_id;
-                                 myLab python:labsView.getLabsById(idLab)">
-                    <span class="label-box discret">Labo :</span>
-                    <span id=""
-                          tal:attributes="id string:box${index}-lab_id" 
-                          class="data-box discret"
-                          tal:content="myLab/name" />
-                    <div class="discret">
-                        <span tal:content="idBox"></span>
-                        ::
-                        <span tal:content="myBox/arduino"></span>
+                <div>
+                    <div tal:condition="exists: myBox/status">
+                        <i class="fad fa-monitor-heart-rate"></i>
+                        <span id=""
+                              tal:attributes="id string:box${index}-status" 
+                              class="data-box discret"
+                              tal:content="myBox/status" />
+                    </div>
+                    <div tal:define="idLab myBox/lab_id;
+                                     myLab python:labsView.getLabsById(idLab)">
+                        <span class="label-box discret">Labo :</span>
+                        <span id=""
+                              tal:attributes="id string:box${index}-lab_id" 
+                              class="data-box discret"
+                              tal:content="myLab/name" />
+                    </div>
+                    <div>
+                        <span class="label-box discret">Arduino :</span>
+                        <span tal:content="myBox/arduino"
+                              class="discret data-box" />
+                        <br />
+                        <span class="label-box discret">ID :</span>
+                        <span tal:content="idBox"
+                              class="discret data-box" />
+                    </div>
+                    <div tal:condition="exists: myBox/last_message">
+                        <span tal:content="myBox/last_message"
+                              class="discret data-box" />
                     </div>
                 </div>
                 <div>
                     <nav class="menu-bouton">  
                         <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
-                           class="noborder"
+                           class="noborder pat-tooltip"
                            alt="Modifier cette mitisbox"
                            title="Modifier cette mitisbox"
                            role="button">
