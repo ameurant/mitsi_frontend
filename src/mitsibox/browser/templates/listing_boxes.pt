@@ -126,24 +126,27 @@
                     <!-- statut de la batterie -->
                     <tal:block tal:define="batteryStatus myBox/battery_status;
                                            infoBattery python:boxesView.splitStatusBatteryBox(batteryStatus)">
-                        <span tal:condition="python: infoBattery[0]=='GOOD'">
-                            <i class="far fa-battery-full vert pat-tooltip battery"
-                               data-toggle="tooltip" 
-                               title=""
-                               tal:attributes="title python: infoBattery[1]"></i>
-                        </span>
-                        <span tal:condition="python: infoBattery[0]=='OK'">
-                            <i class="fas fa-battery-half orange pat-tooltip battery"
-                               data-toggle="tooltip" 
-                               title=""
-                               tal:attributes="title python: infoBattery[1]"></i>
-                        </span>
-                        <span tal:condition="python: infoBattery[0]=='LOW'">
-                            <i class="fas fa-battery-quarter rouge pat-tooltip battery"
-                               data-toggle="tooltip" 
-                               title=""
-                               tal:attributes="title python: infoBattery[1]"></i>
-                        </span>
+                        <div tal:condition="python: infoBattery[0]=='GOOD'"
+                              data-toggle="tooltip" 
+                              title=""
+                              tal:attributes="title python: infoBattery[1]"
+                              class="vert pat-tooltip">
+                            <i class="fad fa-battery-full  battery"></i>
+                        </div>
+                        <div tal:condition="python: infoBattery[0]=='OK'"
+                             data-toggle="tooltip" 
+                             title=""
+                             tal:attributes="title python: infoBattery[1]"
+                             class=" orange pat-tooltip">
+                            <i class="fad fa-battery-half battery"></i>
+                        </div>
+                        <div tal:condition="python: infoBattery[0]=='LOW'"
+                             data-toggle="tooltip" 
+                             title=""
+                             tal:attributes="title python: infoBattery[1]"
+                             class=" rouge pat-tooltip">
+                            <i class="fad fa-battery-quarter battery"></i>
+                        </div>
                         
                     </tal:block>
                 </div>
