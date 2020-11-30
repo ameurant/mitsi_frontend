@@ -87,7 +87,7 @@
                         <div tal:condition="python: infoBattery[0]=='POWERED'"
                              data-toggle="tooltip" 
                              title="Power"
-                             class="status-bleu-active pat-tooltip">
+                             class="power-black pat-tooltip">
                             <i class="fad fa-plug"></i>
                         </div>
                         
@@ -216,15 +216,25 @@
                               class="data-box discret"
                               tal:content="myLab/name" />
                     </div>
-                    <!--arduino-->
+                    <!--arduino version idlab-->
                     <div>
-                        <span class="label-box discret">Arduino :</span>
-                        <span tal:content="myBox/arduino"
-                              class="discret data-box" />
-                        <br />
-                        <span class="label-box discret">ID :</span>
-                        <span tal:content="idBox"
-                              class="discret data-box" />
+                        <span tal:condition="exists: myBox/arduino">
+                            <span class="label-box discret">Arduino :</span>
+                            <span tal:content="myBox/arduino"
+                                  class="discret data-box" />
+                            <br/>
+                        </span>
+                        <span tal:condition="exists: myBox/version">
+                            <span class="label-box discret">Version :</span>
+                            <span tal:content="myBox/version"
+                                  class="discret data-box" />
+                            <br />
+                        </span>
+                        <span tal:condition="exists: idBox">
+                            <span class="label-box discret">ID :</span>
+                            <span tal:content="idBox"
+                                  class="discret data-box" />
+                        </span>
                     </div>
                     <!--last-message-->
                     <div tal:condition="exists: myBox/last_message">
