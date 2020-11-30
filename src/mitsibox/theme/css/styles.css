@@ -136,6 +136,15 @@ a.noborder{
 .status-bleu-deep-sleep{
     color:#002d3a;   
 }
+.power-black{
+    color:#252a33;
+}
+.battery{
+    transform: rotate(-90deg);
+}
+
+
+
 
 .bleu-glyphe{
     color:#01b0f4;
@@ -150,9 +159,6 @@ a.noborder{
     text-align:center;
 }
 
-.battery{
-    transform: rotate(-90deg);
-}
 
 
 /**** FLEX BOX ***/
