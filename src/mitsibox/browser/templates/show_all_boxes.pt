@@ -84,6 +84,12 @@
                              class=" rouge pat-tooltip">
                             <i class="fad fa-battery-quarter battery"></i>
                         </div>
+                        <div tal:condition="python: infoBattery[0]=='POWERED'"
+                             data-toggle="tooltip" 
+                             title="Power"
+                             class="status-bleu-active pat-tooltip">
+                            <i class="fad fa-plug"></i>
+                        </div>
                         
                     </tal:block>
                 </div>
