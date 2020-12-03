@@ -161,9 +161,9 @@
             <div class="flex-box flex-justify-content-space-around">
                 <div>
                     <div id=""
-                         tal:attributes="id string:icone${index}-front-door"><!--imgjs--></div>
+                         tal:attributes="id string:icone-front-door"><!--imgjs--></div>
                     <span id=""
-                          tal:attributes="id string:box${index}-door-status" 
+                          tal:attributes="id string:box-door-status" 
                           class="data-box discret"
                           tal:condition="exists: myBox/door_status"
                           tal:content="myBox/door_status" />
@@ -171,9 +171,9 @@
                 
                 <div>
                     <div id=""
-                         tal:attributes="id string:icone${index}-top-door"><!--imgjs--></div>
+                         tal:attributes="id string:icone-top-door"><!--imgjs--></div>
                     <span id=""
-                          tal:attributes="id string:box${index}-top-status" 
+                          tal:attributes="id string:box-top-status" 
                           class="data-box discret"
                           tal:condition="exists: myBox/top_status"
                           tal:content="myBox/top_status" />
@@ -181,48 +181,76 @@
             </div>
             <hr />
             <div class="flex-box flex-justify-content-space-between">
-                <div tal:define="idLab myBox/lab_id;
-                                 myLab python:labsView.getLabsById(idLab)">
-                    <div>
+                <div>
+                    <!--labo-->
+                    <div tal:define="idLab myBox/lab_id;
+                                     myLab python:labsView.getLabsById(idLab)">
                         <span class="label-box discret">Labo :</span>
-                        <span class="data-box discret"
+                        <span id=""
+                              tal:attributes="id string:box-lab_id" 
+                              class="data-box discret"
                               tal:content="myLab/name" />
                     </div>
+                    <!--arduino version idlab-->
                     <div>
-                        <span class="label-box discret">Arduino :</span>
-                        <span tal:content="myBox/arduino"
-                              class="discret data-box" />
-                        <br />
-                        <span class="label-box discret">ID :</span>
-                        <span tal:content="idBox"
-                              class="discret data-box" />
+                        <span tal:condition="exists: myBox/arduino">
+                            <span class="label-box discret">Arduino :</span>
+                            <span tal:content="myBox/arduino"
+                                  class="discret data-box" />
+                            <br/>
+                        </span>
+                        <span tal:condition="exists: myBox/version">
+                            <span class="label-box discret">Version :</span>
+                            <span tal:content="myBox/version"
+                                  class="discret data-box" />
+                            <br />
+                        </span>
+                        <span tal:condition="exists: idBox">
+                            <span class="label-box discret">ID :</span>
+                            <span tal:content="idBox"
+                                  class="discret data-box" />
+                        </span>
                     </div>
-                    <div tal:condition="exists: mybox/last_message">
-                        <span tal:content="mybox/last_message" />
+                    <!--last-message-->
+                    <div tal:condition="exists: myBox/last_message">
+                        <span class="label-box discret">Last message :</span>
+                        <span tal:content="myBox/last_message"
+                              class="discret data-box" />
                     </div>
                 </div>
-                <!--status :: Active, Light-Sleep, Deep-Sleep-->
-                <div tal:condition="exists: myBox/status"
-                     class="status">
-                    <!--<span tal:content="myBox/status" />-->
-                    <span tal:condition="python: myBox.status=='Active'">
-                        <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-active"
-                           data-toggle="tooltip" 
-                           title=""
-                           tal:attributes="title myBox/status"></i>
-                    </span>
-                    <span tal:condition="python: myBox.status=='Light-Sleep'">
-                        <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-ligth-sleep"
-                           data-toggle="tooltip" 
-                           title=""
-                           tal:attributes="title myBox/status"></i>
-                    </span>
-                    <span tal:condition="python: myBox.status=='Deep-Sleep'">
-                        <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-deep-sleep"
-                           data-toggle="tooltip" 
-                           title=""
-                           tal:attributes="title myBox/status"></i>
-                    </span>
+                <div>
+                    <!--status :: Active, Light-Sleep, Deep-Sleep-->
+                    <div tal:condition="exists: myBox/status"
+                         class="status">
+                        <!--<span tal:content="myBox/status" />-->
+                        <span tal:condition="python: myBox.status=='Active'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-active"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                        <span tal:condition="python: myBox.status=='Light-Sleep'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-ligth-sleep"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                        <span tal:condition="python: myBox.status=='Deep-Sleep'">
+                            <i class="fad fa-monitor-heart-rate pat-tooltip status-bleu-deep-sleep"
+                               data-toggle="tooltip" 
+                               title=""
+                               tal:attributes="title myBox/status"></i>
+                        </span>
+                    </div>
+                    <nav class="menu-bouton">  
+                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/modifier-une-mitsibox?idBox=${myBox/_id}"
+                           class="noborder pat-tooltip"
+                           alt="Modifier cette mitisbox"
+                           title="Modifier cette mitisbox"
+                           role="button">
+                            <i class="bouton-nav fad fa-cogs"></i>
+                        </a>
+                    </nav>
                 </div>
         </section>
     </div>
