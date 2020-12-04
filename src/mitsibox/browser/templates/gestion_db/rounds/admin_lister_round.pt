@@ -36,9 +36,10 @@
             <h3 class="text-info"><span tal:content="round/roundName" /></h3>
             <div>
                 Distance estimée :
-                
+                <!--
                 <span tal:content="myRoundDistance"
                       class="form-input-data" /> km
+                -->
             </div>
         </div>
         <div class="card-body text-secondary">
