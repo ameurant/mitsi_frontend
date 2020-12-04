@@ -195,16 +195,7 @@
                 </div>
             </div>
             <hr />
-            <div tal:define="myRound python:roundsView.getRoundsOfBox(idBox)">
-                    <span class="label-box discret">Tournée :</span>
-                    <a href=""
-                       tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${myRound/idRound}"
-                       class="noborder">
-                        <span id=""
-                              class="data-box discret"
-                              tal:content="myRound/roundName" /></a>
-                </div>
-            <hr />
+            
             <div class="flex-box flex-justify-content-space-between">
                 <div>
                     <!--labo-->
