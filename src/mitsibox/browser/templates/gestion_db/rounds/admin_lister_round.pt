@@ -31,15 +31,12 @@
     <div class="card border-info mb-3"
          tal:define="idRound round/_id;
                      myRoundDistance python:roundsView.getDistanceRound(idRound);">
-        ==> <span tal:content="idRound" /> <==
         <div class="card-header flex-box flex-justify-content-space-between">
             <h3 class="text-info"><span tal:content="round/roundName" /></h3>
             <div>
                 Distance estimée :
-                <!--
                 <span tal:content="myRoundDistance"
                       class="form-input-data" /> km
-                -->
             </div>
         </div>
         <div class="card-body text-secondary">
@@ -61,20 +58,27 @@
                 </tal:boucle>
             </tal:block>
         </div>
-        <nav class="menu-bouton">
-            <a href=""
-               tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
-               class="noborder"
-               alt="Modifier cette tournée"
-               title="Modifier cette tournée"
-               role="button"><i class="bouton-nav fad fa-cogs"></i></a>
-            <a href=""
-               tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${round/_id}"
-               class="noborder"
-               alt="Information sur cette tournée"
-               title="Information sur cette tournée"
-               role="button"><i class="bouton-nav fad fa-eye"></i></a>
-        </nav>
+        <hr />
+        <div class="flex-box flex-justify-content-space-between">
+            <nav class="menu-bouton">
+                <a href=""
+                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
+                   class="noborder"
+                   alt="Modifier cette tournée"
+                   title="Modifier cette tournée"
+                   role="button"><i class="bouton-nav fad fa-cogs"></i></a>
+                <a href=""
+                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${round/_id}"
+                   class="noborder"
+                   alt="Information sur cette tournée"
+                   title="Information sur cette tournée"
+                   role="button"><i class="bouton-nav fad fa-eye"></i></a>
+            </nav>
+            <div>
+                <span tal:content="idRound" class="discret" />
+            </div>
+        </div>
+            
     </div>
 </tal:boucle>
 
