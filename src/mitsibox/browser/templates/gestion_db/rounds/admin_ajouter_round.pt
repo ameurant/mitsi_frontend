@@ -12,8 +12,10 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="boiteView context/@@displayBox; 
-                        boites python:boiteView.getListingBox()">
+            tal:define="boxView context/@@displayBox;
+                        driversView context/@@manageDrivers; 
+                        allBoxes python:boxView.getListingBox();
+                        allDrivers python:driversView.getAllDrivers()">
 
     <section class="formulaire">
         <h2>
@@ -65,6 +67,21 @@
                        required />
             </div>
             <div class="form-input">
+                <label for="driver_pk">
+                    Chauffeur affacté à cette tournée :
+                </label>
+                <select name="driverPk"
+                        id="driver-pk"
+                        required>
+                    <tal:boucle tal:repeat="myDriver allDrivers">
+                        <option tal:attributes="value myDriver/_id">
+                            <span tal:content="MyDriver/firstname" />
+                            <span tal:content="MyDriver/lastname" />
+                        </option>
+                    </tal:boucle>
+                </select>
+            </div>
+            <div class="form-input">
                 <label for="round-mitisibox-list">
                     Sélectionner les mitisibox composant cette tournée :
                 </label>
@@ -72,11 +89,12 @@
                         name="roundMitsiboxList:list"
                         id="round-mitsibox-list"
                         required>
-                    <tal:boucle tal:repeat="boite boites">
-                        <option tal:attributes="value boite/_id">
-                            <strong><span tal:content="boite/name" />
-                            <span tal:content="boite/address" />
-                            <span tal:content="boite/cp" /> <span tal:content="boite/localite" />
+                    <tal:boucle tal:repeat="myBox allBoxes">
+                        <option tal:attributes="value myBox/_id">
+                            <strong><span tal:content="myBox/name" />
+                            <span tal:content="myBox/address" />
+                            <span tal:content="myBox/cp" /> 
+                            <span tal:content="myBox/localite" />
                         </option>
                     </tal:boucle>
                 </select>
