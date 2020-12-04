@@ -11,7 +11,9 @@
 <metal:main fill-slot="content-core"
             tal:define="roundsView context/@@manageRounds;
                         boxView context/@@manageBox;
-                        allRounds roundsView/getAllRounds">
+                        driversView context/@@manageDrivers;
+                        allRounds roundsView/getAllRounds;
+                        allDrivers driversView/getAllDrivers">
 
 <h2>
     <i class="fas fa-ellipsis-v"></i>
@@ -27,12 +29,21 @@
     </a>
 </nav>
 
-<tal:boucle tal:repeat="round allRounds">
+<tal:boucle tal:repeat="myRound allRounds">
     <div class="card border-info mb-3"
-         tal:define="idRound round/_id;
-                     myRoundDistance python:roundsView.getDistanceRound(idRound);">
+         tal:define="idRound myRound/_id;
+                     idDriver myRound/roundDriverId;
+                     myRoundDistance python:roundsView.getDistanceRound(idRound);
+                     myDriver python:driversView.getDriverById(idDriver)">
         <div class="card-header flex-box flex-justify-content-space-between">
-            <h3 class="text-info"><span tal:content="round/roundName" /></h3>
+            <h3 class="text-info"><span tal:content="myRound/roundName" /></h3>
+            <div>
+                Chauffeur :
+                <span tal:content="myDriver/firstName"
+                      class="form-input-data" /> 
+                <span tal:content="myDriver/lastName"
+                      class="form-input-data" />
+            </div>
             <div>
                 Distance estimée :
                 <span tal:content="myRoundDistance"
@@ -40,7 +51,7 @@
             </div>
         </div>
         <div class="card-body text-secondary">
-            <tal:block tal:define="allBoxes round/roundMitsiboxList">
+            <tal:block tal:define="allBoxes myRound/roundMitsiboxList">
                 <tal:boucle tal:repeat="idBox allBoxes">
                     <tal:boxe tal:define="myBox python:boxView.getOneBoxById(idBox)">
                         <div> 
@@ -62,13 +73,13 @@
         <div class="flex-box flex-justify-content-space-between">
             <nav class="menu-bouton">
                 <a href=""
-                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
+                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${myRound/_id}"
                    class="noborder"
                    alt="Modifier cette tournée"
                    title="Modifier cette tournée"
                    role="button"><i class="bouton-nav fad fa-cogs"></i></a>
                 <a href=""
-                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${round/_id}"
+                   tal:attributes="href string:${context/portal_url}/gestion-des-tournees/afficher-une-tournee?idRound=${myRound/_id}"
                    class="noborder"
                    alt="Information sur cette tournée"
                    title="Information sur cette tournée"

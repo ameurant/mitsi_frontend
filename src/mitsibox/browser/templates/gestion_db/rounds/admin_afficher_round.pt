@@ -14,8 +14,10 @@
 <metal:main fill-slot="content-core"
             tal:define="idRound request/idRound;
                         boxView context/@@manageBox;
-                        roundsView context/@@manageRounds; 
+                        roundsView context/@@manageRounds;
+                        driversView context/@@manageDrivers;
                         myRound python:roundsView.getRoundById(idRound);
+                        myDriver python:driversView.getDriverById(myRound.roundDriverId);
                         myRoundDistance python:roundsView.getDistanceRound(idRound);
                         allBoxes python:boxView.getAllBoxesFromRound(idRound)">
                         
@@ -38,9 +40,15 @@
                 Durée estimée :
                 <span tal:content="myRound/roundEstimedTime"
                       class="form-input-data" /><br />
+                Chauffeur :
+                <span tal:content="myDriver/firstName"
+                      class="form-input-data" />
+                <span tal:content="myDriver/lastName"
+                      class="form-input-data" /><br />
                 Distance estimée :
                 <span tal:content="myRoundDistance"
                       class="form-input-data" /> km<br />
+
                 
             </div>
             <div class="form-input">

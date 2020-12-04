@@ -16,7 +16,6 @@
                         driversView context/@@manageDrivers; 
                         allBoxes python:boxView.getListingBox();
                         allDrivers python:driversView.getAllDrivers()">
-
     <section class="formulaire">
         <h2>
             <i class="fas fa-ellipsis-v"></i>
@@ -67,16 +66,17 @@
                        required />
             </div>
             <div class="form-input">
-                <label for="driver_pk">
+                <label for="driver_id">
                     Chauffeur affacté à cette tournée :
                 </label>
-                <select name="driverPk"
-                        id="driver-pk"
+                <select name="roundDriverId"
+                        id="driver-id"
                         required>
                     <tal:boucle tal:repeat="myDriver allDrivers">
+                        <option>...</option>
                         <option tal:attributes="value myDriver/_id">
-                            <span tal:content="MyDriver/firstname" />
-                            <span tal:content="MyDriver/lastname" />
+                            <span tal:content="myDriver/firstName" />
+                            <span tal:content="myDriver/lastName" />
                         </option>
                     </tal:boucle>
                 </select>

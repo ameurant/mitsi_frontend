@@ -13,9 +13,11 @@
 
 <metal:main fill-slot="content-core"
             tal:define="idRound request/idRound;
-                        boiteView context/@@displayBox;
+                        boxesView context/@@displayBox;
+                        driversView context/@@manageDrivers;
                         roundsView context/@@manageRounds; 
-                        boites python:boiteView.getListingBox();
+                        allBoxes python:boxesView.getListingBox();
+                        allDrivers python:driversView.getAllDrivers;
                         myRound python:roundsView.getRoundById(idRound)">
 
     <section class="formulaire">
@@ -70,6 +72,23 @@
                        required />
             </div>
             <div class="form-input">
+                <label for="driver_id">
+                    Chauffeur affacté à cette tournée :
+                </label>
+                <select name="roundDriverId"
+                        id="driver-id"
+                        required>
+                    <tal:boucle tal:repeat="myDriver allDrivers">
+                        <option>...</option>
+                        <option tal:attributes="value myDriver/_id;
+                                                selected python:myRound.roundDriverId==myDriver._id and 'selected' or None;">
+                            <span tal:content="myDriver/firstName" />
+                            <span tal:content="myDriver/lastName" />
+                        </option>
+                    </tal:boucle>
+                </select>
+            </div>
+            <div class="form-input">
                 <label for="round-mitisibox-list">
                     Sélectionner les mitisibox composant cette tournée :
                 </label>
@@ -77,7 +96,7 @@
                         name="roundMitsiboxList:list"
                         id="round-mitsibox-list"
                         required>
-                    <tal:boucle tal:repeat="boite boites">
+                    <tal:boucle tal:repeat="boite allBoxes">
                         <option tal:attributes="value boite/_id;
                                                 selected python:boite._id in myRound.roundMitsiboxList or None">
                             <strong><span tal:content="boite/name" />
