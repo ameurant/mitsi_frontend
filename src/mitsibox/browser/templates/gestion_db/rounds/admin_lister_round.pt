@@ -36,13 +36,11 @@
             <h3 class="text-info"><span tal:content="round/roundName" /></h3>
             <div>
                 Distance estimée :
-                <!--
+                
                 <span tal:content="myRoundDistance"
                       class="form-input-data" /> km
-                -->
             </div>
         </div>
-        <!--
         <div class="card-body text-secondary">
             <tal:block tal:define="allBoxes round/roundMitsiboxList">
                 <tal:boucle tal:repeat="idBox allBoxes">
@@ -62,7 +60,6 @@
                 </tal:boucle>
             </tal:block>
         </div>
-        -->
         <nav class="menu-bouton">
             <a href=""
                tal:attributes="href string:${context/portal_url}/gestion-des-tournees/modifier-une-tournee?idRound=${round/_id}"
