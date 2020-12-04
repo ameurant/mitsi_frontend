@@ -52,9 +52,7 @@
             <tal:block tal:define="idLab myBox/lab_id;
                                    idBox myBox/_id;
                                    myLab python:labsView.getLabsById(idLab);
-                                   myRound python:roundsView.getRoundsOfBox(idBox);
-                                   myRoundName python:myRound['roundName'];
-                                   myRoundId python:myRound['idRound']">
+                                   myRound python:roundsView.getRoundsOfBox(idBox)">
                 <tr>
                     <td class="text-center">
                         <span tal:content="myBox/name" class="orange" />
@@ -81,13 +79,18 @@
                               tal:content="myBox/arduino" />
                     </td>
                     <td class="text-center">
-                        <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/afficher-une-tournee?idRound=${myRoundId}"
-                           class="noborder"
-                           alt="Information sur cette tournée"
-                           title="Information sur cette tournée"
-                           role="button">
-                            <span tal:content="myRoundName" />
-                        </a>
+                        <talblock tal:condition="python: myRound is not None">
+                            <div tal:define="myRoundName python:myRound['roundName'];
+                                             myRoundId python:myRound['idRound']">
+                                <a tal:attributes="href string:${context/portal_url}/gestion-des-boites/afficher-une-tournee?idRound=${myRoundId}"
+                                   class="noborder"
+                                   alt="Information sur cette tournée"
+                                   title="Information sur cette tournée"
+                                   role="button">
+                                    <span tal:content="myRoundName" />
+                                </a>
+                            </div>
+                        </talblock>
                     </td>
                     <td class="text-center">
                         <nav class="menu-bouton">
