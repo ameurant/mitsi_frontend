@@ -38,6 +38,7 @@ class ManageRounds(ConnexionDb):
         """
         Récupère le nom dde la tournée à la quelle appartient une box
         """
+        print "Box %s" % (idBox,)
         session = self.getConnexion()
         db = session.get_schema('mitsi_chuhautesenne')
         request = db.session.sql("""select
@@ -47,14 +48,17 @@ class ManageRounds(ConnexionDb):
                                         mitsi_chuhautesenne.mitsibox_rounds
                                     where
                                         "%s" member of (doc->>'$.roundMitsiboxList')""" % (idBox,)).execute()
-        if (request.fetch_one()):
+        result = request.fetch_one();
+        if (result is not None):
             myRound = {}
-            (myRound['idRound'], myRound['roundName']) = request.fetch_one()
+            (myRound['idRound'], myRound['roundName']) = result
             print "Rounds for box %s OK" % (idBox,)
+            print "my round %s" % (myRound,)
             return myRound
         else:
             print "Rounds for box %s KO" % (idBox,)
-            import pdb; pdb.set_trace()
+            return None
+
 
     def getDistanceRound(self, idRound):
         """
@@ -81,6 +85,7 @@ class ManageRounds(ConnexionDb):
         newRound['roundStartTime'] = fields.get('roundStartTime', None)
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
         newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
+        newRound['roundDriverId'] = fields.get('roundDriverId', None)
 
         tableRounds.add(newRound).execute()
 
@@ -106,6 +111,7 @@ class ManageRounds(ConnexionDb):
         newRound['roundStartTime'] = fields.get('roundStartTime', None)
         newRound['roundEstimedTime'] = fields.get('roundEstimedTime', None)
         newRound['roundMitsiboxList'] = fields.get('roundMitsiboxList', None)
+        newRound['roundDriverId'] = fields.get('roundDriverId', None)
 
         tablesRounds.modify("_id='%s'" % idRound).patch(newRound).execute()
 

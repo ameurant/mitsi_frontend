@@ -90,7 +90,6 @@
                              class="power-black pat-tooltip">
                             <i class="fad fa-plug"></i>
                         </div>
-                        
                     </tal:block>
                 </div>
             </h3>
@@ -195,7 +194,13 @@
                 </div>
             </div>
             <hr />
-            
+            <div tal:define="myRound python:roundsView.getRoundsOfBox(idBox)">
+                <span class="label-box discret">Tournée :</span>
+                    <span tal:condition="python: myRound is not None"
+                          tal:content="myRound/roundName"
+                          class="data-box discret" />
+            </div>
+            <hr />
             <div class="flex-box flex-justify-content-space-between">
                 <div>
                     <!--labo-->
