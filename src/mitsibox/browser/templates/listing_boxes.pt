@@ -31,7 +31,7 @@
                 <th>Dernier dépôt</th>
                 <th>Dernier relevé</th>
                 <th>Derniére maj</th>
-                <th>Batterie</th>
+                <th>Alimentation</th>
                 <th colspan="2">Etat Porte</th>
                 <th>Adresse</th>
             </tr>
@@ -122,7 +122,8 @@
                 </div>
             </td>
             <td>
-                <div tal:condition="exists: myBox/battery_status">
+                <div tal:condition="exists: myBox/battery_status"
+                     class="texte-centrer">
                     <!-- statut de la batterie -->
                     <tal:block tal:define="batteryStatus myBox/battery_status;
                                            infoBattery python:boxesView.splitStatusBatteryBox(batteryStatus)">
@@ -147,7 +148,12 @@
                              class=" rouge pat-tooltip">
                             <i class="fad fa-battery-quarter battery"></i>
                         </div>
-                        
+                        <div tal:condition="python: infoBattery[0]=='POWERED'"
+                             data-toggle="tooltip" 
+                             title="Power"
+                             class="power-black pat-tooltip">
+                            <i class="fad fa-plug"></i>
+                        </div>
                     </tal:block>
                 </div>
             </td>
