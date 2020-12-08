@@ -12,7 +12,8 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="boxesView context/@@manageBox;
+            tal:define="idBox request/idBox;
+                        boxesView context/@@manageBox;
                         labsView context/@@manageLabs;
                         allLabs labsView/getListingLabs">
 
@@ -30,9 +31,25 @@
                 <input type="text"
                        name="boxQRCode"
                        id="box-qrcode"
-                       value="" />
+                       tal:attributes="value idBox" />
+            </div>
+            <div class="form-input">
+                <label for="box-nbre-colis">
+                    Nombre de colis :
+                </label>
+                <input type="numeric"
+                       name="boxNbreColis"
+                       id="box-nbre-colis"
+                       value="0" />
             </div>
             <div class="formControls" align="center">
+                <input type="hidden"
+                       name="idDriver"
+                       value="" />
+                <input type="hidden"
+                       name="idRound"
+                       value="" />
+
                 <input type="submit"
                        name="submit"
                        value="Enregister" />
