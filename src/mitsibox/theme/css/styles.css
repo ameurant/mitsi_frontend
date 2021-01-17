@@ -64,9 +64,6 @@ body{
     font-size:0.8em;
     padding-right:10px;
 }
-.fa-external-link-alt{
-    
-}
 
 
 
@@ -275,8 +272,6 @@ h2{
     text-decoration:none;
 }
 
-
-/*** DOSSIER IMAGE ***/
 .dossier-image{
     min-height:148px;
     border-radius:0px 0px 8px 8px;
@@ -319,6 +314,10 @@ h2{
 .icone-toggle-listing-box a:hover{
     color:#ee772c;
     transition: all 0.3s ease-in-out;
+}
+
+.qr-code-50{
+    width:50%;
 }
 
 
