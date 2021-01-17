@@ -10,6 +10,12 @@ class IMitsiboxCoreLayer(IDefaultBrowserLayer):
     """
 
 
+class IManageCommon(Interface):
+    """
+    IManageCommon
+    """
+
+
 class IshowBox(Interface):
     """
     IshowBox
@@ -51,7 +57,7 @@ class IManageRounds(Interface):
     IManageRounds
     """
 
-class IManageDriverPrelevementBox(Interface):
+class IManageCollections(Interface):
     """
-    IManageDriverPrelevementBox
+    IManageCollections
     """
