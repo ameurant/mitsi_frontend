@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import json
-from plone import api
-from Products.Five import BrowserView
+# import json
+# from plone import api
+# from Products.Five import BrowserView
 from zope.interface import implements
-from zope.component import getMultiAdapter
+# from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from interfaces import IManageDrivers
 from connexion_db import ConnexionDb
@@ -37,6 +37,48 @@ class ManageDrivers(ConnexionDb):
 
         return myDriver
 
+    def getDriverIdByLoginPlone(self, loginPlone):
+        """
+        Récupères les infos d'un chauffeur selon son ID dans Plone
+        """
+        if (loginPlone == 'admin'):
+            tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
+            recs = tablesDrivers.find("idDriver=='%s'" % (loginPlone,)).execute()
+            myDriver = recs.fetch_one()
+        else:
+            myDriver = loginPlone
+        return myDriver
+
+        return myDriver
+
+    def createDriver(self, driverId, driverEmail, driverFullname, passDriver):
+        """
+        créer un driver dans le plone portal_membership
+        """
+        registration = getToolByName(self.context, 'portal_registration')
+        membership = getToolByName(self.context, 'portal_membership')
+        acl_users = getToolByName(self.context, 'acl_users')
+
+        # password = ''.join(random.choice(chars) for char in range(8))
+        properties = {
+            'username': driverId,
+            'email': driverEmail,
+            'fullname': driverFullname.encode('utf-8')
+        }
+        registration.addMember(driverId, passDriver, properties=properties)
+        acl_users.updateLoginName(driverId, driverEmail)
+
+        self.addDriverToGroupDrivers(driverId)
+
+        return membership.getMemberById(driverId)
+
+    def addDriverToGroupDrivers(self, driverId):
+        """
+        ajouter un driver dans le plone group drivers
+        """
+        portal_groups = getToolByName(self.context, 'portal_groups')
+        portal_groups.addPrincipalToGroup(driverId, 'drivers')
+
     def insertDriver(self):
         """
         insertion d'une nouvelle drivers
@@ -45,12 +87,23 @@ class ManageDrivers(ConnexionDb):
 
         fields = self.request.form
 
+        lastName = fields.get('driverLastName', None).decode('utf-8')
+        firstName = fields.get('driverFirstName', None).decode('utf-8')
+        driverId = fields.get('driverId', None)
+        driverPass = fields.get('driverPass', None)
+        driverFullName = firstName + u" " + lastName
+        driverEmail = 'alain.meurant@skynet.be'
+
         newDriver = {}
-        newDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
-        newDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
+        newDriver['lastName'] = lastName
+        newDriver['firstName'] = firstName
         newDriver['gsm'] = fields.get('driverGsm', None)
+        newDriver['idDriver'] = driverId
+        newDriver['passDriver'] = driverPass
 
         tablesDrivers.add(newDriver).execute()
+
+        self.createDriver(driverId, driverEmail, driverFullName, driverPass)
 
         portalUrl = getToolByName(self.context, 'portal_url')()
         ploneUtils = getToolByName(self.context, 'plone_utils')
@@ -65,7 +118,7 @@ class ManageDrivers(ConnexionDb):
         insertion d'une nouvelle boite
         """
         tablesDrivers = self.getLabDbAccess('mitsibox_drivers')
-        
+
         fields = self.request.form
         idDriver = fields.get('idDriver', None)
 
@@ -73,6 +126,8 @@ class ManageDrivers(ConnexionDb):
         myDriver['lastName'] = fields.get('driverLastName', None).decode('utf-8')
         myDriver['firstName'] = fields.get('driverFirstName', None).decode('utf-8')
         myDriver['gsm'] = fields.get('driverGsm', None)
+        myDriver['idDriver'] = fields.get('driverId', None)
+        myDriver['passDriver'] = fields.get('driverPass', None)
 
         tablesDrivers.modify("_id='%s'" % idDriver).patch(myDriver).execute()
 
