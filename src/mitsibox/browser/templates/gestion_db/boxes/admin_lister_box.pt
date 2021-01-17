@@ -79,7 +79,7 @@
                      <td class="text-center">
                         <img src=""
                              class="qr-code-50"
-                             tal:attributes="src string:$portal_url/++theme++mitsibox//images/qrcode/${idBox}.png" />
+                             tal:attributes="src string:$portal_url/++theme++mitsibox/images/qrcode/${idBox}.png" />
                     </td>
                     <td class="text-center">
                         <talblock tal:condition="python: myRound is not None">
