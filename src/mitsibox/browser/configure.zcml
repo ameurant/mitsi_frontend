@@ -6,6 +6,18 @@
     i18n_domain="mitsibox">
 
 
+<!-- COMMON -->
+    <!-- manage common -->
+    <browser:page
+        for="*"
+        name="manageCommon"
+        class=".manage_common.ManageCommon"
+        allowed_interface=".interfaces.IManageCommon"
+        permission="zope.Public"
+        />
+
+
+
 <!-- CONNEXION DB -->
     <browser:page
         for="*"
@@ -47,6 +59,14 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="manageCollections"
+        class=".manage_collections.ManageCollections"
+        allowed_interface=".interfaces.IManageCollections"
+        permission="zope.Public"
+        />
+
 
 <!-- DOSSIER IMAGE VIEW -->
     <browser:page
@@ -59,26 +79,8 @@
         permission="zope2.View"
         />
 
-
-<!-- DRIVER PRELEVEMENT BOX -->
-    <browser:page
-        for="*"
-        name="driverPrelevementBox"
-        class=".driver_prelevement_box.DriverPrelevementBox"
-        allowed_interface=".interfaces.IManageDriverPrelevementBox"
-        permission="zope.Public"
-        />
-    <browser:page
-        name="driver-form"
-        for="*"
-        class=".driver_prelevement_box.DriverPrelevementBox"
-        template="templates/driver_prelevement_form.pt"
-        permission="zope2.View"
-        allowed_interface=".interfaces.IManageDriverPrelevementBox"
-        />
-
-
-<!-- DISPLAY BOX -->
+    
+<!-- CONTROL CENTER -->
     <browser:page
         for="*"
         name="displayBox"
@@ -91,7 +93,7 @@
         name="show-one-box"
         for="*"
         class=".display_box.DisplayBox"
-        template="templates/show_one_boxe.pt"
+        template="templates/control_center/show_one_boxe.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDisplayBox"
         />
@@ -100,7 +102,7 @@
         name="show-all-boxes"
         for="*"
         class=".display_box.DisplayBox"
-        template="templates/show_all_boxes.pt"
+        template="templates/control_center/show_all_boxes.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDisplayBox"
         />
@@ -109,7 +111,7 @@
         name="listing-box"
         for="*"
         class=".display_box.DisplayBox"
-        template="templates/listing_boxes.pt"
+        template="templates/control_center/listing_boxes.pt"
         permission="zope2.View"
         allowed_interface=".interfaces.IManageDisplayBox"
         />
@@ -319,7 +321,36 @@
         allowed_interface=".interfaces.IManageRounds"
         />
 
+<!-- MANAGE COLLECTIONS -->
+    <browser:page
+        name="driver-form"
+        for="*"
+        class=".manage_collections.ManageCollections"
+        template="templates/driver_collects/driver_prelevement_form.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageCollections"
+        />
+    <browser:page
+        name="insertCollection"
+        for="*"
+        class=".manage_collections.ManageCollections"
+        attribute="insertCollection"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageCollections"
+        />
+    <browser:page
+        name="updateCollection"
+        for="*"
+        class=".manage_collections.ManageCollections"
+        attribute="updateCollection"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageCollections"
+        />
 
 
-        
+<!-- MANAGE CONTROL CENTER -->
+
+
+
+
 </configure>
