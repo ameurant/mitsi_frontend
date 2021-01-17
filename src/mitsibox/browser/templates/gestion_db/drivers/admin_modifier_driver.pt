@@ -53,6 +53,26 @@
                        id="driver-gsm"
                        tal:attributes="value driver/gsm" />
             </div>
+            <div class="form-input">
+                <label for="driver-id">
+                    Identifiant :
+                </label>
+                <input type="text"
+                       name="driverId"
+                       id="driverId"
+                       required
+                       tal:attributes="value python:driver.idDriver or None"  />
+            </div>
+            <div class="form-input">
+                <label for="driver-pass">
+                    Password :
+                </label>
+                <input type="text"
+                       name="driverPass"
+                       id="driver-pass"
+                       required
+                       tal:attributes="value python:driver.passDriver or None" />
+            </div>
 
             <div class="formControls" align="center">
                 <input type="hidden"

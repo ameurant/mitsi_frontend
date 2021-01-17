@@ -50,7 +50,26 @@
                        id="driver-gsm"
                        value="" />
             </div>
-
+            <div class="form-input">
+                <label for="driver-id">
+                    Identifiant :
+                </label>
+                <input type="text"
+                       name="driverId"
+                       id="driverId"
+                       value=""
+                       required />
+            </div>
+            <div class="form-input">
+                <label for="driver-pass">
+                    Password :
+                </label>
+                <input type="text"
+                       name="driverPass"
+                       id="driver-pass"
+                       value=""
+                       required />
+            </div>
             <div class="formControls" align="center">
                 <input type="submit"
                        name="submit"
