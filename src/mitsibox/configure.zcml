@@ -17,7 +17,8 @@
         description=""
         directory="profiles/default"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="Products.GenericSetup.interfaces.EXTENSION" />
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.post_handler" />
     
     
     <browser:jbot
