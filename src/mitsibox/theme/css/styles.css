@@ -323,16 +323,22 @@ h2{
 
 
 /*** CARTE ***/
-.section-donnee,
-.section-carte{
-    /*border-radius:8px;
-    border:1px solid rgba(0, 123, 255, 0.2);*/
+#box-tournee{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    width:100%;
 }
 .section-donnee{
-    width:29%;
+}
+.section-donnee-box{
+    border:1px solid #999;
+    border-radius:8px;
+    padding:8px;
+    margin:1em;
 }
 .section-carte{
-    width:70%;
+    width:100%;
 }
 
 #map-mitsiboxes { 
@@ -358,6 +364,22 @@ h2{
 
 /**** PHONE *****/
 @media (max-width: 768px) {
+    #box-tournee{
+        display: flex;
+        flex-direction:column;
+        width:100%;
+    }
+    .section-donnee-box-flex{
+        display:flex;
+        flex-direction:column;
+        justify-content: flex-start;
+        align-items: center;
+        width:100%;
+
+    }
+    .section-carte{
+        width:100%;
+    }
 }
 
 

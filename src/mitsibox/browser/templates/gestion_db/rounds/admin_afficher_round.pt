@@ -28,42 +28,52 @@
         Information sur la tournée : <em>${myRound/roundName}</em>
     </h2>
     
-    <div class="flex-box flex-justify-content-space-between">
+    <div id="box-tournee">
         <section class="section-donnee">
-            <div class="box">
-                Type de la tournée :
-                <span tal:content="myRound/roundType"
-                      class="form-input-data" /><br />
-                Heure de départ :
-                <span tal:content="myRound/roundStartTime"
-                      class="form-input-data" /><br />
-                Durée estimée :
-                <span tal:content="myRound/roundEstimedTime"
-                      class="form-input-data" /><br />
-                Chauffeur :
-                <span tal:content="myDriver/firstName"
-                      class="form-input-data" />
-                <span tal:content="myDriver/lastName"
-                      class="form-input-data" /><br />
-                Distance estimée :
-                <span tal:content="myRoundDistance"
-                      class="form-input-data" /> km<br />
-
-                
+            <div class="section-donnee-box-flex">
+                <div class="section-donnee-box">
+                    Type de la tournée :
+                    <span tal:content="myRound/roundType"
+                          class="form-input-data" /><br />
+                    Heure de départ :
+                    <span tal:content="myRound/roundStartTime"
+                          class="form-input-data" /><br />
+                    Durée estimée :
+                    <span tal:content="myRound/roundEstimedTime"
+                          class="form-input-data" /><br />
+                    Chauffeur :
+                    <span tal:content="myDriver/firstName"
+                          class="form-input-data" />
+                    <span tal:content="myDriver/lastName"
+                          class="form-input-data" /><br />
+                    Distance estimée :
+                    <span tal:content="myRoundDistance"
+                          class="form-input-data" /> km<br />
+                </div>
             </div>
             <div class="form-input">
                 <tal:boucle tal:repeat="myBox allBoxes">
-                    <div class="box">
-                        <strong> 
-                            <span tal:content="myBox/name"
-                                  class="form-input-data" />
-                        </strong>
-                        <br />
-                        <span tal:content="myBox/address" />
-                        <br />
-                        <span tal:content="myBox/cp" /> <span tal:content="myBox/localite" />
-                        <br />
-                        <span tal:content="myBox/lat" /> :: <span tal:content="myBox/long" />
+                    <div class="section-donnee-box-flex">
+                        <div class="section-donnee-box"
+                             tal:define="idBox myBox/_id">
+                            <strong> 
+                                <span tal:content="myBox/name"
+                                      class="orange" />
+                            </strong>
+                            <br />
+                            <span tal:content="myBox/address" />
+                            <br />
+                            <span tal:content="myBox/cp" /> <span tal:content="myBox/localite" />
+                            <br />
+                            <span tal:content="myBox/lat" />
+                            <br />
+                            <span tal:content="myBox/long" />
+                            <figure>
+                                <img src=""
+                                     class="qr-code-50"
+                                     tal:attributes="src string:$portal_url/++theme++mitsibox/images/qrcode/${idBox}.png" />
+                            </figure>
+                        </div>
                     </div>
                 </tal:boucle>
             </div>
