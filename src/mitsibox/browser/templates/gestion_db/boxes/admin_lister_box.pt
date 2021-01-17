@@ -39,12 +39,11 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Adresse</th>
-                <th>Lattitude</th>
-                <th>Longitude</th>
+                <th>Localisation</th>
                 <th>SSID Wifi</th>
                 <th>Aduino</th>
                 <th>Tournée</th>
+                <th>QR-Code</th>
                 <th></th>
             </tr>
         </thead>
@@ -58,18 +57,17 @@
                         <span tal:content="myBox/name" class="orange" />
                         <br />
                         <span tal:content="myLab/name" class="discret" />
-                    </td>
-                    <td class="text-center">
-                        <span tal:content="myBox/address" />
                         <br />
+                        <span tal:content="idBox" class="discret" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myBox/address" /><br />
                         <span tal:content="myBox/cp" />
-                        <span tal:content="myBox/localite" />
-                    </td>
-                    <td class="text-center">
-                        <span tal:content="myBox/lat" />
-                    </td>
-                    <td class="text-center">
-                        <span tal:content="myBox/long" />
+                        <span tal:content="myBox/localite" /><br />
+
+                        <i class="fad fa-globe"></i>
+                        <span tal:content="myBox/lat" /> - 
+                        <span tal:content="myBox/long" /><br />
                     </td>
                     <td class="text-center">
                         <span tal:content="myBox/ssid" />
@@ -77,6 +75,11 @@
                     <td class="text-center">
                         <span tal:condition="exists: myBox/arduino"
                               tal:content="myBox/arduino" />
+                    </td>
+                     <td class="text-center">
+                        <img src=""
+                             class="qr-code-50"
+                             tal:attributes="src string:$portal_url/++theme++mitsibox//images/qrcode/${idBox}.png" />
                     </td>
                     <td class="text-center">
                         <talblock tal:condition="python: myRound is not None">
