@@ -323,6 +323,14 @@
 
 <!-- MANAGE COLLECTIONS -->
     <browser:page
+        name="listing-des-collections"
+        for="*"
+        class=".manage_collections.ManageCollections"
+        template="templates/gestion_db/collections/admin_lister_collections.pt"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IManageCollections"
+        />
+    <browser:page
         name="driver-form"
         for="*"
         class=".manage_collections.ManageCollections"
