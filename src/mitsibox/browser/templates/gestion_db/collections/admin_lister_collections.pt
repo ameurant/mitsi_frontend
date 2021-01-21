@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="fr"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="box">
+
+<body>
+
+<metal:main fill-slot="content-core"
+            tal:define="collectionsView context/@@manageCollections;
+                        roundsView context/@@manageRounds;
+                        boxesView context/@@manageBox;
+                        driversView context/@@manageDrivers;
+                        allCollections collectionsView/getAllCollections;">
+
+<h2>
+    <i class="fas fa-ellipsis-v"></i>
+    Liste des collectes effectuées par les chauffeurs
+</h2>
+<table border="1" 
+       class="listing">
+        <thead>
+            <tr>
+                <th>Boite</th>
+                <th>Prélèvement</th>
+                <th>Chauffeur</th>
+                <th>Tournée</th>
+                <th>Commentaire</th>
+            </tr>
+        </thead>
+        <tal:boucle tal:repeat="myCollection allCollections">
+                <tr>
+                    <td tal:define="idBox myCollection/box_id;
+                                    myBox python: boxesView.getOneBoxById(idBox)"
+                        class="text-center">
+                        <span tal:content="myBox/name" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myCollection/samples_total" />
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myCollection/driver_id" />
+                    </td>
+                    <td tal:define="idRound myCollection/round_id;
+                                    myRound python: roundsView.getRoundById(idRound)"
+                        class="text-center">
+                        <span tal:content="myRound/roundName" />
+
+                    </td>
+                    <td class="text-center">
+                        <span tal:content="myCollection/collect_comment" />
+                    </td>
+                </tr>
+        </tal:boucle>
+</table>
+</metal:main>
+</body>
+</html>
+
