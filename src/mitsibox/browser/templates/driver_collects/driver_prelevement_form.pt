@@ -12,20 +12,20 @@
            tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:main fill-slot="content-core"
-            tal:define="idBox string:00005ecb95df000000000000000c;
+            tal:define="idBox string:00005f0d88fe0000000000000002;
                         commonView context/@@manageCommon;
                         boxesView context/@@manageBox;
-                        labsView context/@@manageLabs;
                         idDriver commonView/getUserAuthenticated;
                         idRound string:00005f0d88fe0000000000000018;
-                        allLabs labsView/getListingLabs">
+                        myBox python:boxesView.getOneBoxById(idBox)">
 
     <section class="formulaire">
         <h2>
             <i class="fas fa-ellipsis-v"></i>
             Relever une boite
         </h2>
-        <span class="discret">collecte-des-boites?idBox=00005ecb95df000000000000000b
+        <span class="discret">
+            collecte-des-boites?idBox=<span tal:content="idBox" />
         </span>
         <br />
         <span class="discret"> 
@@ -34,13 +34,13 @@
         <form action="insertCollection"
               method="post">
             <div class="form-input">
-                <label for="box-qrcode">
-                    QRCode la boite :
-                </label>
-                <input type="text"
-                       name="boxId"
-                       id="box-qrcode"
-                       tal:attributes="value idBox" />
+                Info de la boite :
+                <br />
+                <span tal:content="myBox/name"
+                      class="orange" /> ::
+                <span tal:content="myBox/address" />
+                <span tal:content="myBox/cp" />
+                <span tal:content="myBox/localite" />
             </div>
             <div class="form-input">
                 <label for="total-saclots">
@@ -49,9 +49,21 @@
                 <input type="numeric"
                        name="totalSaclots"
                        id="total-saclots"
-                       value="0" />
+                       value="0"
+                       placholder="Nombre de colis" />
+            </div>
+            <div class="form-input">
+                <label for="collect-comment">
+                    Commentaire :
+                </label>
+                <textarea name="collectComment"
+                          id="collect-comment"
+                          placholder="Commentaire éventuel" />
             </div>
             <div class="formControls" align="center">
+                <input type="hidden"
+                       name="boxId"
+                       tal:attributes="value idBox" />
                 <input type="hidden"
                        name="idDriver"
                        tal:attributes="value idDriver" />
