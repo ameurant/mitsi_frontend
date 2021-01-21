@@ -1,0 +1,83 @@
+mitsibox_collect_box_history
++-----------------------+---------------+------+-----+---------+----------------+
+| Field                 | Type          | Null | Key | Default | Extra          |
++-----------------------+---------------+------+-----+---------+----------------+
+| id                    | int unsigned  | NO   | PRI | NULL    | auto_increment |
+| collect_history_id    | int unsigned  | YES  |     | NULL    |                |
+| box_id                | varbinary(32) | YES  |     | NULL    |                |
+| collect_box_timestamp | timestamp     | YES  |     | NULL    |                |
+| collect_box_comment   | varchar(255)  | YES  |     | NULL    |                |
++-----------------------+---------------+------+-----+---------+----------------+
+
+mitsibox_collect_history
++-----------------+---------------+------+-----+---------+----------------+
+| Field           | Type          | Null | Key | Default | Extra          |
++-----------------+---------------+------+-----+---------+----------------+
+| id              | int unsigned  | NO   | PRI | NULL    | auto_increment |
+| round_id        | varbinary(32) | YES  |     | NULL    |                |
+| driver_id       | varbinary(32) | YES  |     | NULL    |                |
+| box_id          | varbinary(32) | YES  |     | NULL    |                |
+| start_date      | date          | YES  |     | NULL    |                |
+| start_time      | time          | YES  |     | NULL    |                |
+| end_time        | time          | YES  |     | NULL    |                |
+| status          | varchar(15)   | YES  |     | NULL    |                |
+| samples_total   | int           | YES  |     | NULL    |                |
+| collect_comment | varchar(255)  | YES  |     | NULL    |                |
++-----------------+---------------+------+-----+---------+----------------+
+
+
+
+Questions pour fred
+    mitsibox_collect_history.start_date
+    mitsibox_collect_history.start_time
+    mitsibox_collect_history.end_time
+
+    mitsibox_collect_box_history.collect_box_timestamp
+    mitsibox_collect_box_history.collect_box_comment
+
+Dans quel ordre remplit-on les tables ?
+        mitsibox_collect_history à chaque prélèvement du driver dans une boite
+        mitsibox_collect_box_history à chaque ajout d'une ligne dans mitsibox_collect_history
+
+
+
+Ce sont des tables
+    |==> getLabDbAccessTable
+    |==> recs = tableCollections.select().execute()  # cas d'une table
+
+Si collection 
+    |==> recs = tableCollections.find().execute()  # cas d'une collection
+
+
+On ajoute une ligne par saclot a chaque changement de status
+et on update la colonne state
+    ancienne ligne devient inactive
+    nouvelle ligne devient active
+
+STATUS --> changé automatiquement par le programme de Lefred
+    |--> INBOX
+    |--> TRANSIT
+    |--> LABO
+
+STATE  
+    |--> ACTIVE   quand en circulation
+    |--> INACTIVE quand scannée au labo et hors circuit
+
+
+Lors de l'arrivée au labo
+les samples scannés sont aussi stockés dans le json sample et les
+samples non récoltés sont stocké dans le json sample_missing
+
+select * from mitsibox_collection;
++----+------------------------------+-----------+------------------------------+---------------------+---------------+---------+-----------------+
+| id | round_id                     | driver_id | box_id                       | time_stamp          | total_samples | samples | samples_missing |
++----+------------------------------+-----------+------------------------------+---------------------+---------------+---------+-----------------+
+|  1 | 00005f0d88fe0000000000000018 | steve     | 00005ecb95df000000000000000c | 2020-12-15 13:55:33 |             7 | NULL    | NULL            |
++----+------------------------------+-----------+------------------------------+---------------------+---------------+---------+-----------------+
+
+
+donc quand tu vas recevoir tu dois:
+ajouter une ligne par sample_id dans mitsibox_sample_events avec le status LABO
+updater le document dans la collection mitsibox_sample et changer le status en LABO et mettre à jours last_action
+
+
