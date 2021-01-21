@@ -31,7 +31,8 @@
     <div id="box-tournee">
         <section class="section-donnee">
             <div class="section-donnee-box-flex">
-                <div class="section-donnee-box">
+                <div id="section-donnee-info-round"
+                     class="section-donnee-box">
                     Type de la tournée :
                     <span tal:content="myRound/roundType"
                           class="form-input-data" /><br />
@@ -68,9 +69,8 @@
                             <span tal:content="myBox/lat" />
                             <br />
                             <span tal:content="myBox/long" />
-                            <figure>
+                            <figure class="qr-code-50">
                                 <img src=""
-                                     class="qr-code-50"
                                      tal:attributes="src string:$portal_url/++theme++mitsibox/images/qrcode/${idBox}.png" />
                             </figure>
                         </div>
